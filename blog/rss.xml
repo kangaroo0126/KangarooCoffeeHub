@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>袋鼠咖啡館 Blog</title>
+        <link>https://your-docusaurus-site.example.com/blog</link>
+        <description>袋鼠咖啡館 Blog</description>
+        <lastBuildDate>Sat, 18 Oct 2025 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[生活，不是任務－把人生還給時間與感受]]></title>
+            <link>https://your-docusaurus-site.example.com/blog/2025/10/18/Lifeisnotatask</link>
+            <guid>https://your-docusaurus-site.example.com/blog/2025/10/18/Lifeisnotatask</guid>
+            <pubDate>Sat, 18 Oct 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[（高雄打狗英國領事館官邸拍出去的海景）]]></description>
+            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" src="https://your-docusaurus-site.example.com/assets/images/sea-3267350196a80a5b393e4c344565abae.jpg" width="1883" height="869" class="img_ev3q"></p>
+<p>（高雄打狗英國領事館官邸拍出去的海景）</p>
+<p>人的價值是什麼？
+那天我跑去英國領事館和黃埔新村時，腦中就在想這個問題。
+有時候，我覺得自己好像並不太適合大都市的生活。
+待過馬祖之後，我開始嚮往那樣的日子人的純樸、寬廣的馬路、不吵雜的街道，甚至是那份緩慢的步調與節奏。</p>
+<p>相較之下，在臺灣本島，也許只剩東半部還能找到這樣的生活。
+常常在台北遊蕩的我，在忙碌、工作時其實也喜歡那裡。
+有著許多活動、豐富的資源，還有能在比賽與專案中合作的夥伴。
+那裡充滿機會，等著人去發揮專長、追尋夢想。</p>
+<p>但我也發現，太貪心，反而容易迷失。甚至讓自己更疲倦，或是直接 Burn out。
+也許這跟我們在臺灣長大的經驗有關。
+從小到大的教育都在教我們要「努力往上爬」，要不斷累積能被看見、被賞識的能力與經歷。
+「機會是給準備好的人」這句話幾乎成了共識。
+於是我們不斷地做加法、堆砌精彩，卻也在過程中漸漸忘了自己內心真正的想法。</p>
+<p>或許，是時候該慢下來了。
+環境會形塑我們的一切。這不只發生在個人，也反映在整個產業、教育與社會之中。
+太快，會讓人迷失；太忙，會讓我們只為了「完成任務」而完成。</p>
+<p>相信大家也都看過，在自媒體與社群的世界裡，越來越多人把自己包裝起來，甚至把人生當成專案在經營。像那本《一個人的獲利模式》，用商業模式九宮格來設計個人生涯。</p>
+<p>聽起來很有效率，但同時也有風險。
+在這樣的邏輯下，我們容易把自己當成一個又一個的專案：讀書是一個專案、考檢定是一個專案……</p>
+<p>這樣做不只讓我們焦慮哪個專案進度落後，<strong>更大的隱憂是我們把「人的價值」變成了可以被定義、被量化的商品。</strong>
+開始問自己：我手上有哪些資源（能力、知識）？我的目標族群會因此得到什麼？我想做的事，是否符合市場需求？</p>
+<p>當我們用商業思維看待人生，就會發現，我們其實在把自己「商品化」。努力地讓自己能被銷售、被賞識、被使用。但也因此，我們忘了有些事，本來就該用慢的速度開展。</p>
+<p>還記得以前參加比賽招募隊友時，我最討厭的一個環節就是「面談」。
+因為多數人會先看別人的經歷與能力而被賞識，但我更想找的是<strong>那群沒有經驗、卻願意努力嘗試的人，他們才是最應該被看見的。</strong></p>
+<p>有時候，我甚至會覺得，人資這個角色有點討厭。因為在篩選與評估的過程中，我們又回到了那個讓人被定義、被挑選的體制裡。
+或許，我們都該重新學習「慢」這件事。</p>
+<p>慢，不是懶散，而是重新感受。 在每一次走路的步伐、每一場對話的傾聽、每一個不被效率綁住的時刻裡，重新看見自己是誰，也看見世界的樣子。
+當我們不再被「被看見」的焦慮推著走，不再把人生切成一個個任務、KPI、專案， 也許，才能真正聽見內在的聲音。因為價值，從來不該用速度衡量。而是能不能在生活裡，誠實地存在。</p>
+<p><strong>從慢開始，去感受、去理解、去活出那個不被市場定義的自己。也許，那才是我們真正的價值。</strong></p>]]></content:encoded>
+            <category>生活</category>
+            <category>專案</category>
+            <category>慢</category>
+            <category>時間</category>
+        </item>
+    </channel>
+</rss>

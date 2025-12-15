@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '@theme/Layout';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 
 export default function About() {
@@ -14,7 +15,7 @@ export default function About() {
         marginBottom: 0
       }}>
         <img 
-          src="/img/banner/banner.png" 
+          src={useBaseUrl('/img/banner/banner01.png')}
           alt="袋鼠的咖啡館"
           style={{
             width: '100%',

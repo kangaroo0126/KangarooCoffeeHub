@@ -35,9 +35,11 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          rehypePlugins: [rehypeImageLazyLoading], 
         },
         blog: {
           showReadingTime: true,
+          rehypePlugins: [rehypeImageLazyLoading], 
         },
         theme: {
           customCss: './src/css/custom.css',

@@ -1,7 +1,7 @@
 ---
-title: 作品集
+title: Profile 個人經歷與作品
 authors: 袋鼠
-tags: [作品集]
+tags: [作品集,個人經歷]
 date: 2025-12-11
 ---
 

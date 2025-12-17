@@ -142,7 +142,7 @@ const config = {
                 href: 'https://medium.com/@kangarooblog',
               },
               {
-                label: '作品集',
+                label: 'Profile 個人經歷與作品',
                 to: '/portfolio',
               },
             ],

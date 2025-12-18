@@ -85,7 +85,6 @@ export default function About() {
   </footer>
 </blockquote>
 
-
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
         當能和自己好好待在一起，才能慢慢學會理解、接納，甚至喜歡現在的樣子。
         </p>
@@ -102,9 +101,59 @@ export default function About() {
           這個地方，我期待就是那樣的空白。
         </p>
 
-        <h2 style={{fontSize: '2rem', marginBottom: '1.5rem'}}>
-          🚨 你會在這裡看到
-        </h2>
+<h2 style={{fontSize: '2rem', marginBottom: '2rem'}}>
+  🎵 推薦給你
+</h2>
+
+<p style={{lineHeight: '1.8', marginBottom: '1rem'}}>
+  最後，想要推薦 <strong>2025 年全國高中生大合唱《慢行人》</strong>
+</p>
+
+<blockquote style={{
+  borderLeft: '4px solid var(--ifm-color-primary)',
+  paddingLeft: '1.5rem',
+  marginLeft: 0,
+  fontStyle: 'italic',
+  color: 'var(--ifm-color-emphasis-800)',
+  lineHeight: '1.8'
+}}>
+  「慢慢走吧 慢慢唱啊；慢慢看吧 慢慢想啊；喔 慢行的我們 踩出堅定的步伐；喔 慢行的我們 唱出青春的激昂；路口高唱 踢著石子晃；這條路 不急著走完 也剛好啊 活在當下吧；未知的冒險路上 我獨自漫步一場；靜靜融進草地 享受而不慌不忙」
+  <footer style={{marginTop: '1rem', fontStyle: 'normal'}}>
+    — 慢行人
+  </footer>
+</blockquote>
+
+<div style={{
+  position: 'relative',
+  paddingBottom: '56.25%',
+  height: 0,
+  overflow: 'hidden',
+  maxWidth: '100%',
+  marginTop: '2rem',
+  marginBottom: '4rem',  // 👈 加上底部間距
+  borderRadius: '12px'
+}}>
+  <iframe
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      border: 0
+    }}
+    src="https://www.youtube.com/embed/hKkeN0fKtC0"
+    title="慢行人 - 2025年全國高中生大合唱"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  />
+</div>
+
+
+
+<h2 style={{fontSize: '2rem', marginBottom: '2rem'}}>
+🚨 你會在這裡看到
+</h2>
 
 {/* 三個橫排卡片 - 咖啡館暖色調 */}
 {/* 四宮格卡片 - 上2下2 */}

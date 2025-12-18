@@ -60,7 +60,7 @@ export default function About() {
 
         
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-  我很喜歡 Carl Rogers 在人本取向裡的一個核心概念：
+  我很喜歡 Carl Rogers 在人本主義心理學取向裡的一個核心概念：
 </p>
 
 <blockquote style={{

@@ -129,6 +129,10 @@ const config = {
                 to: '/myshelf',
               },
               {
+                label: '教育倡議',
+                to: '/eduadvocacy/intro',
+              },
+              {
                 label: '關於我',
                 to: '/about',
               },

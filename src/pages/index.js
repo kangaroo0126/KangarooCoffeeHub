@@ -9,8 +9,7 @@ export default function About() {
       title="首頁"
       description="袋鼠的咖啡館 - 一個可以慢下來的空間">
         <div style={{
-        width: '100%',
-        height: '400px',
+        width: '100%',  
         overflow: 'hidden',
         marginBottom: 0
       }}>
@@ -19,7 +18,7 @@ export default function About() {
           alt="袋鼠的咖啡館"
           style={{
             width: '100%',
-            height: '125%',
+            height: 'auto',
             objectFit: 'cover',
             objectPosition: 'center'
           }}

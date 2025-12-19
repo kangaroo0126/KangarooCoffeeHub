@@ -151,7 +151,7 @@ export default function About() {
 
 
 <h2 style={{fontSize: '2rem', marginBottom: '2rem'}}>
-🚨 你會在這裡看到
+🚨 你會在這看到
 </h2>
 
 {/* 三個橫排卡片 - 咖啡館暖色調 */}

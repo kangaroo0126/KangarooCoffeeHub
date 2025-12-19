@@ -109,51 +109,57 @@ const config = {
         ],
       },
 
-      // 頁尾設定
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Pages',
-            items: [
-              {
-                label: '專題文章',
-                to: '/docs/intro',
-              },
-              {
-                label: '日常思考',
-                to: '/blog',
-              },
-              {
-                label: '我的書櫃',
-                to: '/myshelf',
-              },
-              {
-                label: '教育倡議',
-                to: '/eduadvocacy/intro',
-              },
-              {
-                label: '關於我',
-                to: '/about',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: '舊版Blog-Medium',
-                href: 'https://medium.com/@kangarooblog',
-              },
-              {
-                label: 'Profile 個人經歷與作品',
-                to: '/portfolio',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Slow moments. Good coffee. Better thoughts.`,
-      },
+// 頁尾設定
+footer: {
+  style: 'dark',
+  links: [
+    {
+      title: 'Pages',
+      items: [
+        {
+          label: '專題文章',
+          to: '/docs/intro',
+        },
+        {
+          label: '日常思考',
+          to: '/blog',
+        },
+        {
+          label: '我的書櫃',
+          to: '/myshelf',
+        },
+        {
+          label: '教育倡議',
+          to: '/eduadvocacy/intro',
+        },
+        {
+          label: '關於我',
+          to: '/about',
+        },
+      ],
+    },
+    {
+      title: 'More',
+      items: [
+        {
+          label: '舊版Blog-Medium',
+          href: 'https://medium.com/@kangarooblog',
+        },
+        {
+          label: 'Profile 個人經歷與作品',
+          to: '/portfolio',
+        },
+      ],
+    },
+  ],
+  copyright: `Copyright © ${new Date().getFullYear()} Slow moments. Good coffee. Better thoughts.`,
+},  // 👈 footer 在這裡結束
+
+// 👇 GA4 設定加在這裡（footer 之後）
+gtag: {
+  trackingID: 'G-6JBSZE4FSS',  // 👈 換成你的評估 ID
+  anonymizeIP: true,
+},
 
       // 程式碼高亮主題
       prism: {

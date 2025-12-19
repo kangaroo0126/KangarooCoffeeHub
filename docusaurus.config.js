@@ -155,12 +155,6 @@ footer: {
   copyright: `Copyright © ${new Date().getFullYear()} Slow moments. Good coffee. Better thoughts.`,
 },  // 👈 footer 在這裡結束
 
-// 👇 GA4 設定加在這裡（footer 之後）
-gtag: {
-  trackingID: 'G-6JBSZE4FSS',  // 👈 換成你的評估 ID
-  anonymizeIP: true,
-},
-
       // 程式碼高亮主題
       prism: {
         theme: prismThemes.github,

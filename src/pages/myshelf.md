@@ -9,9 +9,9 @@ date: 2025-12-11
 
 嗨，歡迎來到我的書櫃。這裡除了書之外，還收藏了許多我喜歡的專輯與電影－每一件都是我親自挑選、並願意和你分享的小宇宙。我會不定期更新，歡迎常來翻閱，或把你喜歡的作品推薦給我。
 
-*最後更新：2025-12-19*
+*最後更新：2025-12-22*
 
-## 🎬 電影
+## 🎬 電影/節目
 
 > *有些電影需要一個人慢慢看，有些適合在夜深時播放。*
 *這裡收錄的，是那些看完後仍會在心裡停留一段時間的作品。*
@@ -25,7 +25,33 @@ date: 2025-12-11
 |九槍|臺灣|2023|移工議題|      |
 |小曉|臺灣|2023|特殊教育|      |
 |無聲|臺灣|2019|特教學校社會事件|      |
+|紅高粱|中國|1988|社會文化與民族|      |
+|活著|香港|1994|社會現實主義、歷史人文|      |
 
+### 📺影集
+* [你的孩子不是你的孩子(2018)](https://www.pts.org.tw/OnChildrenPTS/)
+
+### ❤️戀綜
+* [Meet Up！高校生(2025)](https://www.ptsplus.tv/zh/programs/22cb4a03-2a82-49ca-8cfa-927bb053f889)
+* [19/20 成年初體驗 청춘리얼리티 '19/20' (2023)](https://www.netflix.com/tw/title/81651185)
+* [少男少女戀愛  소년소녀연애하다 (2023)](https://www.iq.com/album/%E5%B0%91%E7%94%B7%E5%B0%91%E5%A5%B3%E6%88%80%E6%84%9B-2023-1x26jwwt8ax?lang=zh_cn)
+
+---
 ## 🎧 音樂
+>  *音樂對我來說，更像是一種陪伴，而不是被快速消費的背景聲。這裡收錄的，是我反覆聽、也希望能好好支持的作品。*
 
+| 音樂名稱 | 歌手/樂團 | 連結 |音樂名稱 | 歌手/樂團 | 連結 |
+|---------|------|------|---------|------|------|
+|1. 2375 | 棉花糖 | [Youtube](https://www.youtube.com/watch?v=tiwXMGIJg-U) |2.滯留鋒 | 理想混蛋  | [Youtube](https://www.youtube.com/watch?v=zxS_NTJ4Hbo)| 
+|3.願溫柔的妳被世界溫柔以待 | 綠繡眼 | [Youtube](https://www.youtube.com/watch?v=boETEUNxZJY)|4.致黑暗的自己| 黃怡瑄 | [Youtube](https://www.youtube.com/watch?v=TX8h-S6UGwA)|  
+|5.盛放 | 郭真榕 | [Youtube](https://www.youtube.com/watch?v=8qaxvkEvdGE)|6.past隱. |黃怡瑄 |[Youtube](https://www.youtube.com/watch?v=NpRv_wSeSrI)|  
+|7.有天會再相見 |DIOR大穎|[Youtube](https://www.youtube.com/watch?v=Aq8pDJkFQGw)|
+
+
+---
 ## 📖 書籍
+> 有些書不是一次就能讀完，而是會在生活的不同階段，被反覆翻開。
+這裡放的是那些我慢慢讀過、也願意帶在身邊一段時間的文字。
+如果你也讀過其中某一本，或有想推薦給我的書，很歡迎你把那份感受留給我。
+
+待新增

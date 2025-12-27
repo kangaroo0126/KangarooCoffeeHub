@@ -27,6 +27,7 @@ date: 2025-12-11
 |無聲|臺灣|2019|特教學校社會事件|      |
 |紅高粱|中國|1988|社會文化與民族|      |
 |活著|香港|1994|社會現實主義、歷史人文|      |
+|原鄉人|臺灣|1980|鍾理和、臺灣文學|     |
 
 ### 📺影集
 * [你的孩子不是你的孩子(2018)](https://www.pts.org.tw/OnChildrenPTS/)
@@ -45,7 +46,7 @@ date: 2025-12-11
 |1. 2375 | 棉花糖 | [Youtube](https://www.youtube.com/watch?v=tiwXMGIJg-U) |2.滯留鋒 | 理想混蛋  | [Youtube](https://www.youtube.com/watch?v=zxS_NTJ4Hbo)| 
 |3.願溫柔的妳被世界溫柔以待 | 綠繡眼 | [Youtube](https://www.youtube.com/watch?v=boETEUNxZJY)|4.致黑暗的自己| 黃怡瑄 | [Youtube](https://www.youtube.com/watch?v=TX8h-S6UGwA)|  
 |5.盛放 | 郭真榕 | [Youtube](https://www.youtube.com/watch?v=8qaxvkEvdGE)|6.past隱. |黃怡瑄 |[Youtube](https://www.youtube.com/watch?v=NpRv_wSeSrI)|  
-|7.有天會再相見 |DIOR大穎|[Youtube](https://www.youtube.com/watch?v=Aq8pDJkFQGw)|
+|7.有天會再相見 |DIOR大穎|[Youtube](https://www.youtube.com/watch?v=Aq8pDJkFQGw)|8.回郵 Re:| 呂允 |[Youtube](https://www.youtube.com/watch?v=xX9JGLubFxo)
 
 
 ---

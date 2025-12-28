@@ -13,9 +13,12 @@ const cssStyles = `
     --res-text-sub: #78909C;      /* 次要文字 */
     --res-bg: #FDFCF5;            /* 頁面背景 */
     --res-card-bg: #FFFFFF;       /* 卡片背景 */
-    --res-border: #E8F5E9;        /* 邊框顏色 */
+    --res-border: #E8F5E9;        /* 邊框顏色 (淺色線) */
     --res-shadow: rgba(129, 199, 132, 0.2); /* 陰影 */
     --res-line: #81C784;          /* 時間軸線條 */
+    
+    /* Tag 專用色：加深文字以確保白天清晰可見 */
+    --res-tag-text: #1B5E20;      
   }
 
   /* 暗黑模式 (Dark Mode) 覆蓋變數 */
@@ -24,13 +27,16 @@ const cssStyles = `
     --res-primary-bg: rgba(129, 199, 132, 0.15);
     --res-accent: #FFB74D;
     --res-accent-bg: rgba(255, 183, 77, 0.15);
-    --res-text-main: var(--ifm-font-color-base); /* 使用 Docusaurus 預設文字色 */
+    --res-text-main: var(--ifm-font-color-base); 
     --res-text-sub: var(--ifm-color-content-secondary);
-    --res-bg: transparent;        /* 跟隨 Docusaurus 背景 */
-    --res-card-bg: var(--ifm-card-background-color); /* 跟隨 Docusaurus 卡片黑 */
+    --res-bg: transparent;        
+    --res-card-bg: var(--ifm-card-background-color); 
     --res-border: var(--ifm-color-emphasis-200);
     --res-shadow: rgba(0, 0, 0, 0.5);
     --res-line: #4CAF50;
+
+    /* Tag 專用色：夜間轉為淺綠 */
+    --res-tag-text: #A5D6A7;
   }
 
   .resume-container {
@@ -139,12 +145,11 @@ const cssStyles = `
     font-weight: bold;
   }
   
-  /* 標籤 Tag */
+  /* 標籤 Tag (修正版) */
   .resume-tag {
     display: inline-block;
     background-color: var(--res-primary-bg);
-    color: var(--res-primary); /* 在深色模式下字體也會變亮 */
-    filter: brightness(0.8); /* 讓淺色背景上的文字深一點 */
+    color: var(--res-tag-text); /* 使用更深的顏色 */
     padding: 0.2rem 0.6rem;
     border-radius: 12px;
     font-size: 0.85rem;
@@ -152,11 +157,8 @@ const cssStyles = `
     margin-top: 0.5rem;
     font-weight: bold;
   }
-  [data-theme='dark'] .resume-tag {
-    filter: brightness(1.2); /* 深色模式下讓文字亮一點 */
-  }
 
-  /* 按鈕 */
+  /* 按鈕與連結 */
   .link-btn {
     display: inline-block;
     background-color: var(--res-accent-bg);
@@ -193,6 +195,48 @@ const cssStyles = `
   }
   .read-more-btn:hover {
     background-color: var(--res-primary-bg);
+  }
+
+  /* --- 新版 Tab 樣式 (兩欄、底線) --- */
+  .project-tabs {
+    display: flex;
+    width: 100%;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--res-border); /* 淺色底線貫穿 */
+  }
+  
+  .tab-item {
+    flex: 1; /* 兩個 Tab 平均分配寬度 (50%/50%) */
+    text-align: center;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--res-text-sub); /* 未選取時為次要文字色 */
+    position: relative;
+    transition: color 0.3s;
+  }
+  
+  .tab-item:hover {
+    color: var(--res-primary);
+  }
+
+  /* 選取狀態 (Active) */
+  .tab-item.active {
+    color: var(--res-primary);
+  }
+  
+  /* Active 時底部的粗線 */
+  .tab-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* 讓粗線蓋在淺色底線上方 */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--res-primary);
   }
 
   /* 關於我區塊 */
@@ -252,10 +296,16 @@ const cssStyles = `
       padding-left: 1rem !important;
       margin-left: 0.5rem;
     }
+    
+    /* 手機版讓 Tab 文字縮小一點以免換行太嚴重 */
+    .tab-item {
+      font-size: 0.9rem; 
+      padding: 0.8rem 0.2rem;
+    }
   }
 `;
 
-// --- 資料內容 (完全保留原始內容) ---
+// --- 資料內容 ---
 const resumeData = {
   profile: {
     name: "蘇冠彰 ｜ 袋鼠",
@@ -265,7 +315,7 @@ const resumeData = {
     ]
   },
   about: {
-    intro: "在社會創新與永續領域耕耘四年，以教育作為理解與回應社會問題的入口。透過設計思考與社會設計方法，參與高中生生涯教育，陪伴學生探索自我與未來可能性。在實務推動中，我同時關注個人成長與制度層面議題：參與發布「108課綱觀察報告書」並記錄現場記者會，籌辦為期七天的國際民主教育論壇 IDEC 2024，串聯國內外教育實踐者促進對話與交流。同時也以教育不平等為核心議題，製作桌遊《輪不到我上場》，引導大學生理解教育結構與自身參與可能；並在「島島阿學」學習社群策劃學習馬拉松，陪伴學員持續行動。\n\n過往以打造產品與服務實踐理念，我自學數位科技、AI 應用、社會設計、產品發想、企劃與行銷，使理念能以更具體、可參與的方式落地。\n\n然而，隨著實務專案經驗的累積，我逐漸意識到：僅以商業邏輯回應教育問題，往往難以真正撼動其背後的結構性限制。因此，我選擇以社會工作作為回應的實踐路徑，專注個案服務，理解人所處的情境與權力位置。我重視傾聽每一個生命的聲音，放下身段與當事人同行，以柔性介入建立個體與制度的連結。對我而言，理解與陪伴本身就是力量，能讓社會改變不再停留於表面，而真正觸及每一個人的需求。",
+    intro: "在社會創新與永續領域耕耘四年，以教育作為理解與回應社會問題的入口。透過設計思考與社會設計方法，參與高中生生涯教育，陪伴學生探索自我與未來可能性。在實務推動中，我同時關注個人成長與制度層面議題：曾參與紀錄「108課綱觀察報告書」現場記者會，籌辦為期七天的國際民主教育論壇 IDEC 2024，串聯國內外教育實踐者促進對話與交流。同時也以教育不平等為核心議題，製作桌遊《輪不到我上場》，引導大學生理解教育結構與自身參與可能；並在「島島阿學」學習社群策劃學習馬拉松，陪伴學員持續行動。\n\n過往以打造產品與服務實踐理念，我自學數位科技、AI 應用、社會設計、產品發想、企劃與行銷，使理念能以更具體、可參與的方式落地。\n\n然而，隨著實務專案經驗的累積，我逐漸意識到：僅以商業邏輯回應教育問題，往往難以真正撼動其背後的結構性限制。因此，我選擇以社會工作作為回應的實踐路徑，專注個案服務，理解人所處的情境與權力位置。我重視傾聽每一個生命的聲音，放下身段與當事人同行，以柔性介入建立個體與制度的連結。對我而言，理解與陪伴本身就是力量，能讓社會改變不再停留於表面，而真正觸及每一個人的需求。",
     researchCategories: [
       {
         title: "心理與社工領域",
@@ -383,7 +433,7 @@ const resumeData = {
       title: "中原大學諮商中心義工團",
       fullTime: "2022年9月～2023年6月",
       intro: "擔任諮商中心義工團中文書與美宣組長，與實習心理師、組員密切合作，策畫兩期期刊之主題企劃、內容討論與視覺輸出，協助提升諮商中心對內對外的形象與資源傳播。",
-      tags: ["團隊領導", "內容企劃", "編輯校對", "視覺設計", "排版輸出"],
+      tags: ["團隊領導", "內容企劃", "編輯校對", "排版輸出"],
       links: [],
       details: {
         role: [
@@ -575,6 +625,8 @@ const PortfolioCard = ({ data }) => (
 
 // --- 主頁面元件 ---
 export default function ResumePage() {
+  const [activeProjectTab, setActiveProjectTab] = useState('innovation'); // 'innovation' or 'social_work'
+
   return (
     <Layout title="蘇冠彰 Resume" description="蘇冠彰的個人履歷與作品集">
       <style>{cssStyles}</style>
@@ -614,13 +666,39 @@ export default function ResumePage() {
           </div>
         </section>
 
-        {/* 專案經歷 */}
+        {/* 專案經歷 (Tab 分頁版) */}
         <section className="resume-section">
           <div className="section-title-wrapper"><h2 className="section-title">專案經歷</h2></div>
+          
+          {/* Tab 導覽列 */}
+          <div className="project-tabs">
+            <button 
+              className={`tab-item ${activeProjectTab === 'innovation' ? 'active' : ''}`}
+              onClick={() => setActiveProjectTab('innovation')}
+            >
+              社會與教育創新時期（～2026年6月）
+            </button>
+            <button 
+              className={`tab-item ${activeProjectTab === 'social_work' ? 'active' : ''}`}
+              onClick={() => setActiveProjectTab('social_work')}
+            >
+              社會工作與教育創新倡議時期（2026年7月～Now）
+            </button>
+          </div>
+
+          {/* 內容顯示區 */}
           <div>
-            {resumeData.projects.map(project => (
-              <ProjectCard key={project.id} data={project} />
-            ))}
+            {activeProjectTab === 'innovation' ? (
+              // 顯示原本的所有專案
+              resumeData.projects.map(project => (
+                <ProjectCard key={project.id} data={project} />
+              ))
+            ) : (
+              // 顯示未來展望文字
+              <div style={{textAlign: 'center', padding: '4rem 1rem', color: 'var(--res-text-sub)', fontSize: '1.2rem'}}>
+                🌱 還沒開始，近請期待新生活 ✨
+              </div>
+            )}
           </div>
         </section>
 

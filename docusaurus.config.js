@@ -10,6 +10,7 @@ const config = {
   // GitHub Pages 部署設定
   url: 'https://kangaroo0126.github.io',
   baseUrl: '/KangarooCoffeeHub/',
+  trailingSlash: false, 
   organizationName: 'kangaroo0126',
   projectName: 'KangarooCoffeeHub',
 

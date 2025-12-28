@@ -30,22 +30,27 @@ const config = {
 
   // 預設主題和插件
   presets: [
-    [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          sidebarPath: './sidebars.js',
-        },
-        blog: {
-          showReadingTime: true,
-        },
-        theme: {
-          customCss: './src/css/custom.css',
-        },
-      }),
-    ],
+  [
+    'classic',
+    /** @type {import('@docusaurus/preset-classic').Options} */
+    ({
+      docs: {
+        sidebarPath: './sidebars.js',
+      },
+      blog: {
+        showReadingTime: true,
+      },
+      theme: {
+        customCss: './src/css/custom.css',
+      },
+      gtag: {
+        trackingID: 'G-1TTB1R6895',
+        anonymizeIP: true,
+      },
+    }),
   ],
+],
+
 
   // 額外的文檔插件（教育倡議）
   plugins: [
@@ -65,14 +70,14 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: 'img/docusaurus-social-card.jpg',
-      
+
       // 顏色模式設定
       colorMode: {
         defaultMode: 'light',
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
-
+    
       // 導航欄設定
       navbar: {
         title: '袋鼠咖啡館',

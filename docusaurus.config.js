@@ -158,7 +158,7 @@ footer: {
       ],
     },
   ],
-  copyright: `Copyright © ${new Date().getFullYear()} Slow moments. Good coffee. Better thoughts.`,
+  copyright: `Copyright © 2026 Slow moments. Good coffee. Better thoughts.`,
 },  // 👈 footer 在這裡結束
 
       // 程式碼高亮主題

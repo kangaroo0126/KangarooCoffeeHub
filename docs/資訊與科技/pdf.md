@@ -35,36 +35,34 @@ date: 2026-01-07
 > 
 
 ### 一、安裝 Python
-1.前往 Python 官網：https://www.python.org/downloads/
-2.點選Or get the standalone installer for Python XXX（最新版本），即開始下載Python
-3.下載完後，開始執行安裝檔。在安裝第一個畫面的最下方，**必須勾選**：
-    
-    
-    ☑ Add python.exe to PATH
-    
-4.驗證安裝是否成功：Window系統開啟「命令提示字元」或「終端機」（可直接在電腦搜尋），執行：`python --version`
-
-   應該顯示類似：`Python ｘｘｘ`（版本號碼）或是他是空白的，都代表安裝成功。
+1.前往 Python 官網：https://www.python.org/downloads/  
+2.點選Or get the standalone installer for Python XXX（最新版本），即開始下載Python  
+3.下載完後，開始執行安裝檔。在安裝第一個畫面的最下方，**必須勾選**： ☑ Add python.exe to PATH   
+4.驗證安裝是否成功：Window系統開啟「命令提示字元」或「終端機」（可直接在電腦搜尋），執行：
+``` 
+python --version`
+```
+應該顯示類似：`Python ｘｘｘ`（版本號碼）或是他是空白的，都代表安裝成功。
    
 ### 二、安裝 Python 套件
 
 1.在命令提示字元或終端機輸入：
-    
-    python -m pip install --upgrade pip
-    python -m pip install PyPDF2 reportlab pillow
+``` 
+python -m pip install --upgrade pip
+python -m pip install PyPDF2 reportlab pillow 
+```
     
 2.驗證安裝，並確認清單包含：PyPDF2、reportlab、pillow
-    
-    python -m pip list
-
-
+``` 
+python -m pip list
+```
 ![](/img/blog/pdf02.png)
 
 ### 三、準備工作環境
 
 1. 建立資料夾結構：（可以改成自己習慣或編排的模式）
     
-    ```python
+```python
     📁 實作程式/
        📄 pdf_signature.py         ← 程式檔案
        🖼️ 簽名01.png                ← 簽名圖片（PNG格式，建議背景透明）
@@ -74,7 +72,7 @@ date: 2026-01-07
           📄 記錄003.pdf
           ...
        📁 已簽名PDF
-    ```
+```
     
 2. 打開程式編輯器（推薦使用：[VS Code](https://code.visualstudio.com/)、[notepad++](https://notepad-plus-plus.org/downloads/)），並將以下程式碼貼上（詳細要修改程式碼內容可以參見底下附錄一）
     
@@ -236,7 +234,10 @@ date: 2026-01-07
 如果不想要那麼麻煩去找他在哪，可以點選資料夾上排，按右鍵「複製位置」即可找到資料夾在那了。
 ![](/img/blog/pdf03.png)
 :::  
-2.執行程式：`python pdf_signature.py`
+2.執行程式：
+```
+python pdf_signature.py
+```
 ![](/img/blog/pdf04.png)
 3.完成的檔案呈現
 ![](/img/blog/pdf05.jpg)
@@ -252,16 +253,18 @@ date: 2026-01-07
     def find_signature_page(pdf_path, keyword="請簽名："):
     ```
     
-(1)程式會在PDF中搜尋這個關鍵字
-(2)找到關鍵字的那一頁，就是要加簽名的頁面
-(3)**無論關鍵字在第1頁、第2頁或任何頁，程式都會自動找到**
+(1)程式會在PDF中搜尋這個關鍵字  
+(2)找到關鍵字的那一頁，就是要加簽名的頁面  
+(3)**無論關鍵字在第1頁、第2頁或任何頁，程式都會自動找到**  
 
-2.修改範例：
-(1)範例 1：改成「簽章：」
+2.修改範例：  
+(1)範例 1：改成「簽章：」  
 `def find_signature_page(pdf_path, keyword="簽章："):`
-(2)範例 2：改成英文
-`def find_signature_page(pdf_path, keyword="Signature:"):`
-(3)如果有多種可能的關鍵字－修改程式的第 16 行：
+
+(2)範例 2：改成英文  
+`def find_signature_page(pdf_path, keyword="Signature:"):`  
+
+(3)如果有多種可能的關鍵字－修改程式的第 16 行：  
     
     ```python
     # 原本：
@@ -310,8 +313,8 @@ PDF頁面示意圖：
 | **WIDTH 增加** | 寬度變大 | 簽名變寬 |
 | **HEIGHT 增加** | 高度變大 | 簽名變高 |
 
-(1)步驟 1：用預設值測試－先用預設值處理 **1個PDF**，看看簽名在哪裡
-(2)步驟 2：判斷要往哪個方向調整
+(1)步驟 1：用預設值測試－先用預設值處理 **1個PDF**，看看簽名在哪裡  
+(2)步驟 2：判斷要往哪個方向調整  
         
 | 簽名位置問題 | 調整方法 | 範例 |
 | --- | --- | --- |
@@ -322,7 +325,7 @@ PDF頁面示意圖：
 | 太小 | **增加 WIDTH 和 HEIGHT** | 120 → 150 |
 | 太大 | **減少 WIDTH 和 HEIGHT** | 120 → 80 |
         
-(3)步驟 3：每次調整 50 左右－不要一次調太多，建議每次調整 **30-50** 的幅度
+(3)步驟 3：每次調整 50 左右－不要一次調太多，建議每次調整 **30-50** 的幅度  
 
 ## 總結
 

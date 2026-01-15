@@ -32,13 +32,30 @@ const config = {
   presets: [
   [
     'classic',
+    
     /** @type {import('@docusaurus/preset-classic').Options} */
     ({
       docs: {
         sidebarPath: './sidebars.js',
+        feedOptions: {
+          type: 'all',
+          title: '袋鼠的技術文件更新',
+          description: '技術文件與教學的最新更新',
+          copyright: `Copyright © ${new Date().getFullYear()} 袋鼠`,
+          language: 'zh-TW',
+          limit: 20, // 最多顯示 20 篇
+        },
       },
       blog: {
         showReadingTime: true,
+        feedOptions: {
+          type: 'all',
+          title: '袋鼠的部落格',
+          description: '程式開發與學習心得分享',
+          copyright: `Copyright © ${new Date().getFullYear()} 袋鼠`,
+          language: 'zh-TW',
+          limit: 20,
+        },
       },
       theme: {
         customCss: './src/css/custom.css',
@@ -49,7 +66,36 @@ const config = {
       },
     }),
   ],
+],
 
+  presets: [
+  [
+    'classic',
+    
+    /** @type {import('@docusaurus/preset-classic').Options} */
+    ({
+      docs: {
+        sidebarPath: './sidebars.js',
+      },
+      blog: {
+        showReadingTime: true,
+        feedOptions: {
+          type: 'all',
+          title: '袋鼠咖啡館',
+          description: '袋鼠咖啡館 - 在加速的世界裡，練習慢下來的空間。分享教育、學習、心理與社會議題的思考，以及日常生活的碎片與感悟。沒有演算法，只有真實的整理與對話。',
+          copyright: `Copyright © ${new Date().getFullYear()} Slow moments. Good coffee. Better thoughts.`,
+          language: 'zh-TW',
+        },
+      },
+      theme: {
+        customCss: './src/css/custom.css',
+      },
+      gtag: {
+        trackingID: 'G-1TTB1R6895',
+        anonymizeIP: true,
+      },
+    }),
+  ],
 ],
 
 

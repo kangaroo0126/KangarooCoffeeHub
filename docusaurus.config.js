@@ -28,6 +28,63 @@ const config = {
     mermaid: true,
   },
 
+  //加入站內搜尋
+  themes: [
+  [
+    require.resolve("@easyops-cn/docusaurus-search-local"),
+    {
+      // 支援中文和英文
+      language: ["zh", "en"],
+      
+      // 索引所有類型的頁面
+      indexDocs: true,
+      indexBlog: true,
+      indexPages: true,
+      
+      // 索引內容的深度(越高越詳細,但檔案會變大)
+      docsRouteBasePath: '/docs',
+      blogRouteBasePath: '/blog',
+      
+      // 搜尋結果高亮
+      highlightSearchTermsOnTargetPage: true,
+      
+      // 顯示完整路徑
+      explicitSearchResultPath: true,
+      
+      // 移除搜尋索引的雜訊
+      removeDefaultStopWordFilter: true,
+      
+      // 搜尋結果數量
+      searchResultLimits: 8,
+      
+      // 搜尋結果顯示上下文
+      searchResultContextMaxLength: 50,
+      
+      // 為檔案名稱生成 hash,避免快取問題
+      hashed: true,
+      
+      // 索引所有頁面(包含你的自訂頁面)
+      ignoreFiles: [],
+
+       // 搜尋匹配度設定
+      searchBarShortcut: true,
+      searchBarShortcutHint: true,
+      
+      // 關鍵:調整分詞策略
+      zhUserDict: "dict.txt",  // 可選:自訂詞典
+      zhUserDictPath: "path/to/dict.txt",  // 可選:詞典路徑
+      
+      // 最小搜尋字數(建議設為 2,避免單字搜尋)
+      searchBarPosition: "right",
+      
+      // 調整搜尋結果相關性門檻
+      // 這個會過濾掉相關性太低的結果
+      searchResultLimits: 8,
+      searchResultContextMaxLength: 50,
+    },
+  ],
+],
+
   // 預設主題和插件
   presets: [
   [

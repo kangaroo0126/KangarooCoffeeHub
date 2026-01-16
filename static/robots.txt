@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kangaroo0126.github.io/KangarooCoffeeHub/sitemap.xml

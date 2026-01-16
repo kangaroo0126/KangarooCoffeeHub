@@ -76,11 +76,6 @@ const config = {
       
       // 最小搜尋字數(建議設為 2,避免單字搜尋)
       searchBarPosition: "right",
-      
-      // 調整搜尋結果相關性門檻
-      // 這個會過濾掉相關性太低的結果
-      searchResultLimits: 8,
-      searchResultContextMaxLength: 50,
     },
   ],
 ],

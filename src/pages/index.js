@@ -89,10 +89,6 @@ export default function About() {
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          <strong>減法很難，但必要。</strong>
-        </p>
-
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
           減掉過多的期待、比較，還有急著成為誰的焦慮，生活才有空間重新呼吸。
         </p>
 
@@ -243,7 +239,7 @@ export default function About() {
   </Link>
 
   {/* 卡片 3 */}
-  <Link to="/eduadvocacy/intro" style={{ textDecoration: 'none' }}>
+  <Link to="/slowlife/intro" style={{ textDecoration: 'none' }}>
     <div 
       className="custom-card"
       style={{
@@ -269,7 +265,7 @@ export default function About() {
         marginBottom: '0.5rem',
         color: '#5d4e37'
       }}>
-        🌱 教育倡議
+        🌱 慢行生活
       </h3>
       <p style={{ 
         color: '#6b5d4f',
@@ -277,7 +273,7 @@ export default function About() {
         fontSize: '0.95rem',
         margin: 0
       }}>
-        關於社會環境、文化與價值觀如何影響教育，以及它未曾好好照顧的那些人
+        分享咖啡、咖啡廳、音樂祭與聽團文化...等內容
       </p>
     </div>
   </Link>

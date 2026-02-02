@@ -36,10 +36,23 @@
 
 .footer__links {
   justify-content: center !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 0 !important;
 }
 
 .footer__col {
   text-align: center;
+}
+
+/* Pages 欄位（第一欄）靠近 More */
+.footer__col:nth-child(1) {
+  margin-right: 3rem;
+}
+
+/* More 欄位（第二欄） */
+.footer__col:nth-child(2) {
+  margin-left: 0;
 }
 
 .footer__copyright {
@@ -72,4 +85,38 @@
 
 [data-theme='dark'] .custom-card p {
   color: #d4c4b0 !important;
+}
+
+/* 將 Pages 區塊的項目改為兩欄三列佈局（垂直排列）*/
+.footer__links .footer__col:first-child .footer__items {
+  display: grid !important;
+  grid-template-columns: repeat(2, auto) !important;
+  grid-auto-flow: column !important;
+  grid-template-rows: repeat(3, auto) !important;
+  gap: 0.5rem 3rem !important;
+  max-width: 400px !important;
+  margin: 0 auto !important;
+}
+
+/* 使用 grid-auto-flow: column 會自動按照垂直順序填充 */
+/* 項目會自動排列成：
+   第1項（專題文章）→ 左欄第1列
+   第2項（日常思考）→ 左欄第2列  
+   第3項（我的書櫃）→ 左欄第3列
+   第4項（慢行生活）→ 右欄第1列
+   第5項（教育倡議）→ 右欄第2列
+   第6項（關於我）→ 右欄第3列
+*/
+
+/* 響應式設計：在小螢幕上恢復單欄佈局 */
+@media (max-width: 768px) {
+  .footer__col:first-child .footer__items {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+  
+  .footer__col:first-child .footer__item {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
 }

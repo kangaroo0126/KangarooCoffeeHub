@@ -124,8 +124,8 @@ const config = {
             position: 'left',
           },
           {
-            to: '/EducationAdvocacy',
-            label: '教育倡議',
+            to: '/slowlife/intro',
+            label: '慢行生活',
             position: 'left',
           },
           {
@@ -134,8 +134,8 @@ const config = {
             position: 'left',
           },
           {
-            to: '/slowlife/intro',
-            label: '慢行生活',
+            to: '/EducationAdvocacy',
+            label: '教育倡議',
             position: 'left',
           },
           {
@@ -167,6 +167,10 @@ const config = {
               {
                 label: '慢行生活',
                 to: '/slowlife/intro',
+              },
+              {
+                label: '教育倡議',
+                to: '/EducationAdvocacy',
               },
               {
                 label: '關於我',

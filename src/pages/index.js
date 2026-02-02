@@ -34,32 +34,32 @@ export default function About() {
         </h2>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          有時候會想把生活過得更豐富，事情一件一件往上加，行程、期待、目標越來越多，卻忘了停下來看看，是不是早就該剪頭髮了。東西越堆越滿，心卻越來越亂。
+          有時候會想把生活過得更豐富,事情一件一件往上加,行程、期待、目標越來越多,卻忘了停下來看看,是不是早就該剪頭髮了。東西越堆越滿,心卻越來越亂。
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          好像有一股看不見的節奏，默默把人往同一個方向推。世界彷彿只留下了一條路：要一直往前、一直變好、一直證明自己是有用的。努力被當成衡量一切的標準。成績、產值、效率、能力。只要做得夠多、夠快、夠有技能，彷彿就能換來一點安全感。
+          好像有一股看不見的節奏,默默把人往同一個方向推。世界彷彿只留下了一條路:要一直往前、一直變好、一直證明自己是有用的。努力被當成衡量一切的標準。成績、產值、效率、能力。只要做得夠多、夠快、夠有技能,彷彿就能換來一點安全感。
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          這樣的期待不只存在於工作或學校，也慢慢滲進生活的每個角落。學習、創作，好像都必須交出成果，要被看見進步，才不會顯得落後。做不到的時候，很容易把責任往自己身上攬，懷疑是不是不夠努力、不夠自律，卻很少有人提醒，這些壓力其實來自一整套被加速、被比較的節奏裡。
+          這樣的期待不只存在於工作或學校,也慢慢滲進生活的每個角落。學習、創作,好像都必須交出成果,要被看見進步,才不會顯得落後。做不到的時候,很容易把責任往自己身上攬,懷疑是不是不夠努力、不夠自律,卻很少有人提醒,這些壓力其實來自一整套被加速、被比較的節奏裡。
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          於是，每隔一段時間，總會忍不住重新問自己：<strong>我是誰？現在站在什麼位置？又在往哪裡去？</strong>
+          於是,每隔一段時間,總會忍不住重新問自己:<strong>我是誰?現在站在什麼位置?又在往哪裡去?</strong>
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          在資訊過量、被產值與效率定義價值的環境裡，很容易忘記怎麼當一個人，也很容易對自己不耐煩，覺得應該更快、更穩、更像別人期待的樣子。
+          在資訊過量、被產值與效率定義價值的環境裡,很容易忘記怎麼當一個人,也很容易對自己不耐煩,覺得應該更快、更穩、更像別人期待的樣子。
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          工時長、低薪、房價與不平等，成了生活的背景音，卻常常只被輕描淡寫成一句：「再撐一下就好。」努力不再只是選擇，而變成一種不能停下來的狀態。好像一旦慢下腳步，就會被世界拋在後面。也正因為這樣，真正能停下來，看清楚自己正在承受什麼，本身就成了一件需要練習的事。
+          工時長、低薪、房價與不平等,成了生活的背景音,卻常常只被輕描淡寫成一句:「再撐一下就好。」努力不再只是選擇,而變成一種不能停下來的狀態。好像一旦慢下腳步,就會被世界拋在後面。也正因為這樣,真正能停下來,看清楚自己正在承受什麼,本身就成了一件需要練習的事。
         </p>
 
         
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-  我很喜歡 Carl Rogers 在人本主義心理學取向裡的一個核心概念：
+  我很喜歡 Carl Rogers 在人本主義心理學取向裡的一個核心概念:
 </p>
 
 <blockquote style={{
@@ -73,27 +73,27 @@ export default function About() {
   borderRadius: '4px'
 }}>
   <p style={{margin: 0, fontSize: '1.1rem'}}>
-    "只有在被尊重、被接納的狀態裡，人才有機會真實地靠近自己。"
+    "只有在被尊重、被接納的狀態裡,人才有機會真實地靠近自己。"
   </p>
   <footer style={{
     marginTop: '0.5rem',
     fontSize: '0.9rem',
     color: 'var(--ifm-color-emphasis-600)'
   }}>
-    — 卡爾·羅傑斯（Carl Rogers）
+    — 卡爾·羅傑斯(Carl Rogers)
   </footer>
 </blockquote>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-        當能和自己好好待在一起，才能慢慢學會理解、接納，甚至喜歡現在的樣子。
+        當能和自己好好待在一起,才能慢慢學會理解、接納,甚至喜歡現在的樣子。
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          減掉過多的期待、比較，還有急著成為誰的焦慮，生活才有空間重新呼吸。
+          減掉過多的期待、比較,還有急著成為誰的焦慮,生活才有空間重新呼吸。
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '2rem'}}>
-          這個地方，我期待就是那樣的空白。
+          這個地方,我期待就是那樣的空白。
         </p>
 
 <h2 style={{fontSize: '2rem', marginBottom: '2rem'}}>
@@ -101,7 +101,7 @@ export default function About() {
 </h2>
 
 <p style={{lineHeight: '1.8', marginBottom: '1rem'}}>
-  最後，想要推薦 <strong>2025 年全國高中生大合唱《慢行人》</strong>
+  最後,想要推薦 <strong>2025 年全國高中生大合唱《慢行人》</strong>
 </p>
 
 <blockquote style={{
@@ -112,7 +112,7 @@ export default function About() {
   color: 'var(--ifm-color-emphasis-800)',
   lineHeight: '1.8'
 }}>
-  「慢慢走吧 慢慢唱啊；慢慢看吧 慢慢想啊；喔 慢行的我們 踩出堅定的步伐；喔 慢行的我們 唱出青春的激昂；路口高唱 踢著石子晃；這條路 不急著走完 也剛好啊 活在當下吧；未知的冒險路上 我獨自漫步一場；靜靜融進草地 享受而不慌不忙」
+  「慢慢走吧 慢慢唱啊;慢慢看吧 慢慢想啊;喔 慢行的我們 踩出堅定的步伐;喔 慢行的我們 唱出青春的激昂;路口高唱 踢著石子晃;這條路 不急著走完 也剛好啊 活在當下吧;未知的冒險路上 我獨自漫步一場;靜靜融進草地 享受而不慌不忙」
   <footer style={{marginTop: '1rem', fontStyle: 'normal'}}>
     — 慢行人
   </footer>
@@ -150,15 +150,15 @@ export default function About() {
 🚨 你會在這看到
 </h2>
 
-{/* 三個橫排卡片 - 咖啡館暖色調 */}
-{/* 四宮格卡片 - 上2下2 */}
+{/* 卡片區 - 3x2 格式 */}
 <div style={{
   display: 'grid',
-  gridTemplateColumns: 'repeat(2, 1fr)',  // 改成 2 欄
+  gridTemplateColumns: 'repeat(3, 1fr)',  // 3 欄布局
   gap: '1.5rem',
   marginBottom: '2rem'
 }}>
-  {/* 卡片 1 */}
+  {/* 第一排 */}
+  {/* 卡片 1 - 專題文章 */}
   <Link to="/docs/intro" style={{ textDecoration: 'none' }}>
     <div 
       className="custom-card"
@@ -198,7 +198,7 @@ export default function About() {
     </div>
   </Link>
 
-  {/* 卡片 2 */}
+  {/* 卡片 2 - 日常思考 */}
   <Link to="/blog" style={{ textDecoration: 'none' }}>
     <div 
       className="custom-card"
@@ -238,7 +238,7 @@ export default function About() {
     </div>
   </Link>
 
-  {/* 卡片 3 */}
+  {/* 卡片 3 - 慢行生活 */}
   <Link to="/slowlife/intro" style={{ textDecoration: 'none' }}>
     <div 
       className="custom-card"
@@ -278,7 +278,8 @@ export default function About() {
     </div>
   </Link>
 
-  {/* 卡片 4 */}
+  {/* 第二排 */}
+  {/* 卡片 4 - 我的書櫃 */}
   <Link to="/myshelf" style={{ textDecoration: 'none' }}>
     <div 
       className="custom-card"
@@ -317,18 +318,61 @@ export default function About() {
       </p>
     </div>
   </Link>
+
+  {/* 卡片 5 - 教育倡議 (新增) */}
+  <a href="https://sites.google.com/view/re-root-education/%E9%A6%96%E9%A0%81?authuser=0" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+    <div 
+      className="custom-card"
+      style={{
+        background: 'linear-gradient(135deg, #f5e6d3 0%, #ecdcc8 100%)',
+        borderRadius: '12px',
+        padding: '1.5rem',
+        boxShadow: '0 2px 8px rgba(139, 69, 19, 0.1)',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        height: '100%',
+        border: '2px solid #d4af37'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-5px)';
+        e.currentTarget.style.boxShadow = '0 6px 16px rgba(139, 69, 19, 0.2)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '0 2px 8px rgba(139, 69, 19, 0.1)';
+      }}>
+      <h3 style={{ 
+        fontSize: '1.3rem', 
+        marginBottom: '0.5rem',
+        color: '#5d4e37'
+      }}>
+        💡 教育倡議
+      </h3>
+      <p style={{ 
+        color: '#6b5d4f',
+        lineHeight: '1.6',
+        fontSize: '0.95rem',
+        margin: 0
+      }}>
+        我們重新理解教育,揭露被長期忽略的結構性問題,並付諸行動。
+      </p>
+    </div>
+  </a>
+
+  {/* 空白佔位（保持第二排對齊）*/}
+  <div style={{ gridColumn: 'span 1' }}></div>
 </div>
 
         <p style={{lineHeight: '1.5', marginTop: '1.5rem'}}>
-          沒有演算法，也不追求回應。寫下來本身，就是一種整理。
+          沒有演算法,也不追求回應。寫下來本身,就是一種整理。
         </p>
 
         <h2 style={{fontSize: '2rem', marginBottom: '1.5rem'}}>
-          ▶️ 想聊聊？
+          ▶️ 想聊聊?
         </h2>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          有想法、回饋、或只是想說聲嗨，寫信來吧。帶杯茶、把故事放上來，我會回信的。
+          有想法、回饋、或只是想說聲嗨,寫信來吧。帶杯茶、把故事放上來,我會回信的。
         </p>
 
         <p style={{lineHeight: '1.8', fontSize: '1.1rem'}}>

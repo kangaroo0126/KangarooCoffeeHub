@@ -48,7 +48,8 @@ date: 2025-12-11
 |1. 2375 | 棉花糖 | [Youtube](https://www.youtube.com/watch?v=tiwXMGIJg-U) |2.滯留鋒 | 理想混蛋  | [Youtube](https://www.youtube.com/watch?v=zxS_NTJ4Hbo)| 
 |3.願溫柔的妳被世界溫柔以待 | 綠繡眼 | [Youtube](https://www.youtube.com/watch?v=boETEUNxZJY)|4.致黑暗的自己| 黃怡瑄 | [Youtube](https://www.youtube.com/watch?v=TX8h-S6UGwA)|  
 |5.盛放 | 郭真榕 | [Youtube](https://www.youtube.com/watch?v=8qaxvkEvdGE)|6.past隱. |黃怡瑄 |[Youtube](https://www.youtube.com/watch?v=NpRv_wSeSrI)|  
-|7.有天會再相見 |DIOR大穎|[Youtube](https://www.youtube.com/watch?v=Aq8pDJkFQGw)|8.回郵 Re:| 呂允 |[Youtube](https://www.youtube.com/watch?v=xX9JGLubFxo)
+|7.有天會再相見 |DIOR大穎|[Youtube](https://www.youtube.com/watch?v=Aq8pDJkFQGw)|8.回郵 Re:| 呂允 |[Youtube](https://www.youtube.com/watch?v=xX9JGLubFxo)| 
+|9.至少我們都還沒放棄 |館青|[Youtube](https://www.youtube.com/watch?v=VCgNJ2id11o)|10.부동의 첫사랑|10CM / 십센치|[Youtube](https://www.youtube.com/watch?v=g22bIZoPQYw)| 
 
 
 ---
@@ -57,8 +58,10 @@ date: 2025-12-11
 這裡放的是那些我慢慢讀過、也願意帶在身邊一段時間的文字。
 如果你也讀過其中某一本，或有想推薦給我的書，很歡迎你把那份感受留給我。
 
-| 書籍名稱 | 作者 | 年份 | 議題分類 | 備註 |
-|---------|------|------|----------|------|
-|失去青春的孩子: 美髮建教生的圓夢與碎夢|涂曉蝶|2021|教育議題、建教合作、政策|      |
-|拚教養：全球化、親職焦慮與不平等童年|藍佩嘉|2019|教育議題、社會階層、教養模式|   |
-|好好存在：ㄧ位心理學家的療癒書寫|汪淑媛|2018|心理衛生、社會工作|   |
+| 書籍名稱 | 作者 | 年份 | 議題分類 |
+|---------|------|------|----------|
+|失去青春的孩子: 美髮建教生的圓夢與碎夢|涂曉蝶|2021|教育議題、建教合作、政策|
+|拚教養：全球化、親職焦慮與不平等童年|藍佩嘉|2019|教育議題、社會階層、教養模式|
+|正常由誰定義? : 撕下不正常標籤, 走向包容神經多樣性的未來 |羅伯特.查普曼著,聞翊均譯|2025|心理學、社會學、自閉症、ADHD、資本主義
+|好好存在：ㄧ位心理學家的療癒書寫|汪淑媛|2018|心理衛生、社會工作|
+|我們都應該是女性主義者|施清真譯|2022|女性主義、社會學、父權制度

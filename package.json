@@ -26,7 +26,8 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/types": "3.9.2"
+    "@docusaurus/types": "3.9.2",
+    "esbuild-loader": "^4.4.2"
   },
   "browserslist": {
     "production": [

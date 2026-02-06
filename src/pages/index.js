@@ -354,7 +354,7 @@ export default function About() {
         fontSize: '0.95rem',
         margin: 0
       }}>
-        我們重新理解教育,揭露被長期忽略的結構性問題,並付諸行動。
+        我們重新理解教育，揭露被長期忽略的結構性問題，並付諸行動。
       </p>
     </div>
   </a>

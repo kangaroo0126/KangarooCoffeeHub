@@ -32,27 +32,34 @@
 /* 置中 footer 內容 */
 .footer {
   text-align: center;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .footer__links {
   justify-content: center !important;
   display: flex !important;
-  flex-wrap: nowrap !important;
-  gap: 0 !important;
+  flex-wrap: wrap !important;  /* 改為 wrap，允許換行 */
+  gap: 2rem 0 !important;  /* 調整間距 */
 }
 
 .footer__col {
   text-align: center;
 }
 
-/* Pages 欄位（第一欄）靠近 More */
-.footer__col:nth-child(1) {
-  margin-right: 3rem;
-}
+/* Pages 欄位（第一欄）靠近 More - 僅在桌面版生效 */
+@media (min-width: 769px) {
+  .footer__col:nth-child(1) {
+    margin-right: 3rem;
+  }
 
-/* More 欄位（第二欄） */
-.footer__col:nth-child(2) {
-  margin-left: 0;
+  .footer__col:nth-child(2) {
+    margin-left: 0;
+  }
+  
+  .footer__links {
+    flex-wrap: nowrap !important;  /* 桌面版不換行 */
+  }
 }
 
 .footer__copyright {
@@ -87,32 +94,39 @@
   color: #d4c4b0 !important;
 }
 
-/* 將 Pages 區塊的項目改為兩欄三列佈局（垂直排列）*/
-.footer__links .footer__col:first-child .footer__items {
-  display: grid !important;
-  grid-template-columns: repeat(2, auto) !important;
-  grid-auto-flow: column !important;
-  grid-template-rows: repeat(3, auto) !important;
-  gap: 0.5rem 3rem !important;
-  max-width: 400px !important;
-  margin: 0 auto !important;
+/* 將 Pages 區塊的項目改為兩欄三列佈局（垂直排列）- 僅桌面版 */
+@media (min-width: 769px) {
+  .footer__links .footer__col:first-child .footer__items {
+    display: grid !important;
+    grid-template-columns: repeat(2, auto) !important;
+    grid-auto-flow: column !important;
+    grid-template-rows: repeat(3, auto) !important;
+    gap: 0.5rem 3rem !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
 }
-
-/* 使用 grid-auto-flow: column 會自動按照垂直順序填充 */
-/* 項目會自動排列成：
-   第1項（專題文章）→ 左欄第1列
-   第2項（日常思考）→ 左欄第2列  
-   第3項（我的書櫃）→ 左欄第3列
-   第4項（慢行生活）→ 右欄第1列
-   第5項（教育倡議）→ 右欄第2列
-   第6項（關於我）→ 右欄第3列
-*/
 
 /* 響應式設計：在小螢幕上恢復單欄佈局 */
 @media (max-width: 768px) {
+  .footer {
+    padding: 2rem 1rem;
+  }
+  
+  .footer__links {
+    flex-direction: column;
+    gap: 2rem !important;
+  }
+  
+  .footer__col {
+    width: 100%;
+    margin: 0 !important;
+  }
+  
   .footer__col:first-child .footer__items {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
   }
   
   .footer__col:first-child .footer__item {

@@ -5,37 +5,32 @@ import Layout from '@theme/Layout';
 const cssStyles = `
   /* 定義變數：預設為淺色模式 (Light Mode) */
   :root {
-    --res-primary: #81C784;       /* 主色調：綠 */
-    --res-primary-bg: #E8F5E9;    /* 淺綠背景 */
-    --res-accent: #FFCC80;        /* 強調色：橘黃 */
-    --res-accent-bg: #FFF3E0;     /* 淺橘背景 */
-    --res-text-main: #37474F;     /* 主要文字 */
-    --res-text-sub: #78909C;      /* 次要文字 */
-    --res-bg: #FDFCF5;            /* 頁面背景 */
-    --res-card-bg: #FFFFFF;       /* 卡片背景 */
-    --res-border: #E8F5E9;        /* 邊框顏色 (淺色線) */
-    --res-shadow: rgba(129, 199, 132, 0.2); /* 陰影 */
-    --res-line: #81C784;          /* 時間軸線條 */
-    
-    /* Tag 專用色：加深文字以確保白天清晰可見 */
-    --res-tag-text: #1B5E20;      
+    --res-primary: #81C784;
+    --res-primary-bg: #E8F5E9;
+    --res-accent: #FFCC80;
+    --res-accent-bg: #FFF3E0;
+    --res-text-main: #37474F;
+    --res-text-sub: #78909C;
+    --res-bg: #FDFCF5;
+    --res-card-bg: #FFFFFF;
+    --res-border: #E8F5E9;
+    --res-shadow: rgba(129, 199, 132, 0.2);
+    --res-line: #81C784;
+    --res-tag-text: #1B5E20;
   }
 
-  /* 暗黑模式 (Dark Mode) 覆蓋變數 */
   [data-theme='dark'] {
-    --res-primary: #66BB6A;       /* 夜間綠稍微亮一點 */
+    --res-primary: #66BB6A;
     --res-primary-bg: rgba(129, 199, 132, 0.15);
     --res-accent: #FFB74D;
     --res-accent-bg: rgba(255, 183, 77, 0.15);
-    --res-text-main: var(--ifm-font-color-base); 
+    --res-text-main: var(--ifm-font-color-base);
     --res-text-sub: var(--ifm-color-content-secondary);
-    --res-bg: transparent;        
-    --res-card-bg: var(--ifm-card-background-color); 
+    --res-bg: transparent;
+    --res-card-bg: var(--ifm-card-background-color);
     --res-border: var(--ifm-color-emphasis-200);
     --res-shadow: rgba(0, 0, 0, 0.5);
     --res-line: #4CAF50;
-
-    /* Tag 專用色：夜間轉為淺綠 */
     --res-tag-text: #A5D6A7;
   }
 
@@ -68,7 +63,7 @@ const cssStyles = `
     margin: 0 auto 4rem;
     padding: 0 1.5rem;
   }
-  
+
   .section-title-wrapper {
     text-align: center;
     margin-bottom: 2rem;
@@ -144,12 +139,12 @@ const cssStyles = `
     margin-bottom: 0.8rem;
     font-weight: bold;
   }
-  
-  /* 標籤 Tag (修正版) */
+
+  /* 標籤 Tag */
   .resume-tag {
     display: inline-block;
     background-color: var(--res-primary-bg);
-    color: var(--res-tag-text); /* 使用更深的顏色 */
+    color: var(--res-tag-text);
     padding: 0.2rem 0.6rem;
     border-radius: 12px;
     font-size: 0.85rem;
@@ -158,25 +153,89 @@ const cssStyles = `
     font-weight: bold;
   }
 
-  /* 按鈕與連結 */
-  .link-btn {
-    display: inline-block;
-    background-color: var(--res-accent-bg);
-    color: var(--res-text-main);
-    font-size: 0.8rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 8px;
-    margin-left: 0.8rem;
+  /* 專案連結按鈕樣式 */
+  .project-links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
     text-decoration: none;
-    border: 1px solid var(--res-accent);
-    vertical-align: middle;
-    font-weight: normal;
+    border: 1.5px solid transparent;
+    transition: background-color 0.18s, color 0.18s, border-color 0.18s, transform 0.15s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .project-link-pill.type-link {
+    background-color: var(--res-primary-bg);
+    color: var(--res-tag-text);
+    border-color: var(--res-primary);
+  }
+  .project-link-pill.type-link:hover {
+    background-color: var(--res-primary);
+    color: #fff;
+    border-color: var(--res-primary);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .project-link-pill.type-portfolio {
+    background-color: #E3F2FD;
+    color: #0D47A1;
+    border-color: #90CAF9;
+  }
+  [data-theme='dark'] .project-link-pill.type-portfolio {
+    background-color: rgba(144,202,249,0.15);
+    color: #90CAF9;
+    border-color: #90CAF9;
+  }
+  .project-link-pill.type-portfolio:hover {
+    background-color: #1565C0;
+    color: #fff;
+    border-color: #1565C0;
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .project-link-pill.type-pdf {
+    background-color: #FBE9E7;
+    color: #BF360C;
+    border-color: #FFAB91;
+  }
+  [data-theme='dark'] .project-link-pill.type-pdf {
+    background-color: rgba(255,171,145,0.15);
+    color: #FFAB91;
+    border-color: #FFAB91;
+  }
+  .project-link-pill.type-pdf:hover {
+    background-color: #BF360C;
+    color: #fff;
+    border-color: #BF360C;
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .title-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 2px solid var(--res-primary);
     transition: opacity 0.2s;
   }
-  .link-btn:hover {
-    opacity: 0.8;
+  .title-link:hover {
+    opacity: 0.75;
     text-decoration: none;
-    color: var(--res-text-main);
+    color: inherit;
   }
 
   .read-more-btn {
@@ -197,16 +256,16 @@ const cssStyles = `
     background-color: var(--res-primary-bg);
   }
 
-  /* --- 新版 Tab 樣式 (兩欄、底線) --- */
+  /* Tab 樣式 */
   .project-tabs {
     display: flex;
     width: 100%;
     margin-bottom: 2rem;
-    border-bottom: 2px solid var(--res-border); /* 淺色底線貫穿 */
+    border-bottom: 2px solid var(--res-border);
   }
-  
+
   .tab-item {
-    flex: 1; /* 兩個 Tab 平均分配寬度 (50%/50%) */
+    flex: 1;
     text-align: center;
     padding: 1rem 0.5rem;
     cursor: pointer;
@@ -214,25 +273,23 @@ const cssStyles = `
     border: none;
     font-size: 1rem;
     font-weight: bold;
-    color: var(--res-text-sub); /* 未選取時為次要文字色 */
+    color: var(--res-text-sub);
     position: relative;
     transition: color 0.3s;
   }
-  
+
   .tab-item:hover {
     color: var(--res-primary);
   }
 
-  /* 選取狀態 (Active) */
   .tab-item.active {
     color: var(--res-primary);
   }
-  
-  /* Active 時底部的粗線 */
+
   .tab-item.active::after {
     content: '';
     position: absolute;
-    bottom: -2px; /* 讓粗線蓋在淺色底線上方 */
+    bottom: -2px;
     left: 0;
     width: 100%;
     height: 3px;
@@ -278,6 +335,135 @@ const cssStyles = `
     gap: 1.5rem;
   }
 
+  /* 作品集預覽區（工作卡片內） */
+  .work-portfolio-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .work-portfolio-item {
+    flex: 1;
+    min-width: 140px;
+    max-width: 220px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--res-border);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s, box-shadow 0.18s;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--res-card-bg);
+  }
+  .work-portfolio-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--res-shadow);
+    text-decoration: none;
+    color: inherit;
+  }
+  .work-portfolio-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    background-color: var(--res-primary-bg);
+  }
+  .work-portfolio-label {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--res-text-sub);
+    border-top: 1px solid var(--res-border);
+  }
+
+  /* ========== 作品集表格樣式 ========== */
+  .portfolio-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .portfolio-table thead tr {
+    background-color: var(--res-primary-bg);
+  }
+
+  .portfolio-table thead th {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    font-weight: 800;
+    color: var(--res-tag-text);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--res-primary);
+  }
+
+  .portfolio-table thead th:first-child {
+    width: 140px;
+  }
+
+  .portfolio-table tbody tr {
+    border-bottom: 1px solid var(--res-border);
+    transition: background-color 0.15s;
+  }
+
+  .portfolio-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .portfolio-table tbody tr:hover {
+    background-color: var(--res-primary-bg);
+  }
+
+  .portfolio-table td {
+    padding: 0.9rem 1.2rem;
+    vertical-align: middle;
+    color: var(--res-text-main);
+  }
+
+  .portfolio-type-badge {
+    display: inline-block;
+    background-color: var(--res-accent-bg);
+    color: var(--res-text-sub);
+    border: 1px solid var(--res-accent);
+    border-radius: 20px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .portfolio-title-link {
+    color: var(--res-text-main);
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 1.5;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    transition: color 0.18s;
+  }
+
+  .portfolio-title-link:hover {
+    color: var(--res-primary);
+    text-decoration: none;
+  }
+
+  .portfolio-title-link .link-icon {
+    flex-shrink: 0;
+    margin-top: 3px;
+    opacity: 0.5;
+    transition: opacity 0.18s;
+  }
+
+  .portfolio-title-link:hover .link-icon {
+    opacity: 1;
+  }
+
   /* 手機版 RWD */
   @media (max-width: 768px) {
     .timeline-year {
@@ -296,11 +482,24 @@ const cssStyles = `
       padding-left: 1rem !important;
       margin-left: 0.5rem;
     }
-    
-    /* 手機版讓 Tab 文字縮小一點以免換行太嚴重 */
+
     .tab-item {
-      font-size: 0.9rem; 
+      font-size: 0.9rem;
       padding: 0.8rem 0.2rem;
+    }
+
+    .work-portfolio-item {
+      max-width: 100%;
+    }
+
+    /* 手機版表格：隱藏類別欄，改為貼文前小標籤 */
+    .portfolio-table thead th:first-child,
+    .portfolio-table td:first-child {
+      display: none;
+    }
+
+    .portfolio-table td:last-child {
+      padding: 0.8rem 1rem;
     }
   }
 `;
@@ -347,7 +546,7 @@ const resumeData = {
       intro: "本案由參與青年永續社會設計挑戰賽獲獎後（大專組季軍）與出題組織合作，延續為期半年的產品化與推廣合作。專案旨在以桌遊作為媒介，引導青年理解教育不平等的結構面向，並促進他們思考自身參與教育行動的可能。",
       tags: ["議題研究", "訪談設計", "使用者洞察", "遊戲設計", "工作坊企劃", "原型測試"],
       links: [
-        { label: " Instagram", url: "https://www.instagram.com/lumi_paths/" }
+        { label: "Instagram", url: "https://www.instagram.com/lumi_paths/", type: "link" }
       ],
       details: {
         role: [
@@ -368,8 +567,8 @@ const resumeData = {
       intro: "島島阿學是一個以民主社群與自主學習為核心的學習平台，期望透過集體智慧打造沒有天花板的學習環境，支持不同年齡與背景的學習者自由探索與共學。自2021年起我擔任核心團隊成員，負責行銷（IG、電子報）與活動籌劃；自2024年12月起擔任第一屆「學習馬拉松」專案經理，陪伴並培育 16+ 位學習者（高中生至 50+）以個人陪伴與小組支持的方式，建立持續自主學習的習慣與成果呈現機制。",
       tags: ["專案管理", "工作坊設計", "社群內容經營", "質性與量化資料分析", "SPSS", "專案報告撰寫"],
       links: [
-        { label: "Website", url: "https://www.daoedu.tw/" },
-        { label: " Instagram", url: "https://www.instagram.com/daodao_edu/" }
+        { label: "Website", url: "https://www.daoedu.tw/", type: "link" },
+        { label: "Instagram", url: "https://www.instagram.com/daodao_edu/", type: "link" }
       ],
       details: {
         role: [
@@ -391,7 +590,7 @@ const resumeData = {
       intro: "第30屆 International Democratic Education Conference（IDEC）首次在臺灣舉行，為期7天，包含演講、工作坊、Open Space 與市集，匯聚國內外教育創新、實驗教育與民主教育實踐者，促進跨域對話與資源連結。",
       tags: ["議程規劃", "跨文化溝通", "線上報名系統管理", "活動現場場務", "合作夥伴開發"],
       links: [
-        { label: "Website", url: "https://www.twdec.org/idec2024" }
+        { label: "Website", url: "https://www.twdec.org/idec2024", type: "link" }
       ],
       details: {
         role: [
@@ -413,8 +612,8 @@ const resumeData = {
       intro: "以「人生書家」團隊參與教育部青年發展署 Young 飛國際行動計畫，聚焦高中生生涯教育缺口。專案包含生涯圖書館工作坊（1場）、製作一本「人生之書」教材、架設專案網站（Wix），並透過 IG 進行生涯教育倡議與社群溝通。",
       tags: ["議題研究", "深度訪談", "教材設計", "工作坊主持", "Wix網站建置", "社群經營"],
       links: [
-        { label: "Website", url: "https://bookingyourlife202.wixsite.com/bookingyourlife" },
-        { label: " Instagram", url: "https://www.instagram.com/bookingyourlife/" }
+        { label: "Website", url: "https://bookingyourlife202.wixsite.com/bookingyourlife", type: "link" },
+        { label: "Instagram", url: "https://www.instagram.com/bookingyourlife/", type: "link" }
       ],
       details: {
         role: [
@@ -448,15 +647,38 @@ const resumeData = {
   ],
   work: [
     {
+      title: "中華民國振鐸學會 均優學習論壇－重建教育經費保障　高雄場 ／專案總負責人",
+      year: "2026",
+      fullTime: "2026.01– 2026.03",
+      desc: [
+        "擔任學會對外主要窗口，協調與高雄市公民監督公僕聯盟、社區大學促進會、教師職業工會及家長協會之合作，成功舉辦半天教育政策論壇與公聽會",
+        "全面規劃與執行論壇，包括主視覺設計、行銷宣傳、流程安排與餐飲訂購，確保活動順利進行"
+      ],
+      portfolioItems: [
+        {
+          label: "主視覺宣傳",
+          url: "http://jendo.org/uploadFiles/%e8%b7%a8%e6%a0%a1%e9%81%b8%e4%bf%ae/222/20260314%E5%9D%87%E5%84%AA%E9%AB%98%E9%9B%84%E9%87%8D%E5%BB%BA%E6%95%99%E8%82%B2%E7%B6%93%E8%B2%BB%E4%BF%9D%E9%9A%9C%E8%AB%96%E5%A3%87_%E5%AE%A3%E5%82%B3%E4%B8%BB%E8%A6%96%E8%A6%BA.png",
+          type: "image"
+        },
+        {
+          label: "活動簡章",
+          url: "http://jendo.org/uploadFiles/%e8%b7%a8%e6%a0%a1%e9%81%b8%e4%bf%ae/222/20260314%E5%9D%87%E5%84%AA%E9%AB%98%E9%9B%84%E9%87%8D%E5%BB%BA%E6%95%99%E8%82%B2%E7%B6%93%E8%B2%BB%E4%BF%9D%E9%9A%9C%E8%AB%96%E5%A3%87_%E7%B0%A1%E7%AB%A0.pdf",
+          type: "pdf"
+        }
+      ]
+    },
+    {
       title: "高雄回甘心理諮商所 ／ 行政櫃台",
+      titleLink: "https://bsccpsy.com/",
       year: "2025",
       fullTime: "2025.09 – 2026.07",
       desc: [
-        "擔任多方溝通橋樑，串接政府行政、專業團隊與個案需求，確保服務流程從行政到現場的銜接。",
-        "負責政府與合作單位計畫案的行政作業與核銷流程，協助文件準備與資料整理，確保計畫款項與報表合規。",
+        "擔任多方溝通橋樑，串接政府行政、心理師與個案需求，確保服務流程從行政到現場的銜接。",
+        "負責政府與合作單位計畫案的行政作業與核銷流程，協助文件準備與資料整理，確保計畫款項與報表能順利產出。",
         "剪輯與後製 Podcast 節目（含剪輯、上架前處理），協助內容傳播與品牌經營。",
         "作為心理師與個案之間的主要聯絡窗口，協調安排、追蹤進度，促進溝通順暢。",
-        "回覆來電/訊息詢問、接待來訪個案，並處理初步危機通報，維持服務品質與動線安全。"
+        "回覆來電/訊息詢問、接待來訪個案，並處理初步危機通報，維持服務品質與動線安全。",
+        "負責中華電信員工EAP諮商方案每月滿意度報告整理。"
       ]
     },
     {
@@ -487,7 +709,7 @@ const resumeData = {
     { title: "【找自己小聚】MBTI與香氛調製：學會識別自己的情感需求，從桌遊到香氛的深度戀愛探索", link: "https://chickensoupfamily.com/2024/12/05/mbtifindme/", type: "文字創作" },
     { title: "「權」知道了嗎？那些易被忽略的學生議題！電子書", link: "https://issuu.com/kangaroo0126/docs/_03f7fefc89a41f", type: "出版品" },
     { title: "桃園市復興鄉羅浮導覽地圖（網頁程式設計）", link: "https://kangaroo0126.github.io/110-2CYCU-programming-project/", type: "網頁程式" },
-    { title: "【Ren’py故事遊戲製作】流動的身影跨越邊界之旅", link: "https://11057208.itch.io/fluid-silhouettes-journey-across-borders", type: "Ren’py遊戲" },
+    { title: "【Ren'py故事遊戲製作】流動的身影跨越邊界之旅", link: "https://11057208.itch.io/fluid-silhouettes-journey-across-borders", type: "Ren'py遊戲" },
     { title: "EP163【你來播】 校外資源學什麼？學習歷程、履歷經歷必學！", link: "https://podcasts.apple.com/us/podcast/ep163-你來播-校外資源學什麼-學習歷程-履歷經歷必學-講座-工作坊-ngo-志工-校園大使/id1609340208?i=1000664161405", type: "受訪分享" }
   ],
   awards: [
@@ -510,7 +732,16 @@ const resumeData = {
 // --- Icons (SVG) ---
 const Icons = {
   Link: () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+  ),
+  Image: () => (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+  ),
+  PDF: () => (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+  ),
+  ExternalLink: () => (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
   ),
   Down: () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -520,6 +751,26 @@ const Icons = {
   )
 };
 
+const LinkPill = ({ link }) => {
+  const iconMap = {
+    'link': <Icons.ExternalLink />,
+    'portfolio': <Icons.Image />,
+    'pdf': <Icons.PDF />,
+  };
+  const icon = iconMap[link.type] || <Icons.Link />;
+  return (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`project-link-pill type-${link.type || 'link'}`}
+    >
+      {icon}
+      {link.label}
+    </a>
+  );
+};
+
 // --- 子元件 ---
 
 const ProjectCard = ({ data }) => {
@@ -527,44 +778,30 @@ const ProjectCard = ({ data }) => {
 
   return (
     <div className="timeline-row">
-      {/* 左側年份 */}
-      <div className="timeline-year">
-        {data.year}
-      </div>
-
-      {/* 中間線條 */}
+      <div className="timeline-year">{data.year}</div>
       <div className="timeline-line-container">
         <div className="timeline-dot"></div>
       </div>
-
-      {/* 右側內容 */}
       <div className="timeline-content">
         <div className="resume-card">
-          <h3 className="resume-card-title">
-            {data.title}
-            {data.links && data.links.map((link, idx) => (
-              <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="link-btn">
-                {link.label} <Icons.Link />
-              </a>
-            ))}
-          </h3>
+          <h3 className="resume-card-title">{data.title}</h3>
           <div className="time-in-card">{data.fullTime}</div>
-          
           <p style={{lineHeight: '1.6', whiteSpace: 'pre-line'}}>{data.intro}</p>
-          
-          <div style={{marginBottom: '1rem'}}>
+          <div style={{marginBottom: '0.5rem'}}>
             {data.tags.map((tag, idx) => (
               <span key={idx} className="resume-tag">#{tag}</span>
             ))}
           </div>
-
-          <button 
-            onClick={() => setIsOpen(!isOpen)} 
-            className="read-more-btn"
-          >
+          {data.links && data.links.length > 0 && (
+            <div className="project-links-row">
+              {data.links.map((link, idx) => (
+                <LinkPill key={idx} link={link} />
+              ))}
+            </div>
+          )}
+          <button onClick={() => setIsOpen(!isOpen)} className="read-more-btn">
             {isOpen ? '收起詳細內容' : 'Read more'} {isOpen ? <Icons.Up /> : <Icons.Down />}
           </button>
-
           {isOpen && (
             <div style={{marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px dashed var(--res-primary)'}}>
               <h4 style={{marginBottom: '0.5rem'}}>我的角色與貢獻</h4>
@@ -589,50 +826,102 @@ const ProjectCard = ({ data }) => {
 
 const WorkCard = ({ data }) => (
   <div className="timeline-row">
-    <div className="timeline-year">
-      {data.year}
-    </div>
+    <div className="timeline-year">{data.year}</div>
     <div className="timeline-line-container">
       <div className="timeline-dot"></div>
     </div>
     <div className="timeline-content">
       <div className="resume-card">
-        <h3 className="resume-card-title">{data.title}</h3>
+        <h3 className="resume-card-title">
+          {data.titleLink ? (
+            <a href={data.titleLink} target="_blank" rel="noopener noreferrer" className="title-link">
+              {data.title}
+            </a>
+          ) : data.title}
+        </h3>
         <div className="time-in-card">{data.fullTime}</div>
         <ul style={{paddingLeft: '1.2rem', margin: 0}}>
           {data.desc.map((item, idx) => (
             <li key={idx} style={{marginBottom: '0.3rem', lineHeight: '1.5'}}>{item}</li>
           ))}
         </ul>
+        {data.portfolioItems && data.portfolioItems.length > 0 && (
+          <div className="work-portfolio-row">
+            {data.portfolioItems.map((item, idx) => (
+              item.type === 'image' ? (
+                <a key={idx} href={item.url} target="_blank" rel="noopener noreferrer" className="work-portfolio-item">
+                  <img
+                    src={item.url}
+                    alt={item.label}
+                    className="work-portfolio-thumb"
+                    onError={(e) => { e.target.style.minHeight='80px'; e.target.alt='無法載入圖片'; }}
+                  />
+                  <div className="work-portfolio-label">
+                    <Icons.Image /> {item.label}
+                  </div>
+                </a>
+              ) : (
+                <a key={idx} href={item.url} target="_blank" rel="noopener noreferrer" className="work-portfolio-item">
+                  <div className="work-portfolio-thumb" style={{display:'flex', alignItems:'center', justifyContent:'center', background:'var(--res-accent-bg)', minHeight:'80px'}}>
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--res-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  </div>
+                  <div className="work-portfolio-label">
+                    <Icons.PDF /> {item.label}
+                  </div>
+                </a>
+              )
+            ))}
+          </div>
+        )}
       </div>
     </div>
   </div>
 );
 
-const PortfolioCard = ({ data }) => (
-  <a href={data.link} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', color: 'inherit'}}>
-    <div className="resume-card" style={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', cursor: 'pointer'}}>
-      <div>
-        <span style={{fontSize: '0.8rem', color: 'var(--res-primary)', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold'}}>{data.type}</span>
-        <h4 style={{margin: '0.5rem 0', fontSize: '1.2rem', lineHeight: '1.4'}}>{data.title}</h4>
-      </div>
-      <div style={{textAlign: 'right', marginTop: '1rem', color: 'var(--res-primary)'}}>
-        <Icons.Link />
-      </div>
-    </div>
-  </a>
+// ========== 新版作品集表格元件 ==========
+const PortfolioTable = ({ items }) => (
+  <table className="portfolio-table">
+    <thead>
+      <tr>
+        <th>類別</th>
+        <th>標題</th>
+      </tr>
+    </thead>
+    <tbody>
+      {items.map((item, idx) => (
+        <tr key={idx}>
+          <td>
+            <span className="portfolio-type-badge">{item.type}</span>
+          </td>
+          <td>
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="portfolio-title-link"
+            >
+              {item.title}
+              <span className="link-icon">
+                <Icons.ExternalLink />
+              </span>
+            </a>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
 );
 
 // --- 主頁面元件 ---
 export default function ResumePage() {
-  const [activeProjectTab, setActiveProjectTab] = useState('innovation'); // 'innovation' or 'social_work'
+  const [activeProjectTab, setActiveProjectTab] = useState('innovation');
 
   return (
     <Layout title="蘇冠彰 Resume" description="蘇冠彰的個人履歷與作品集">
       <style>{cssStyles}</style>
-      
+
       <div className="resume-container">
-        
+
         {/* Header */}
         <header className="resume-header">
           <h1 className="resume-title">{resumeData.profile.name}</h1>
@@ -644,57 +933,49 @@ export default function ResumePage() {
         {/* 關於我 */}
         <section className="resume-section">
           <div className="section-title-wrapper"><h2 className="section-title">關於我</h2></div>
-          
           <div className="about-block">
             <p>{resumeData.about.intro}</p>
           </div>
-
           <div style={{marginTop: '2rem'}}>
-             <h3 style={{color: 'var(--res-primary)', marginBottom: '1.5rem', textAlign: 'center'}}>✨ 研究興趣與關注議題</h3>
-             <div className="research-container">
-                {resumeData.about.researchCategories.map((cat, idx) => (
-                  <div key={idx} className="research-col">
-                    <h4 className="research-title">{cat.title}</h4>
-                    <ul style={{paddingLeft: '1.2rem'}}>
-                      {cat.items.map((item, i) => (
-                        <li key={i} style={{marginBottom: '0.8rem', lineHeight: '1.5'}}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-             </div>
+            <h3 style={{color: 'var(--res-primary)', marginBottom: '1.5rem', textAlign: 'center'}}>✨ 研究興趣與關注議題</h3>
+            <div className="research-container">
+              {resumeData.about.researchCategories.map((cat, idx) => (
+                <div key={idx} className="research-col">
+                  <h4 className="research-title">{cat.title}</h4>
+                  <ul style={{paddingLeft: '1.2rem'}}>
+                    {cat.items.map((item, i) => (
+                      <li key={i} style={{marginBottom: '0.8rem', lineHeight: '1.5'}}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* 專案經歷 (Tab 分頁版) */}
+        {/* 專案經歷 */}
         <section className="resume-section">
           <div className="section-title-wrapper"><h2 className="section-title">專案經歷</h2></div>
-          
-          {/* Tab 導覽列 */}
           <div className="project-tabs">
-            <button 
+            <button
               className={`tab-item ${activeProjectTab === 'innovation' ? 'active' : ''}`}
               onClick={() => setActiveProjectTab('innovation')}
             >
               社會與教育創新時期（～2026年6月）
             </button>
-            <button 
+            <button
               className={`tab-item ${activeProjectTab === 'social_work' ? 'active' : ''}`}
               onClick={() => setActiveProjectTab('social_work')}
             >
               社會工作與教育創新倡議時期（2026年7月～Now）
             </button>
           </div>
-
-          {/* 內容顯示區 */}
           <div>
             {activeProjectTab === 'innovation' ? (
-              // 顯示原本的所有專案
               resumeData.projects.map(project => (
                 <ProjectCard key={project.id} data={project} />
               ))
             ) : (
-              // 顯示未來展望文字
               <div style={{textAlign: 'center', padding: '4rem 1rem', color: 'var(--res-text-sub)', fontSize: '1.2rem'}}>
                 🌱 還沒開始，近請期待新生活 ✨
               </div>
@@ -712,14 +993,10 @@ export default function ResumePage() {
           </div>
         </section>
 
-        {/* 作品集 */}
+        {/* 作品集（表格版） */}
         <section className="resume-section">
           <div className="section-title-wrapper"><h2 className="section-title">作品集與 Podcast</h2></div>
-          <div className="grid-two">
-            {resumeData.portfolio.map((item, idx) => (
-              <PortfolioCard key={idx} data={item} />
-            ))}
-          </div>
+          <PortfolioTable items={resumeData.portfolio} />
         </section>
 
         {/* 競賽與志工 */}
@@ -744,9 +1021,8 @@ export default function ResumePage() {
             </div>
           </div>
         </section>
-        
+
         <footer style={{textAlign: 'center', color: 'var(--res-text-sub)', padding: '2rem 0', fontSize: '0.9rem'}}>
-          {/* Footer removed */}
         </footer>
       </div>
     </Layout>

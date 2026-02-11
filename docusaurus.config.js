@@ -134,11 +134,6 @@ const config = {
             position: 'left',
           },
           {
-            to: '/EducationAdvocacy',
-            label: '教育倡議',
-            position: 'left',
-          },
-          {
             to: '/about',
             label: '關於我',
             position: 'left',
@@ -167,10 +162,6 @@ const config = {
               {
                 label: '慢行生活',
                 to: '/slowlife/intro',
-              },
-              {
-                label: '教育倡議',
-                to: '/EducationAdvocacy',
               },
               {
                 label: '關於我',

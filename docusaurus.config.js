@@ -76,6 +76,13 @@ const config = {
           trackingID: 'G-1TTB1R6895',
           anonymizeIP: true,
         },
+        // ⭐⭐⭐ 新增：Sitemap 設定（關鍵！）
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+        },
       }),
     ],
   ],

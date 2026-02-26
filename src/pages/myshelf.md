@@ -11,7 +11,7 @@ date: 2025-12-11
 
 嗨，歡迎來到我的書櫃。這裡除了書之外，還收藏了許多我喜歡的專輯與電影－每一件都是我親自挑選、並願意和你分享的小宇宙。我會不定期更新，歡迎常來翻閱，或把你喜歡的作品推薦給我。
 
-*最後更新：2026-01-15*
+*最後更新：2026-02-26*
 
 ## 🎬 電影/節目
 
@@ -38,6 +38,9 @@ date: 2025-12-11
 * [Meet Up！高校生(2025)](https://www.ptsplus.tv/zh/programs/22cb4a03-2a82-49ca-8cfa-927bb053f889)
 * [19/20 成年初體驗 청춘리얼리티 '19/20' (2023)](https://www.netflix.com/tw/title/81651185)
 * [少男少女戀愛  소년소녀연애하다 (2023)](https://www.iq.com/album/%E5%B0%91%E7%94%B7%E5%B0%91%E5%A5%B3%E6%88%80%E6%84%9B-2023-1x26jwwt8ax?lang=zh_cn)
+
+### ✨網路劇
+* [A teen 1、2 에이틴시즌](https://www.youtube.com/watch?v=Ehuydb00J2k&list=PLVBrfgGa0Rv4uI7KoIRYYbWDifIkRUWtk)
 
 ---
 ## 🎧 音樂

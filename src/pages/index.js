@@ -47,15 +47,11 @@ export default function About() {
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          於是每隔一段時間，總會忍不住重新問自己:<strong>我是誰?現在站在什麼位置？又在往哪裡去？</strong>
+          於是每隔一段時間，總會忍不住重新問自己：<strong>我是誰？現在站在什麼位置？又在往哪裡去？</strong>
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
           在資訊過量、被產值與效率定義價值的環境裡，很容易忘記怎麼當一個人，也很容易對自己不耐煩，覺得應該更快、更穩、更像別人期待的樣子。
-        </p>
-
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          工時長、低薪、房價與不平等，成了生活的背景音，卻常常只被輕描淡寫成一句:「再撐一下就好。」努力不再只是選擇，而變成一種不能停下來的狀態。好像一旦慢下腳步，就會被世界拋在後面。也正因為這樣，真正能停下來，看清楚自己正在承受什麼，本身就成了一件需要練習的事。
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
@@ -93,7 +89,7 @@ export default function About() {
         </p>
 
         <p style={{lineHeight: '1.5', marginBottom: '2rem'}}>
-          這個地方，我期待就是那樣的空白。
+          這個地方，我期待就是那樣的世界。
         </p>
 
         <h2 style={{fontSize: '2rem', marginBottom: '2rem'}}>
@@ -317,7 +313,7 @@ export default function About() {
         </div>
 
         <p style={{lineHeight: '1.5', marginTop: '1.5rem'}}>
-          沒有演算法，也不追求回應。寫下來本身，就是一種整理。
+          沒有演算法，也不追求回應。寫下來本身，就是一種梳理自我。
         </p>
 
         <p style={{lineHeight: '1.5', marginTop: '0.5rem', color: 'var(--ifm-color-emphasis-600)'}}>

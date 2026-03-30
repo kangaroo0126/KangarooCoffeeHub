@@ -60,7 +60,8 @@ const config = {
           sidebarPath: './sidebars.js',
         },
         blog: {
-          showReadingTime: true,
+          showReadingTime: false,
+          blogSidebarCount: 'ALL',
           feedOptions: {
             type: 'all',
             title: '袋鼠咖啡館',

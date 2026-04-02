@@ -266,7 +266,7 @@ export default function About() {
                 fontSize: '0.95rem',
                 margin: 0
               }}>
-                練習放慢、觀察與感受的日常紀錄
+                關於樂團、咖啡、獨立書店與奇奇怪怪的點子
               </p>
             </div>
           </Link>
@@ -306,19 +306,56 @@ export default function About() {
                 fontSize: '0.95rem',
                 margin: 0
               }}>
-                一隻在學習慢下來的袋鼠
+                關於我自己與自我的價值與核心
               </p>
             </div>
           </Link>
+
+          {/* 卡片 5 - 我的書櫃 */}
+          <Link to="/myshelf" style={{ textDecoration: 'none' }}>
+            <div 
+              className="custom-card"
+              style={{
+                background: 'linear-gradient(135deg, #f5e6d3 0%, #ecdcc8 100%)',
+                borderRadius: '12px',
+                padding: '1.5rem',
+                boxShadow: '0 2px 8px rgba(139, 69, 19, 0.1)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                height: '100%',
+                border: '2px solid #d4af37'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(139, 69, 19, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(139, 69, 19, 0.1)';
+              }}>
+              <h3 style={{ 
+                fontSize: '1.3rem', 
+                marginBottom: '0.5rem',
+                color: '#5d4e37'
+              }}>
+                📕 我的書櫃
+              </h3>
+              <p style={{ 
+                color: '#6b5d4f',
+                lineHeight: '1.6',
+                fontSize: '0.95rem',
+                margin: 0
+              }}>
+                關於喜愛的電影/影集、歌曲與書籍
+              </p>
+            </div>
+          </Link>
+
+          
+        
+
         </div>
 
-        <p style={{lineHeight: '1.5', marginTop: '1.5rem'}}>
-          沒有演算法，也不追求回應。寫下來本身，就是一種梳理自我。
-        </p>
-
-        <p style={{lineHeight: '1.5', marginTop: '0.5rem', color: 'var(--ifm-color-emphasis-600)'}}>
-          如果你剛好也需要這樣的空間，歡迎一起坐下來。
-        </p>
       </main>
     </Layout>
   );

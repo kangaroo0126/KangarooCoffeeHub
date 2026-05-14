@@ -3,6 +3,7 @@ title: 首頁
 authors: 袋鼠
 tags: [咖啡,音樂,音樂祭,聽團,獨立書店,獨立音樂,咖啡廳,Vibe coding]
 date: 2026-02-02
+sidebar_position: 1
 ---
 
 # 慢行生活

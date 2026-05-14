@@ -3,6 +3,7 @@ title: 【筆記】 桌遊設計
 authors: 袋鼠
 tags: [桌上遊戲,桌遊]
 date: 2026-05-09
+sidebar_position: 1
 ---
 # 【筆記】 桌遊設計
 

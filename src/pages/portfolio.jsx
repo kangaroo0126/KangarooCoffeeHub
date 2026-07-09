@@ -206,30 +206,7 @@ const cssStyles = `
   .rc-thumb-pdf { width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; background: var(--res-accent-bg); }
   .rc-thumb-label { padding: 0.45rem 0.7rem; font-size: 0.76rem; font-weight: 700; color: var(--res-text-sub); border-top: 1px solid var(--res-border); display: flex; align-items: center; gap: 0.3rem; }
 
-  /* ── PORTFOLIO FILTER ── */
-  .rc-portfolio-layout { display: flex; gap: 2rem; align-items: flex-start; }
-  .rc-portfolio-sidebar {
-    flex: 0 0 160px;
-    position: sticky;
-    top: 80px;
-  }
-  .rc-portfolio-sidebar-title { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--res-text-sub); margin-bottom: 0.8rem; }
-  .rc-filter-btn {
-    display: block; width: 100%; text-align: left;
-    padding: 0.55rem 0.85rem; border-radius: 10px; margin-bottom: 0.35rem;
-    background: none; border: 1.5px solid transparent;
-    font-size: 0.85rem; font-weight: 700; font-family: inherit;
-    color: var(--res-text-sub); cursor: pointer; transition: var(--transition);
-  }
-  .rc-filter-btn:hover { background: var(--res-primary-bg); color: var(--res-primary); border-color: var(--res-border); }
-  .rc-filter-btn.active { background: var(--res-primary); color: #fff; border-color: var(--res-primary); box-shadow: 0 3px 10px var(--res-shadow-lg); }
-  .rc-filter-count {
-    float: right; background: rgba(255,255,255,0.3); border-radius: 10px;
-    padding: 0 0.4rem; font-size: 0.75rem; line-height: 1.4;
-  }
-  .rc-filter-btn:not(.active) .rc-filter-count { background: var(--res-border); color: var(--res-text-sub); }
-
-  /* Portfolio list */
+  /* ── PORTFOLIO LIST ── */
   .rc-portfolio-list { flex: 1; min-width: 0; }
   .rc-portfolio-item {
     display: flex; align-items: center; gap: 1rem;
@@ -248,15 +225,6 @@ const cssStyles = `
   .rc-portfolio-arrow { flex: 0 0 auto; color: var(--res-text-sub); transition: var(--transition); }
   .rc-portfolio-item:hover .rc-portfolio-arrow { color: var(--res-primary); transform: translateX(3px); }
 
-  /* Mobile filter chips */
-  .rc-filter-chips { display: none; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-  .rc-filter-chip {
-    padding: 0.4rem 0.9rem; border-radius: 999px; border: 1.5px solid var(--res-border);
-    background: var(--res-card-bg); font-size: 0.8rem; font-weight: 700;
-    color: var(--res-text-sub); cursor: pointer; font-family: inherit; transition: var(--transition);
-  }
-  .rc-filter-chip.active { background: var(--res-primary); color: #fff; border-color: var(--res-primary); }
-
   /* ── AWARDS & VOLUNTEER ── */
   .rc-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
   .rc-split-card { background: var(--res-card-bg); border: 1.5px solid var(--res-border); border-radius: 18px; padding: 1.6rem; box-shadow: 0 2px 12px var(--res-shadow); }
@@ -274,9 +242,6 @@ const cssStyles = `
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    .rc-portfolio-sidebar { display: none; }
-    .rc-filter-chips { display: flex; }
-    .rc-portfolio-layout { display: block; }
     .rc-portfolio-item { padding: 0.8rem 1rem; }
     .rc-portfolio-type { display: none; }
     .rc-timeline { padding-left: 1.5rem; }
@@ -328,7 +293,23 @@ const resumeData = {
     ]
   },
   projects: {
-    social_work: [],
+    social_work: [
+      {
+        id: 0,
+        year: "2026",
+        title: "2026 SDGs Talk 媒體素養青年服務工作隊",
+        fullTime: "2026.07～Now",
+        intro: "",
+        tags: [],
+        links: [
+          { label: "Website", url: "https://sdgstalk.nptu.edu.tw/", type: "link" }
+        ],
+        details: {
+          role: [],
+          result: ""
+        }
+      }
+    ],
     innovation: [
       {
         id: 1,
@@ -576,6 +557,7 @@ const LinkPill = ({ link }) => {
 
 const ProjectCard = ({ data }) => {
   const [open, setOpen] = useState(false);
+  const hasDetails = (data.details?.role?.length > 0) || data.details?.result;
   return (
     <div className="rc-tl-item">
       <div className="rc-tl-dot" />
@@ -583,29 +565,39 @@ const ProjectCard = ({ data }) => {
       <div className="rc-card">
         <div className="rc-card-title">{data.title}</div>
         <div className="rc-card-time">{data.fullTime}</div>
-        <div className="rc-card-desc">{data.intro}</div>
-        <div className="rc-tags">
-          {data.tags.map((t, i) => <span key={i} className="rc-tag">#{t}</span>)}
-        </div>
+        {data.intro && <div className="rc-card-desc">{data.intro}</div>}
+        {data.tags?.length > 0 && (
+          <div className="rc-tags">
+            {data.tags.map((t, i) => <span key={i} className="rc-tag">#{t}</span>)}
+          </div>
+        )}
         {data.links?.length > 0 && (
           <div className="rc-links">
             {data.links.map((l, i) => <LinkPill key={i} link={l} />)}
           </div>
         )}
-        <button className="rc-readmore" onClick={() => setOpen(!open)}>
-          {open ? '收起' : 'Read more'} {open ? <IconUp /> : <IconDown />}
-        </button>
-        {open && (
-          <div className="rc-details">
-            <h4>我的角色與貢獻</h4>
-            <ul style={{paddingLeft:'1.1rem',marginBottom:'1rem'}}>
-              {data.details.role.map((r, i) => <li key={i}>{r}</li>)}
-            </ul>
-            {data.details.result && <>
-              <h4>成果</h4>
-              <p>{data.details.result}</p>
-            </>}
-          </div>
+        {hasDetails && (
+          <>
+            <button className="rc-readmore" onClick={() => setOpen(!open)}>
+              {open ? '收起' : 'Read more'} {open ? <IconUp /> : <IconDown />}
+            </button>
+            {open && (
+              <div className="rc-details">
+                {data.details.role?.length > 0 && (
+                  <>
+                    <h4>我的角色與貢獻</h4>
+                    <ul style={{paddingLeft:'1.1rem',marginBottom:'1rem'}}>
+                      {data.details.role.map((r, i) => <li key={i}>{r}</li>)}
+                    </ul>
+                  </>
+                )}
+                {data.details.result && <>
+                  <h4>成果</h4>
+                  <p>{data.details.result}</p>
+                </>}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
@@ -652,50 +644,18 @@ const WorkCard = ({ data }) => (
   </div>
 );
 
-const PortfolioSection = ({ items }) => {
-  const types = ['全部', ...Array.from(new Set(items.map(i => i.type)))];
-  const [active, setActive] = useState('全部');
-
-  const filtered = active === '全部' ? items : items.filter(i => i.type === active);
-  const countFor = t => t === '全部' ? items.length : items.filter(i => i.type === t).length;
-
-  return (
-    <>
-      {/* Mobile chips */}
-      <div className="rc-filter-chips">
-        {types.map(t => (
-          <button key={t} className={`rc-filter-chip ${active === t ? 'active' : ''}`} onClick={() => setActive(t)}>
-            {t}
-          </button>
-        ))}
-      </div>
-
-      <div className="rc-portfolio-layout">
-        {/* Desktop sidebar */}
-        <div className="rc-portfolio-sidebar">
-          <div className="rc-portfolio-sidebar-title">類別篩選</div>
-          {types.map(t => (
-            <button key={t} className={`rc-filter-btn ${active === t ? 'active' : ''}`} onClick={() => setActive(t)}>
-              {t}
-              <span className="rc-filter-count">{countFor(t)}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* List */}
-        <div className="rc-portfolio-list">
-          {filtered.map((item, i) => (
-            <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="rc-portfolio-item">
-              <span className="rc-portfolio-type">{item.type}</span>
-              <span className="rc-portfolio-item-title">{item.title}</span>
-              <span className="rc-portfolio-arrow"><IconArrow /></span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </>
-  );
-};
+// Portfolio section: simple full list, no category filter (too few items to warrant filtering)
+const PortfolioSection = ({ items }) => (
+  <div className="rc-portfolio-list">
+    {items.map((item, i) => (
+      <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="rc-portfolio-item">
+        <span className="rc-portfolio-type">{item.type}</span>
+        <span className="rc-portfolio-item-title">{item.title}</span>
+        <span className="rc-portfolio-arrow"><IconArrow /></span>
+      </a>
+    ))}
+  </div>
+);
 
 // ─── Main Page ───
 export default function ResumePage() {

@@ -134,3 +134,13 @@
     grid-row: auto !important;
   }
 }
+
+
+```css
+/* 讓寬表格在版面不夠時橫向捲動，而不是被裁掉或擠壓 */
+.markdown table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}

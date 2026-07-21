@@ -26,77 +26,95 @@ export default function About() {
       </div>
       
       <main style={{
-        maxWidth: '900px',
-        margin: '0 auto',
-        padding: '4rem 2rem',
-      }}>
-        <h2 style={{fontSize: '3rem', marginBottom: '1rem'}}>
-          🦘 袋鼠的咖啡館
-        </h2>
+  maxWidth: '900px',
+  margin: '0 auto',
+  padding: '4rem 2rem',
+  }}>
+  <h2 style={{fontSize: '2.8rem', marginBottom: '1.5rem', lineHeight: '1.3', color: '#000000', fontWeight: 700}}>
+    🦘 袋鼠的咖啡館
+  </h2>
 
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          有時候會想把生活過得更豐富，事情一件一件往上加，行程、期待、目標越來越多，卻忘了停下來看看，是不是早就該剪頭髮了。東西越堆越滿，心卻越來越亂。
-        </p>
+  <p style={{fontSize: '1.15rem', lineHeight: '1.5', marginBottom: '1rem'}}>
+    頁的文字總是打了又刪、刪了又打。寫太長，好像變成一篇文章；寫太短，又覺得好像什麼都沒說。
+  </p>
 
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          好像有一股看不見的節奏，默默把人往同一個方向推。世界彷彿只留下了一條路：要一直往前、一直變好、一直證明自己是有用的。努力被當成衡量一切的標準。成績、產值、效率、能力。只要做得夠多、夠快、夠有技能，彷彿就能換來一點安全感。
-        </p>
+  <p style={{fontSize: '1.15rem', lineHeight: '1.5', marginBottom: '1.5rem'}}>
+    後來想想，這大概就是所謂的風格吧。（好像不一定要完美是吧！）
+  </p>
 
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          這樣的期待不只存在於工作或學校，也慢慢滲進生活的每個角落。學習、創作，好像都必須交出成果，要被看見進步，才不會顯得落後。做不到的時候，很容易把責任往自己身上攬，懷疑是不是不夠努力、不夠自律，卻很少有人提醒，這些壓力其實來自一整套被加速、被比較的節奏裡。
-        </p>
+  <p style={{fontSize: '1.15rem', lineHeight: '1.5', marginBottom: '1rem'}}>
+    來到這裡，你會看到我一路研究、觀察、經驗，以及生活裡那些零零碎碎的思考。
+  </p>
 
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          於是每隔一段時間，總會忍不住重新問自己：<strong>我是誰？現在站在什麼位置？又在往哪裡去？</strong>
-        </p>
+  <p style={{fontSize: '1.15rem', lineHeight: '1.5', marginBottom: '1rem'}}>
+    有些是工作中的發現，有些來自閱讀，有些只是某一天突然冒出的提問。
+  </p>
 
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          在資訊過量、被產值與效率定義價值的環境裡，很容易忘記怎麼當一個人，也很容易對自己不耐煩，覺得應該更快、更穩、更像別人期待的樣子。
-        </p>
+  <p style={{fontSize: '1.15rem', lineHeight: '1.5', marginBottom: '2rem'}}>
+    有時候沒有答案，只是想把當下的想法留下來，過一段時間再回頭看看，或許又會有不同的理解。
+  </p>
 
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          我很喜歡 Carl Rogers 在人本主義心理學取向裡的一個核心概念：
-        </p>
+  <p style={{fontSize: '1.15rem', lineHeight: '1.5', marginBottom: '1rem'}}>
+    回想當初建立這個 Blog，其實沒有什麼偉大的目標。只是希望能有一個地方，把那些散落在Notion、腦袋裡的想法，好好整理成文字，也替自己留下每一個思考過的痕跡。
+  </p>
 
-        <blockquote style={{
-          borderLeft: '4px solid var(--ifm-color-primary)',
-          paddingLeft: '1.5rem',
-          margin: '1.5rem 0',
-          fontStyle: 'italic',
-          color: 'var(--ifm-color-emphasis-800)',
-          background: 'var(--ifm-blockquote-background-color)',
-          padding: '1rem 1.5rem',
-          borderRadius: '4px'
-        }}>
-          <p style={{margin: 0, fontSize: '1.1rem'}}>
-            "只有在被尊重、被接納的狀態裡，人才有機會真實地靠近自己。"
-          </p>
-          <footer style={{
-            marginTop: '0.5rem',
-            fontSize: '0.9rem',
-            color: 'var(--ifm-color-emphasis-600)'
-          }}>
-            — 卡爾·羅傑斯(Carl Rogers)
-          </footer>
-        </blockquote>
+  <p style={{fontSize: '1.15rem', lineHeight: '1.5', marginBottom: '2rem'}}>
+    如果這些文字，剛好也能陪伴正在閱讀的你思考一些事情，那就很好。
+  </p>
 
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          當能和自己好好待在一起，才能慢慢學會理解、接納，甚至喜歡現在的樣子。
-        </p>
+  <p style={{fontSize: '1.15rem', lineHeight: '1.5', marginBottom: '1.5rem'}}>
+    最後，想用兩段我很喜歡的話，作為這個地方的介紹。
+  </p>
 
-        <p style={{lineHeight: '1.5', marginBottom: '1rem'}}>
-          減掉過多的期待、比較，還有急著成為誰的焦慮，生活才有空間重新呼吸。
-        </p>
+  <blockquote style={{
+    borderLeft: '4px solid var(--ifm-color-primary)',
+    paddingLeft: '1.5rem',
+    margin: '1.5rem 0 2rem 0',
+    fontStyle: 'italic',
+    color: 'var(--ifm-color-emphasis-800)',
+    background: 'var(--ifm-blockquote-background-color)',
+    padding: '1rem 1.5rem',
+    borderRadius: '4px'
+  }}>
+    <p style={{margin: 0, fontSize: '1.25rem', lineHeight: '1.7'}}>
+      「從 Human Doing 到 Human Being，是成為一個『人』的過程，是和自己真實在一起，成為自己，展現自己生命的過程。」
+    </p>
+    <footer style={{
+      marginTop: '0.5rem',
+      fontSize: '0.9rem',
+      color: 'var(--ifm-color-emphasis-600)'
+    }}>
+      — 吳麗娟（2003）。一個諮商員的專業成長：一個「人」的成長－從Human“doing”到Human“being”。中華輔導學報，(14)，1-30。
+    </footer>
+  </blockquote>
 
-        <p style={{lineHeight: '1.5', marginBottom: '2rem'}}>
-          這個地方，我期待就是那樣的世界。
-        </p>
+  <blockquote style={{
+    borderLeft: '4px solid var(--ifm-color-primary)',
+    paddingLeft: '1.5rem',
+    margin: '1.5rem 0 2rem 0',
+    fontStyle: 'italic',
+    color: 'var(--ifm-color-emphasis-800)',
+    background: 'var(--ifm-blockquote-background-color)',
+    padding: '1rem 1.5rem',
+    borderRadius: '4px'
+  }}>
+    <p style={{margin: 0, fontSize: '1.25rem', lineHeight: '1.7', fontWeight: 700}}>
+      「奇妙的悖論是，當我完全接受自己目前的樣子時，我才能真正改變。」
+    </p>
+    <footer style={{
+      marginTop: '0.5rem',
+      fontSize: '0.9rem',
+      color: 'var(--ifm-color-emphasis-600)'
+    }}>
+      — Carl Rogers
+    </footer>
+  </blockquote>
 
-        <h2 style={{fontSize: '2rem', marginBottom: '2rem'}}>
+        <h2 style={{fontSize: '2.3rem', marginBottom: '2rem', color: '#000000', fontWeight: 700}}>
           🎵 推薦給你
         </h2>
 
-        <p style={{lineHeight: '1.8', marginBottom: '1rem'}}>
+        <p style={{fontSize: '1.15rem', lineHeight: '1.8', marginBottom: '1rem'}}>
           最後，想要推薦 <strong>2025 年全國高中生大合唱《慢行人》</strong>
         </p>
 
@@ -140,7 +158,7 @@ export default function About() {
           />
         </div>
 
-        <h2 style={{fontSize: '2rem', marginBottom: '2rem'}}>
+        <h2 style={{fontSize: '2.3rem', marginBottom: '2rem', color: '#000000', fontWeight: 700}}>
           🚨 你會在這看到
         </h2>
 
@@ -350,9 +368,6 @@ export default function About() {
               </p>
             </div>
           </Link>
-
-          
-        
 
         </div>
 

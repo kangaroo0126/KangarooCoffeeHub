@@ -59,6 +59,7 @@ export default function PortfolioCard({
           ? '0 4px 16px rgba(107,76,42,0.10)'
           : '0 1px 4px rgba(107,76,42,0.05)',
         transition: 'border-color 0.25s, box-shadow 0.25s',
+        overflow: 'hidden',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -172,13 +173,15 @@ export default function PortfolioCard({
             <div
               style={{
                 marginTop: '10px',
+                marginLeft: '-20px',
+                marginRight: '-20px',
+                marginBottom: '-20px',
                 fontSize: '13px',
                 color: COLORS.text,
                 lineHeight: 1.75,
                 background: COLORS.detailBg,
-                padding: '12px 14px',
-                borderRadius: '8px',
-                border: `1px solid ${COLORS.detailBorder}`,
+                padding: '12px 20px 20px',
+                borderTop: `1px solid ${COLORS.detailBorder}`,
                 animation: 'fadeIn 0.2s ease-out',
               }}
             >

@@ -18,6 +18,18 @@ const PROJECTS = [
       features: ['含稅／未稅換算', '營業稅計算', '發票格式區分', '明細整理與預覽'],
     },
   },
+    {
+    title: '萬用加密工具',
+    href: 'https://github.com/kangaroo0126/File-Encryption-Program',
+    description:
+      '一款純本機運作的圖形化加密工具，用 5 步驟精靈引導，就能為 PDF、Office 文件與圖片檔案加上密碼保護，不上傳雲端、安全又好上手。',
+    tags: ['本機加密', '一站式支援', '零學習成本'],
+    status: 'Public',
+    detail: {
+      goal: '打造一個免技術背景也能上手的本機加密工具，讓一般使用者能安心保護個人與工作文件，不必擔心檔案或密碼外流雲端。',
+      features: ['支援 PDF / Word / Excel / PowerPoint 一鍵加密', '圖片批量合併並輸出成加密 PDF', '密碼強度檢測 + 高強度密碼產生器', '支援單檔、多檔、整個資料夾批次處理'],
+    },
+  },
   // 新增作品：複製上方物件，貼在這裡，填入你的資料即可。
   // {
   //   title: '專案名稱',

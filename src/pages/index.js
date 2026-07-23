@@ -162,53 +162,73 @@ export default function About() {
           🚨 你會在這看到
         </h2>
 
-        {/* 卡片區 - 2x2 格式 */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '1.5rem',
-          marginBottom: '2rem'
-        }}>
-          {/* 卡片 1 - 專題文章 */}
-          <Link to="/docs/intro" style={{ textDecoration: 'none' }}>
-            <div className="custom-card kangaroo-card">
-              <h3>📚 專題文章</h3>
-              <p>教育、學習、心理與社會議題的整理</p>
-            </div>
-          </Link>
+{/* 卡片區 - 2x2 格式 */}
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  gap: '1.5rem',
+  marginBottom: '2rem'
+}}>
+  {/* 卡片 1 - 專題文章 */}
+  <Link to="/docs/intro" style={{ textDecoration: 'none' }}>
+    <div className="custom-card kangaroo-card" style={{
+      borderRadius: '16px',
+      overflow: 'hidden',
+      padding: '1.5rem'
+    }}>
+      <h3>📚 專題文章</h3>
+      <p>教育、學習、心理與社會議題的整理</p>
+    </div>
+  </Link>
 
-          {/* 卡片 2 - 日常思考 */}
-          <Link to="/blog" style={{ textDecoration: 'none' }}>
-            <div className="custom-card kangaroo-card">
-              <h3>✍️ 日常思考</h3>
-              <p>短篇筆記、雜感與生活的碎片</p>
-            </div>
-          </Link>
+  {/* 卡片 2 - 日常思考 */}
+  <Link to="/blog" style={{ textDecoration: 'none' }}>
+    <div className="custom-card kangaroo-card" style={{
+      borderRadius: '16px',
+      overflow: 'hidden',
+      padding: '1.5rem'
+    }}>
+      <h3>✍️ 日常思考</h3>
+      <p>短篇筆記、雜感與生活的碎片</p>
+    </div>
+  </Link>
 
-          {/* 卡片 3 - 慢行生活 */}
-          <Link to="/slowlife/intro" style={{ textDecoration: 'none' }}>
-            <div className="custom-card kangaroo-card">
-              <h3>🌿 慢行生活</h3>
-              <p>關於樂團、咖啡、獨立書店與奇奇怪怪的點子</p>
-            </div>
-          </Link>
+  {/* 卡片 3 - 慢行生活 */}
+  <Link to="/slowlife/intro" style={{ textDecoration: 'none' }}>
+    <div className="custom-card kangaroo-card" style={{
+      borderRadius: '16px',
+      overflow: 'hidden',
+      padding: '1.5rem'
+    }}>
+      <h3>🌿 慢行生活</h3>
+      <p>關於樂團、咖啡、獨立書店與奇奇怪怪的點子</p>
+    </div>
+  </Link>
 
-          {/* 卡片 4 - 關於我 */}
-          <Link to="/about" style={{ textDecoration: 'none' }}>
-            <div className="custom-card kangaroo-card">
-              <h3>🦘 關於我</h3>
-              <p>關於我自己與自我的價值與核心</p>
-            </div>
-          </Link>
+  {/* 卡片 4 - 關於我 */}
+  <Link to="/about" style={{ textDecoration: 'none' }}>
+    <div className="custom-card kangaroo-card" style={{
+      borderRadius: '16px',
+      overflow: 'hidden',
+      padding: '1.5rem'
+    }}>
+      <h3>🦘 關於我</h3>
+      <p>關於我自己與自我的價值與核心</p>
+    </div>
+  </Link>
 
-          {/* 卡片 5 - 我的書櫃 */}
-          <Link to="/myshelf" style={{ textDecoration: 'none' }}>
-            <div className="custom-card kangaroo-card">
-              <h3>📕 我的書櫃</h3>
-              <p>關於喜愛的電影/影集、歌曲與書籍</p>
-            </div>
-          </Link>
-        </div>
+  {/* 卡片 5 - 我的書櫃 */}
+  <Link to="/myshelf" style={{ textDecoration: 'none' }}>
+    <div className="custom-card kangaroo-card" style={{
+      borderRadius: '16px',
+      overflow: 'hidden',
+      padding: '1.5rem'
+    }}>
+      <h3>📕 我的書櫃</h3>
+      <p>關於喜愛的電影/影集、歌曲與書籍</p>
+    </div>
+  </Link>
+</div>
 
       </main>
     </Layout>

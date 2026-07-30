@@ -1,0 +1,83 @@
+# ============================================================
+# Decap CMS 設定檔
+# 下面標示【必改】的地方，一定要換成你自己的資訊才能用
+# ============================================================
+
+backend:
+  name: github
+  repo: kangaroo0126/KangarooCoffeeHub   # 【必改，如果不一樣的話】確認是你的 GitHub 帳號/repo 名稱
+  branch: main                            # 【必改，如果不一樣的話】確認你實際 push 的分支名稱
+  base_url: https://REPLACE-WITH-YOUR-VERCEL-URL.vercel.app  # 【必改】換成步驟3拿到的 Vercel 網址（不要加 /callback）
+
+# 圖片上傳後會存放的資料夾，以及在網頁上顯示時使用的路徑
+media_folder: "static/img/uploads"   # 圖片實際存放位置（相對於 repo 根目錄）
+public_folder: "/img/uploads"        # 網頁上引用圖片時的路徑
+
+# 後台介面顯示語言
+locale: "zh_Hant"
+
+collections:
+
+  # ---------- 日常思考（Docusaurus Blog）----------
+  - name: "blog"
+    label: "✍️ 日常思考"
+    folder: "blog"                # ✅ 已核對，跟你的 repo 一致
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "發布日期", name: "date", widget: "datetime" }
+      - { label: "作者", name: "authors", widget: "string", required: false }
+      - { label: "標籤", name: "tags", widget: "list", required: false }
+      - { label: "文章摘要", name: "description", widget: "text", required: false }
+      - { label: "內文", name: "body", widget: "markdown" }
+
+  # ---------- 專題文章（Docusaurus Docs 預設 instance）----------
+  - name: "docs"
+    label: "📚 專題文章"
+    folder: "docs"                # ✅ 已核對，跟你的 repo 一致
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "側邊欄排序（數字越小越前面）", name: "sidebar_position", widget: "number", required: false }
+      - { label: "簡短描述", name: "description", widget: "string", required: false }
+      - { label: "內文", name: "body", widget: "markdown" }
+
+  # ---------- 慢行生活（另一個 Docs instance）----------
+  - name: "slowlife"
+    label: "🌿 慢行生活"
+    folder: "slowlife"            # ✅ 已核對，跟你的 repo 一致
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "側邊欄排序", name: "sidebar_position", widget: "number", required: false }
+      - { label: "內文", name: "body", widget: "markdown" }
+
+  # ---------- 單頁內容（關於我 / 我的書櫃 / 教育倡議）----------
+  # 這種「檔案型」collection 適合只有單一頁面、不會一直新增的內容
+  # 以下三個路徑都已依照你的 repo 截圖核對過，可以直接使用
+  - name: "pages"
+    label: "📄 單頁內容"
+    files:
+      - label: "關於我"
+        name: "about"
+        file: "src/pages/about.md"
+        fields:
+          - { label: "標題", name: "title", widget: "string", required: false }
+          - { label: "內文", name: "body", widget: "markdown" }
+      - label: "我的書櫃"
+        name: "myshelf"
+        file: "src/pages/myshelf.md"
+        fields:
+          - { label: "內文", name: "body", widget: "markdown" }
+      - label: "教育倡議"
+        name: "education_advocacy"
+        file: "src/pages/EducationAdvocacy.md"
+        fields:
+          - { label: "標題", name: "title", widget: "string", required: false }
+          - { label: "內文", name: "body", widget: "markdown" }
+
+  # 注意：src/pages/index.js 和 src/pages/portfolio.jsx 是用 React 程式碼寫的頁面，
+  # 不是純 Markdown，後台無法編輯，之後要改版面還是得手動修改程式碼。

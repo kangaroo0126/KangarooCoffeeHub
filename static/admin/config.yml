@@ -7,7 +7,7 @@ backend:
   name: github
   repo: kangaroo0126/KangarooCoffeeHub   # 【必改，如果不一樣的話】確認是你的 GitHub 帳號/repo 名稱
   branch: main                            # 【必改，如果不一樣的話】確認你實際 push 的分支名稱
-  base_url: https://REPLACE-WITH-YOUR-VERCEL-URL.vercel.app  # 【必改】換成步驟3拿到的 Vercel 網址（不要加 /callback）
+  base_url: https://kangaroocoffeehub-decap-proxy.kangaroocoffeehub.workers.dev
 
 # 圖片上傳後會存放的資料夾，以及在網頁上顯示時使用的路徑
 media_folder: "static/img/uploads"   # 圖片實際存放位置（相對於 repo 根目錄）

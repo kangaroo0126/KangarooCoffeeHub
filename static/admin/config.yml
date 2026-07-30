@@ -33,10 +33,13 @@ collections:
       - { label: "內文", name: "body", widget: "markdown" }
 
   # ---------- 專題文章（Docusaurus Docs 預設 instance）----------
-  - name: "docs"
+- name: "docs"
     label: "📚 專題文章"
-    folder: "docs"                # ✅ 已核對，跟你的 repo 一致
+    folder: "docs"
     create: true
+    nested:
+      depth: 100
+      summary: "{{title}}"
     slug: "{{slug}}"
     fields:
       - { label: "標題", name: "title", widget: "string" }
@@ -45,10 +48,13 @@ collections:
       - { label: "內文", name: "body", widget: "markdown" }
 
   # ---------- 慢行生活（另一個 Docs instance）----------
-  - name: "slowlife"
+- name: "slowlife"
     label: "🌿 慢行生活"
-    folder: "slowlife"            # ✅ 已核對，跟你的 repo 一致
+    folder: "slowlife"
     create: true
+    nested:
+      depth: 100
+      summary: "{{title}}"
     slug: "{{slug}}"
     fields:
       - { label: "標題", name: "title", widget: "string" }

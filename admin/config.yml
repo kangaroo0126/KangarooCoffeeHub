@@ -33,7 +33,7 @@ collections:
       - { label: "內文", name: "body", widget: "markdown" }
 
   # ---------- 專題文章（Docusaurus Docs 預設 instance）----------
-- name: "docs"
+  - name: "docs"
     label: "📚 專題文章"
     folder: "docs"
     create: true
@@ -48,7 +48,7 @@ collections:
       - { label: "內文", name: "body", widget: "markdown" }
 
   # ---------- 慢行生活（另一個 Docs instance）----------
-- name: "slowlife"
+  - name: "slowlife"
     label: "🌿 慢行生活"
     folder: "slowlife"
     create: true

@@ -2,12 +2,30 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kangaroo0126.github.io/KangarooCoffeeHub/blog</id>
     <title>袋鼠咖啡館</title>
-    <updated>2026-07-30T00:00:00.000Z</updated>
+    <updated>2026-07-30T10:34:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kangaroo0126.github.io/KangarooCoffeeHub/blog"/>
     <subtitle>袋鼠咖啡館 - 在加速的世界裡，練習慢下來的空間。分享教育、學習、心理與社會議題的思考，以及日常生活的碎片與感悟。沒有演算法，只有真實的整理與對話。</subtitle>
     <icon>https://kangaroo0126.github.io/KangarooCoffeeHub/img/favicon.png</icon>
     <rights>Copyright © 2026 Slow moments. Good coffee. Better thoughts.</rights>
+    <entry>
+        <title type="html"><![CDATA[Test]]></title>
+        <id>https://kangaroo0126.github.io/KangarooCoffeeHub/blog/2026/07/30/test</id>
+        <link href="https://kangaroo0126.github.io/KangarooCoffeeHub/blog/2026/07/30/test"/>
+        <updated>2026-07-30T10:34:00.000Z</updated>
+        <summary type="html"><![CDATA[25]]></summary>
+        <content type="html"><![CDATA[<p>各種</p>
+<p>人</p>
+<p><code>25</code></p>
+<p>``</p>
+<blockquote>
+<p><code>25555</code></p>
+</blockquote>
+<p>``</p>
+<p><img decoding="async" loading="lazy" src="https://kangaroo0126.github.io/KangarooCoffeeHub/assets/images/0121_2-73bd11bdf16d49fe369e06955447e754.png" width="1105" height="589" class="img_ev3q"></p>]]></content>
+        <category label="TFT" term="TFT"/>
+        <category label="CRT" term="CRT"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[《輪不到我上場》半年實踐：教育議題桌遊、工作坊與設計反思]]></title>
         <id>https://kangaroo0126.github.io/KangarooCoffeeHub/blog/2026/07/30/TFTBoardGame</id>

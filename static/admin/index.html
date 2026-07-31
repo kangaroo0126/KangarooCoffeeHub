@@ -6,7 +6,10 @@
   <title>袋鼠咖啡館-編輯文章後台</title>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- 版本改為鎖定確切版號（而非 ^3.0.0），避免 unpkg 未來自動送出
+       新的大版本更新，造成預覽或編輯器行為無預警改變。
+       之後若要升級，記得先在自己的瀏覽器測過一輪再改這裡的版號。 -->
+  <script src="https://unpkg.com/decap-cms@3.15.0/dist/decap-cms.js"></script>
 
   <script>
     // ============================================================
@@ -80,10 +83,26 @@
       hr { border: none; border-top: 1px solid #e6d4c3; margin: 2em 0; }
       ul, ol { padding-left: 1.4em; }
       li { margin: 0.4em 0; }
+
+      /* Docusaurus 風格提示框，讓 :::note :::tip 這類語法在預覽區也看得出樣子 */
+      .admonition {
+        margin: 1.5em 0;
+        padding: 0.9em 1.2em;
+        border-radius: 8px;
+        border-left: 4px solid #999;
+        background: #f4ece1;
+      }
+      .admonition-title { font-weight: 700; margin-bottom: 0.4em; display: block; }
+      .admonition-note { border-color: #8a7362; }
+      .admonition-tip { border-color: #4c9a6b; background: #eaf3ec; }
+      .admonition-info { border-color: #3a7ca5; background: #e9f1f6; }
+      .admonition-warning { border-color: #c9922f; background: #faf1e0; }
+      .admonition-danger { border-color: #b5433a; background: #f8e9e7; }
     `, { raw: true });
 
     // ============================================================
     // 2. 預覽版面模板：專題文章 / 慢行生活 / 日常思考共用
+    //    （已加入封面圖顯示）
     // ============================================================
     var ArticlePreview = createClass({
       render: function() {
@@ -91,7 +110,11 @@
         var title = entry.getIn(['data', 'title']);
         var description = entry.getIn(['data', 'description']);
         var date = entry.getIn(['data', 'date']);
+        var image = entry.getIn(['data', 'image']);
+        var imageUrl = image ? this.props.getAsset(image).toString() : null;
+
         return h('div', {},
+          imageUrl ? h('img', { src: imageUrl, style: { maxWidth: '100%', borderRadius: '10px', marginBottom: '1em' } }) : null,
           date ? h('p', { style: { color: '#a9673a', fontSize: '0.85rem', marginBottom: '0.2em' } }, date) : null,
           h('h1', {}, title),
           description ? h('p', { style: { color: '#8a7362', fontSize: '1rem', fontStyle: 'italic' } }, description) : null,
@@ -109,7 +132,109 @@
     });
 
     // ============================================================
-    // 3. 編輯介面整體換膚（第 4 點）— 非官方支援，未來若版本更新
+    // 3. 編輯器工具列擴充按鈕
+    //    在「內文」欄位工具列的「+」選單中會多出下面這些項目
+    // ============================================================
+
+    // 3-1　Docusaurus 提示框（:::note :::tip :::info :::warning :::danger）
+    var admonitionLabels = {
+      note: '📝 提示框：備註 note',
+      tip: '💡 提示框：小技巧 tip',
+      info: 'ℹ️ 提示框：資訊 info',
+      warning: '⚠️ 提示框：注意 warning',
+      danger: '🚫 提示框：警告 danger'
+    };
+
+    Object.keys(admonitionLabels).forEach(function(type) {
+      CMS.registerEditorComponent({
+        id: 'admonition-' + type,
+        label: admonitionLabels[type],
+        fields: [
+          { name: 'body', label: '框內文字', widget: 'text' }
+        ],
+        // 對應 :::type\n內容\n::: 這種區塊語法，讓已存在的內容也能被辨識、重新編輯
+        pattern: new RegExp('^:::' + type + '\\n([\\s\\S]*?)\\n:::\\s*$'),
+        fromBlock: function(match) {
+          return { body: match[1] };
+        },
+        toBlock: function(obj) {
+          return ':::' + type + '\n' + (obj.body || '') + '\n:::';
+        },
+        toPreview: function(obj) {
+          return h('div', { className: 'admonition admonition-' + type },
+            h('span', { className: 'admonition-title' }, admonitionLabels[type].replace(/^\S+\s/, '')),
+            obj.body || ''
+          );
+        }
+      });
+    });
+
+    // 3-2　插入 YouTube 影片
+    function extractYouTubeId(input) {
+      if (!input) return null;
+      var s = String(input).trim();
+      // 已經是純 ID（11 碼英數字與 - _）
+      if (/^[\w-]{11}$/.test(s)) return s;
+      var patterns = [
+        /youtu\.be\/([\w-]{11})/,
+        /youtube\.com\/watch\?v=([\w-]{11})/,
+        /youtube\.com\/embed\/([\w-]{11})/,
+        /youtube\.com\/shorts\/([\w-]{11})/
+      ];
+      for (var i = 0; i < patterns.length; i++) {
+        var m = s.match(patterns[i]);
+        if (m) return m[1];
+      }
+      return null;
+    }
+
+    CMS.registerEditorComponent({
+      id: 'youtube',
+      label: '▶️ 插入 YouTube 影片',
+      fields: [
+        { name: 'url', label: 'YouTube 網址', widget: 'string', hint: '直接貼上網址即可，例如 https://www.youtube.com/watch?v=XXXXXXXXXXX 或 https://youtu.be/XXXXXXXXXXX' }
+      ],
+      pattern: /^<iframe[^>]*src="https:\/\/www\.youtube\.com\/embed\/([\w-]{11})"[\s\S]*?<\/iframe>\s*$/,
+      fromBlock: function(match) {
+        return { url: match[1] };
+      },
+      toBlock: function(obj) {
+        var id = extractYouTubeId(obj.url);
+        if (!id) return '';
+        return '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + id + '" ' +
+          'title="YouTube video player" frameborder="0" ' +
+          'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+          'allowfullscreen></iframe>';
+      },
+      toPreview: function(obj) {
+        var id = extractYouTubeId(obj.url);
+        if (!id) return '（請輸入正確的 YouTube 網址）';
+        return h('img', { src: 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg', style: { maxWidth: '100%', borderRadius: '10px' } });
+      }
+    });
+
+    // 3-3　插入站內連結（只需輸入相對路徑，不用打完整網址）
+    CMS.registerEditorComponent({
+      id: 'internal-link',
+      label: '🔗 插入站內連結',
+      fields: [
+        { name: 'text', label: '顯示文字', widget: 'string' },
+        { name: 'path', label: '目標路徑', widget: 'string', hint: '例如 /docs/教育與學習/某篇文章 或 /blog/2025-01-01-某篇。可以到目標文章頁面直接複製網址列「網域名稱之後」的部分。' }
+      ],
+      pattern: /^\[([^\]]+)\]\((\/[^\s)]+)\)$/,
+      fromBlock: function(match) {
+        return { text: match[1], path: match[2] };
+      },
+      toBlock: function(obj) {
+        return '[' + (obj.text || '') + '](' + (obj.path || '') + ')';
+      },
+      toPreview: function(obj) {
+        return h('a', { href: obj.path, style: { color: '#a9673a' } }, obj.text || obj.path);
+      }
+    });
+
+    // ============================================================
+    // 4. 編輯介面整體換膚（第 4 點）— 非官方支援，未來若版本更新
     //    導致跑版，請告訴我，我再協助調整
     // ============================================================
     var style = document.createElement('style');

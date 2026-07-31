@@ -3,9 +3,189 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> 袋鼠咖啡館-編輯文章後台</title>
+  <title>袋鼠咖啡館-編輯文章後台</title>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    // ============================================================
+    // 1. 即時預覽樣式：還原網站閱讀感覺（第 2 點）
+    // ============================================================
+    CMS.registerPreviewStyle(`
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&display=swap');
+
+      body {
+        font-family: 'Noto Sans TC', -apple-system, sans-serif;
+        color: #3a2e28;
+        background: #fdf8f3;
+        line-height: 1.9;
+        padding: 2.5rem 3rem;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      h1, h2, h3, h4 {
+        font-family: 'Noto Serif TC', serif;
+        color: #4a2f1f;
+        font-weight: 600;
+        line-height: 1.5;
+        margin-top: 2em;
+        margin-bottom: 0.6em;
+      }
+      h1 { font-size: 1.9rem; border-bottom: 2px solid #e6d4c3; padding-bottom: 0.4em; }
+      h2 { font-size: 1.5rem; }
+      h3 { font-size: 1.25rem; }
+      p { margin: 1em 0; }
+      a { color: #a9673a; text-decoration: underline; }
+      blockquote {
+        margin: 1.5em 0;
+        padding: 0.8em 1.2em;
+        background: #f4ece1;
+        border-left: 4px solid #c99a63;
+        color: #5c4a3a;
+        font-style: italic;
+      }
+      code {
+        background: #f1e8db;
+        color: #8a4f1e;
+        padding: 0.15em 0.4em;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+      pre {
+        background: #3a2e28;
+        color: #fdf8f3;
+        padding: 1em 1.2em;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+      pre code { background: none; color: inherit; padding: 0; }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5em 0;
+      }
+      th, td {
+        border: 1px solid #e6d4c3;
+        padding: 0.6em 0.8em;
+        text-align: left;
+      }
+      th { background: #f4ece1; color: #4a2f1f; }
+      img {
+        max-width: 100%;
+        border-radius: 10px;
+        margin: 1.2em 0;
+        display: block;
+      }
+      hr { border: none; border-top: 1px solid #e6d4c3; margin: 2em 0; }
+      ul, ol { padding-left: 1.4em; }
+      li { margin: 0.4em 0; }
+    `, { raw: true });
+
+    // ============================================================
+    // 2. 預覽版面模板：專題文章 / 慢行生活 / 日常思考共用
+    // ============================================================
+    var ArticlePreview = createClass({
+      render: function() {
+        var entry = this.props.entry;
+        var title = entry.getIn(['data', 'title']);
+        var description = entry.getIn(['data', 'description']);
+        var date = entry.getIn(['data', 'date']);
+        return h('div', {},
+          date ? h('p', { style: { color: '#a9673a', fontSize: '0.85rem', marginBottom: '0.2em' } }, date) : null,
+          h('h1', {}, title),
+          description ? h('p', { style: { color: '#8a7362', fontSize: '1rem', fontStyle: 'italic' } }, description) : null,
+          h('div', { className: 'markdown' }, this.props.widgetFor('body'))
+        );
+      }
+    });
+
+    ['blog',
+     'docs_education', 'docs_society', 'docs_social_work', 'docs_social_innovation',
+     'docs_psychology', 'docs_tech', 'docs_others',
+     'slowlife_cafe', 'slowlife_band'
+    ].forEach(function(name) {
+      CMS.registerPreviewTemplate(name, ArticlePreview);
+    });
+
+    // ============================================================
+    // 3. 編輯介面整體換膚（第 4 點）— 非官方支援，未來若版本更新
+    //    導致跑版，請告訴我，我再協助調整
+    // ============================================================
+    var style = document.createElement('style');
+    style.innerHTML = `
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+      body, input, textarea, select, button {
+        font-family: 'Noto Sans TC', -apple-system, sans-serif !important;
+      }
+
+      /* 頂部導覽列 */
+      [class*="TopBarContainer"] {
+        background: #4a2f1f !important;
+      }
+
+      /* 左側選單 */
+      [class*="AppMainContainer"] > div:first-child,
+      [class*="SidebarNavList"] {
+        background: #fdf8f3 !important;
+      }
+      [class*="SidebarListItem"] {
+        border-radius: 8px !important;
+        margin: 2px 8px !important;
+      }
+      [class*="SidebarListItem"]:hover {
+        background: #f4ece1 !important;
+      }
+
+      /* 主要按鈕（儲存、發布） */
+      button[class*="Button"][class*="gray"],
+      [class*="ToolbarSaveButtonContainer"] button {
+        background: #a9673a !important;
+        border-radius: 8px !important;
+        color: #fff !important;
+      }
+
+      /* 編輯區塊卡片 */
+      [class*="EditorControlPane"] {
+        background: #fffdfa !important;
+      }
+      [class*="ControlHint"], [class*="ControlLabel"] {
+        color: #8a7362 !important;
+      }
+
+      /* 內文欄位（markdown widget）本身放大字級、加大行距，寫起來更舒服 */
+      [class*="MarkdownControlContainer"] textarea,
+      [class*="MarkdownControlContainer"] [contenteditable="true"] {
+        font-size: 16px !important;
+        line-height: 1.9 !important;
+        padding: 16px !important;
+      }
+
+      /* 工具列按鈕：加大、加圓角、間距更清楚，降低誤點機率 */
+      [class*="ToolbarContainer"] button {
+        border-radius: 6px !important;
+        margin: 2px !important;
+        padding: 6px 8px !important;
+      }
+      [class*="ToolbarContainer"] button:hover {
+        background: #f4ece1 !important;
+      }
+
+      /* 圖片／媒體庫彈窗：改成卡片式格線，取代原本擁擠的清單 */
+      [class*="MediaLibraryCardGrid"] {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+        gap: 12px !important;
+        padding: 12px !important;
+      }
+      [class*="MediaLibraryCard"] {
+        border-radius: 10px !important;
+        overflow: hidden !important;
+        border: 1px solid #e6d4c3 !important;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>

@@ -28,19 +28,83 @@ collections:
       - { label: "文章摘要", name: "description", widget: "text", required: false }
       - { label: "內文", name: "body", widget: "markdown" }
 
-  - name: "docs"
-    label: "📚 專題文章"
-    folder: "docs"
+  - name: "docs_education"
+    label: "專題文章-教育與學習"
+    folder: "docs/教育與學習"
     create: true
     nested:
       depth: 100
       summary: "{{title}}"
     slug: "{{slug}}"
-    fields:
+    fields: &docs_fields
       - { label: "標題", name: "title", widget: "string" }
       - { label: "側邊欄排序", name: "sidebar_position", widget: "number", required: false }
       - { label: "簡短描述", name: "description", widget: "string", required: false }
-      - { label: "內文", name: "body", widget: "markdown" }
+      - label: "內文"
+        name: "body"
+        widget: "markdown"
+        modes: ["raw", "rich_text"]
+        hint: "若要插入表格，請切換到「原始碼」模式，直接貼上或輸入 Markdown 表格語法（| 欄位 | 欄位 |）。"
+
+  - name: "docs_society"
+    label: "專題文章-社會"
+    folder: "docs/社會"
+    create: true
+    nested:
+      depth: 100
+      summary: "{{title}}"
+    slug: "{{slug}}"
+    fields: *docs_fields
+
+  - name: "docs_social_work"
+    label: "專題文章-社會工作"
+    folder: "docs/社會工作"
+    create: true
+    nested:
+      depth: 100
+      summary: "{{title}}"
+    slug: "{{slug}}"
+    fields: *docs_fields
+
+  - name: "docs_social_innovation"
+    label: "專題文章-社會創新"
+    folder: "docs/社會創新"
+    create: true
+    nested:
+      depth: 100
+      summary: "{{title}}"
+    slug: "{{slug}}"
+    fields: *docs_fields
+
+  - name: "docs_psychology"
+    label: "專題文章-心理學"
+    folder: "docs/心理學"
+    create: true
+    nested:
+      depth: 100
+      summary: "{{title}}"
+    slug: "{{slug}}"
+    fields: *docs_fields
+
+  - name: "docs_tech"
+    label: "專題文章-資訊與科技"
+    folder: "docs/資訊與科技"
+    create: true
+    nested:
+      depth: 100
+      summary: "{{title}}"
+    slug: "{{slug}}"
+    fields: *docs_fields
+
+  - name: "docs_others"
+    label: "專題文章-其他"
+    folder: "docs/其他"
+    create: true
+    nested:
+      depth: 100
+      summary: "{{title}}"
+    slug: "{{slug}}"
+    fields: *docs_fields
 
   - name: "slowlife"
     label: "🌿 慢行生活"

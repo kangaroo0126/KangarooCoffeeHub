@@ -42,13 +42,8 @@ collections:
         value_field: "name"
         multiple: true
         required: false
-        hint: "請從既有標籤庫挑選；找不到想要的標籤時，先到左側選單「🏷️ 標籤庫」新增一筆，再回來選取，避免同一個標籤打成不同字（例如「心理學」與「心理」）。"
+        hint: "請從既有標籤庫挑選；找不到想要的標籤時，先到左側選單「🏷️ 標籤庫」新增一筆，再回來選取，避免同一個標籤打成不同字。"
       - { label: "文章摘要", name: "description", widget: "text", required: false }
-      - label: "自訂網址（Slug）"
-        name: "slug"
-        widget: "string"
-        required: false
-        hint: "留空的話，網址會依照發布日期與檔名自動產生。如果不想用預設的網址，在這裡填入想要的英文/數字網址片段（例如 my-post），Docusaurus 會優先採用這裡的設定。"
       - label: "內文"
         name: "body"
         widget: "markdown"
@@ -83,11 +78,6 @@ collections:
         widget: "image"
         required: false
         hint: "建議尺寸約 1200x630，用於列表頁縮圖與社群分享卡（og:image）。若要在頁面上實際顯示，網站樣板須支援讀取此欄位，請告訴我，我可以協助調整。"
-      - label: "自訂網址（Slug）"
-        name: "slug"
-        widget: "string"
-        required: false
-        hint: "留空的話，網址會依照資料夾路徑與檔名自動產生。如果不想用預設的網址，在這裡填入想要的網址片段（可以是完整路徑，例如 /docs/我的自訂網址），Docusaurus 會優先採用這裡的設定。"
       - label: "內文"
         name: "body"
         widget: "markdown"

@@ -8,6 +8,10 @@ backend:
   branch: main
   base_url: https://kangaroocoffeehub-decap-proxy.kangaroocoffeehub.workers.dev
 
+# site_url：不影響即時預覽面板，但補上後可以讓 Decap 之後串「在網站上查看」
+# 這類功能時有明確依據，先加上無壞處。
+site_url: https://kangaroo0126.github.io/KangarooCoffeeHub
+
 media_folder: "static/img/uploads"
 public_folder: "/img/uploads"
 
@@ -24,13 +28,38 @@ collections:
       - { label: "標題", name: "title", widget: "string" }
       - { label: "發布日期", name: "date", widget: "datetime" }
       - { label: "作者", name: "authors", widget: "string", required: false }
-      - { label: "標籤", name: "tags", widget: "list", required: false }
+      - label: "封面圖／精選圖片"
+        name: "image"
+        widget: "image"
+        required: false
+        hint: "建議尺寸約 1200x630。這張圖會用在文章列表縮圖與社群分享卡（og:image）。"
+      - label: "標籤"
+        name: "tags"
+        widget: "relation"
+        collection: "tags"
+        search_fields: ["name"]
+        display_fields: ["name"]
+        value_field: "name"
+        multiple: true
+        required: false
+        hint: "請從既有標籤庫挑選；找不到想要的標籤時，先到左側選單「🏷️ 標籤庫」新增一筆，再回來選取，避免同一個標籤打成不同字（例如「心理學」與「心理」）。"
       - { label: "文章摘要", name: "description", widget: "text", required: false }
       - label: "內文"
         name: "body"
         widget: "markdown"
         modes: ["raw", "rich_text"]
         hint: "若要插入表格，請切換到「原始碼」模式，直接貼上或輸入 Markdown 表格語法（| 欄位 | 欄位 |）。"
+
+  - name: "tags"
+    label: "🏷️ 標籤庫"
+    folder: "data/tags"
+    create: true
+    format: "yaml"
+    extension: "yml"
+    slug: "{{slug}}"
+    summary: "{{name}}"
+    fields:
+      - { label: "標籤名稱", name: "name", widget: "string" }
 
   - name: "docs_education"
     label: "專題文章-教育與學習"
@@ -44,6 +73,11 @@ collections:
       - { label: "標題", name: "title", widget: "string" }
       - { label: "側邊欄排序", name: "sidebar_position", widget: "number", required: false }
       - { label: "簡短描述", name: "description", widget: "string", required: false }
+      - label: "封面圖／精選圖片"
+        name: "image"
+        widget: "image"
+        required: false
+        hint: "建議尺寸約 1200x630，用於列表頁縮圖與社群分享卡（og:image）。若要在頁面上實際顯示，網站樣板須支援讀取此欄位，請告訴我，我可以協助調整。"
       - label: "內文"
         name: "body"
         widget: "markdown"

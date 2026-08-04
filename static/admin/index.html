@@ -14,14 +14,15 @@
   <script>
     // ============================================================
     // 1. 即時預覽樣式：還原網站閱讀感覺（第 2 點）
+    //    （配色已改為中性灰階，移除咖啡色系）
     // ============================================================
     CMS.registerPreviewStyle(`
       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&display=swap');
 
       body {
         font-family: 'Noto Sans TC', -apple-system, sans-serif;
-        color: #3a2e28;
-        background: #fdf8f3;
+        color: #2b2b2b;
+        background: #ffffff;
         line-height: 1.9;
         padding: 2.5rem 3rem;
         max-width: 720px;
@@ -29,35 +30,35 @@
       }
       h1, h2, h3, h4 {
         font-family: 'Noto Serif TC', serif;
-        color: #4a2f1f;
+        color: #1a1a1a;
         font-weight: 600;
         line-height: 1.5;
         margin-top: 2em;
         margin-bottom: 0.6em;
       }
-      h1 { font-size: 1.9rem; border-bottom: 2px solid #e6d4c3; padding-bottom: 0.4em; }
+      h1 { font-size: 1.9rem; border-bottom: 2px solid #e0e0e0; padding-bottom: 0.4em; }
       h2 { font-size: 1.5rem; }
       h3 { font-size: 1.25rem; }
       p { margin: 1em 0; }
-      a { color: #a9673a; text-decoration: underline; }
+      a { color: #2563eb; text-decoration: underline; }
       blockquote {
         margin: 1.5em 0;
         padding: 0.8em 1.2em;
-        background: #f4ece1;
-        border-left: 4px solid #c99a63;
-        color: #5c4a3a;
+        background: #f5f5f5;
+        border-left: 4px solid #a3a3a3;
+        color: #4a4a4a;
         font-style: italic;
       }
       code {
-        background: #f1e8db;
-        color: #8a4f1e;
+        background: #f0f0f0;
+        color: #b3261e;
         padding: 0.15em 0.4em;
         border-radius: 4px;
         font-size: 0.9em;
       }
       pre {
-        background: #3a2e28;
-        color: #fdf8f3;
+        background: #2b2b2b;
+        color: #f5f5f5;
         padding: 1em 1.2em;
         border-radius: 8px;
         overflow-x: auto;
@@ -69,31 +70,47 @@
         margin: 1.5em 0;
       }
       th, td {
-        border: 1px solid #e6d4c3;
+        border: 1px solid #e0e0e0;
         padding: 0.6em 0.8em;
         text-align: left;
       }
-      th { background: #f4ece1; color: #4a2f1f; }
+      th { background: #f5f5f5; color: #1a1a1a; }
       img {
         max-width: 100%;
         border-radius: 10px;
         margin: 1.2em 0;
         display: block;
       }
-      hr { border: none; border-top: 1px solid #e6d4c3; margin: 2em 0; }
+      hr { border: none; border-top: 1px solid #e0e0e0; margin: 2em 0; }
       ul, ol { padding-left: 1.4em; }
       li { margin: 0.4em 0; }
 
-      /* Docusaurus 風格提示框，讓 :::note :::tip 這類語法在預覽區也看得出樣子 */
+      /* 可折疊區塊（<details><summary>）在預覽區的樣式 */
+      details {
+        margin: 1.5em 0;
+        padding: 0.8em 1.2em;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+      details summary {
+        cursor: pointer;
+        font-weight: 700;
+        color: #1a1a1a;
+      }
+      details[open] summary { margin-bottom: 0.6em; }
+
+      /* Docusaurus 風格提示框，讓 :::note :::tip 這類語法在預覽區也看得出樣子
+         （這裡的顏色是功能性語意色，用來分辨不同提示框類型，故保留） */
       .admonition {
         margin: 1.5em 0;
         padding: 0.9em 1.2em;
         border-radius: 8px;
         border-left: 4px solid #999;
-        background: #f4ece1;
+        background: #f5f5f5;
       }
       .admonition-title { font-weight: 700; margin-bottom: 0.4em; display: block; }
-      .admonition-note { border-color: #8a7362; }
+      .admonition-note { border-color: #6b7280; }
       .admonition-tip { border-color: #4c9a6b; background: #eaf3ec; }
       .admonition-info { border-color: #3a7ca5; background: #e9f1f6; }
       .admonition-warning { border-color: #c9922f; background: #faf1e0; }
@@ -102,7 +119,8 @@
 
     // ============================================================
     // 2. 預覽版面模板：專題文章 / 慢行生活 / 日常思考共用
-    //    （已加入封面圖顯示）
+    //    （已加入封面圖顯示；圖片讀取已加上防護，避免媒體庫尚未就緒時
+    //     整個預覽區噴出 React error #130，需要重整才能恢復的問題）
     // ============================================================
     var ArticlePreview = createClass({
       render: function() {
@@ -111,13 +129,29 @@
         var description = entry.getIn(['data', 'description']);
         var date = entry.getIn(['data', 'date']);
         var image = entry.getIn(['data', 'image']);
-        var imageUrl = image ? this.props.getAsset(image).toString() : null;
+
+        var imageUrl = null;
+        if (image) {
+          try {
+            var asset = this.props.getAsset(image);
+            // getAsset 在媒體庫尚未載入完成時，可能回傳非預期的物件，
+            // 這裡確認拿到的是可轉成字串的有效資源才使用，避免整個預覽區崩潰。
+            if (asset && typeof asset.toString === 'function') {
+              var url = asset.toString();
+              if (url && url !== '[object Object]' && url !== '[object Promise]') {
+                imageUrl = url;
+              }
+            }
+          } catch (e) {
+            imageUrl = null;
+          }
+        }
 
         return h('div', {},
           imageUrl ? h('img', { src: imageUrl, style: { maxWidth: '100%', borderRadius: '10px', marginBottom: '1em' } }) : null,
-          date ? h('p', { style: { color: '#a9673a', fontSize: '0.85rem', marginBottom: '0.2em' } }, date) : null,
+          date ? h('p', { style: { color: '#666666', fontSize: '0.85rem', marginBottom: '0.2em' } }, date) : null,
           h('h1', {}, title),
-          description ? h('p', { style: { color: '#8a7362', fontSize: '1rem', fontStyle: 'italic' } }, description) : null,
+          description ? h('p', { style: { color: '#666666', fontSize: '1rem', fontStyle: 'italic' } }, description) : null,
           h('div', { className: 'markdown' }, this.props.widgetFor('body'))
         );
       }
@@ -229,13 +263,124 @@
         return '[' + (obj.text || '') + '](' + (obj.path || '') + ')';
       },
       toPreview: function(obj) {
-        return h('a', { href: obj.path, style: { color: '#a9673a' } }, obj.text || obj.path);
+        return h('a', { href: obj.path, style: { color: '#2563eb' } }, obj.text || obj.path);
+      }
+    });
+
+    // 3-4　可折疊區塊（<details><summary>）
+    CMS.registerEditorComponent({
+      id: 'details-block',
+      label: '📂 插入可折疊區塊',
+      fields: [
+        { name: 'summary', label: '標題（點擊展開的文字）', widget: 'string', hint: '例如：點我看更多' },
+        { name: 'content', label: '折疊內容', widget: 'text', hint: '展開後顯示的內文，支援 Markdown 語法。' }
+      ],
+      pattern: /^<details>\n<summary>([\s\S]*?)<\/summary>\n\n([\s\S]*?)\n<\/details>\s*$/,
+      fromBlock: function(match) {
+        return { summary: match[1], content: match[2] };
+      },
+      toBlock: function(obj) {
+        return '<details>\n<summary>' + (obj.summary || '') + '</summary>\n\n' + (obj.content || '') + '\n</details>';
+      },
+      toPreview: function(obj) {
+        return h('details', {},
+          h('summary', {}, obj.summary || ''),
+          obj.content || ''
+        );
+      }
+    });
+
+    // 3-5　Markdown 表格產生器（輸入列數、欄數、內容，自動產生 Markdown 表格）
+    function tableCellsFromLine(line, colsCount) {
+      var cells = String(line || '').split(',').map(function(s) { return s.trim(); });
+      while (cells.length < colsCount) cells.push('');
+      return cells.slice(0, colsCount);
+    }
+
+    CMS.registerEditorComponent({
+      id: 'table-generator',
+      label: '📊 表格產生器',
+      fields: [
+        { name: 'cols', label: '欄數', widget: 'number', value_type: 'int', min: 1, default: 2 },
+        { name: 'rows', label: '列數（不含標題列）', widget: 'number', value_type: 'int', min: 1, default: 2 },
+        { name: 'headers', label: '標題列', widget: 'string', hint: '各欄標題用「逗號」分隔，例如：項目,說明' },
+        { name: 'content', label: '表格內容', widget: 'text', hint: '每一列請換行輸入，同一列中的各欄用「逗號」分隔。例如：\n蘋果,紅色水果\n香蕉,黃色水果' }
+      ],
+      // 對應標準 Markdown 表格語法（| 標題 | ... |\n| --- | --- |\n| 內容 | ... |），讓既有表格也能重新編輯
+      pattern: /^\|(.+)\|[ \t]*\n\|([ \t:*-]+\|)+[ \t]*\n((?:\|.*\|[ \t]*\n?)*)$/,
+      fromBlock: function(match) {
+        var lines = match[0].trim().split('\n');
+        var headerLine = lines[0];
+        var bodyLines = lines.slice(2);
+
+        function splitRow(line) {
+          var trimmed = line.trim();
+          if (trimmed.charAt(0) === '|') trimmed = trimmed.slice(1);
+          if (trimmed.charAt(trimmed.length - 1) === '|') trimmed = trimmed.slice(0, -1);
+          return trimmed.split('|').map(function(s) { return s.trim(); });
+        }
+
+        var headerCells = splitRow(headerLine);
+        var contentStr = bodyLines
+          .filter(function(l) { return l.trim().length > 0; })
+          .map(function(l) { return splitRow(l).join(','); })
+          .join('\n');
+
+        return {
+          cols: headerCells.length,
+          rows: bodyLines.filter(function(l) { return l.trim().length > 0; }).length || 1,
+          headers: headerCells.join(','),
+          content: contentStr
+        };
+      },
+      toBlock: function(obj) {
+        var colsCount = parseInt(obj.cols, 10);
+        if (!colsCount || colsCount < 1) colsCount = 1;
+        var rowsCount = parseInt(obj.rows, 10);
+        if (!rowsCount || rowsCount < 1) rowsCount = 1;
+
+        var headers = tableCellsFromLine((obj.headers || '').split(',').join(','), colsCount);
+        // 若標題留空，補上預設欄位名稱
+        headers = headers.map(function(h, i) { return h || ('欄位' + (i + 1)); });
+
+        var headerRow = '| ' + headers.join(' | ') + ' |';
+        var sepRow = '| ' + headers.map(function() { return '---'; }).join(' | ') + ' |';
+
+        var contentLines = (obj.content || '').split('\n');
+        var bodyRows = [];
+        for (var i = 0; i < rowsCount; i++) {
+          var cells = tableCellsFromLine(contentLines[i], colsCount);
+          bodyRows.push('| ' + cells.join(' | ') + ' |');
+        }
+
+        return [headerRow, sepRow].concat(bodyRows).join('\n');
+      },
+      toPreview: function(obj) {
+        var colsCount = parseInt(obj.cols, 10) || 1;
+        var rowsCount = parseInt(obj.rows, 10) || 1;
+        var headers = tableCellsFromLine(obj.headers, colsCount);
+        var contentLines = (obj.content || '').split('\n');
+
+        var headerRowEl = h('tr', {}, headers.map(function(cellText, i) {
+          return h('th', { key: 'h' + i }, cellText);
+        }));
+
+        var bodyRowEls = [];
+        for (var i = 0; i < rowsCount; i++) {
+          var cells = tableCellsFromLine(contentLines[i], colsCount);
+          bodyRowEls.push(h('tr', { key: 'r' + i }, cells.map(function(cellText, ci) {
+            return h('td', { key: 'c' + ci }, cellText);
+          })));
+        }
+
+        return h('table', {}, h('thead', {}, headerRowEl), h('tbody', {}, bodyRowEls));
       }
     });
 
     // ============================================================
     // 4. 編輯介面整體換膚（第 4 點）— 非官方支援，未來若版本更新
     //    導致跑版，請告訴我，我再協助調整
+    //    （配色已改為中性灰階，移除咖啡色系）
     // ============================================================
     var style = document.createElement('style');
     style.innerHTML = `
@@ -247,36 +392,36 @@
 
       /* 頂部導覽列 */
       [class*="TopBarContainer"] {
-        background: #4a2f1f !important;
+        background: #2b2b2b !important;
       }
 
       /* 左側選單 */
       [class*="AppMainContainer"] > div:first-child,
       [class*="SidebarNavList"] {
-        background: #fdf8f3 !important;
+        background: #ffffff !important;
       }
       [class*="SidebarListItem"] {
         border-radius: 8px !important;
         margin: 2px 8px !important;
       }
       [class*="SidebarListItem"]:hover {
-        background: #f4ece1 !important;
+        background: #f0f0f0 !important;
       }
 
       /* 主要按鈕（儲存、發布） */
       button[class*="Button"][class*="gray"],
       [class*="ToolbarSaveButtonContainer"] button {
-        background: #a9673a !important;
+        background: #2b2b2b !important;
         border-radius: 8px !important;
         color: #fff !important;
       }
 
       /* 編輯區塊卡片 */
       [class*="EditorControlPane"] {
-        background: #fffdfa !important;
+        background: #ffffff !important;
       }
       [class*="ControlHint"], [class*="ControlLabel"] {
-        color: #8a7362 !important;
+        color: #666666 !important;
       }
 
       /* 內文欄位（markdown widget）本身放大字級、加大行距，寫起來更舒服 */
@@ -294,7 +439,7 @@
         padding: 6px 8px !important;
       }
       [class*="ToolbarContainer"] button:hover {
-        background: #f4ece1 !important;
+        background: #f0f0f0 !important;
       }
 
       /* 圖片／媒體庫彈窗：改成卡片式格線，取代原本擁擠的清單 */
@@ -307,7 +452,7 @@
       [class*="MediaLibraryCard"] {
         border-radius: 10px !important;
         overflow: hidden !important;
-        border: 1px solid #e6d4c3 !important;
+        border: 1px solid #e0e0e0 !important;
       }
     `;
     document.head.appendChild(style);

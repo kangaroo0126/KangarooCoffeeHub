@@ -12,6 +12,14 @@ backend:
 # 這類功能時有明確依據，先加上無壞處。
 site_url: https://kangaroo0126.github.io/KangarooCoffeeHub
 
+# publish_mode：啟用「編輯流程 / 草稿」功能。
+# 開啟後，儲存文章不會直接寫進 main，而是建立獨立分支與 Pull Request，
+# 畫面上會出現「草稿 / 審核中 / 待發布」看板，按「發布」才會真的合併進 main。
+# 注意：這需要 backend 的 proxy（base_url 指向的 Cloudflare Worker）支援建立分支 / PR /
+# 查詢未發布項目等 API。若儲存草稿時出現錯誤，代表 worker 端可能還沒實作對應功能，
+# 屆時請把錯誤訊息告訴我，我再協助確認。
+publish_mode: editorial_workflow
+
 media_folder: "static/img/uploads"
 public_folder: "/img/uploads"
 

@@ -15,6 +15,14 @@
     //    這段程式必須放在 decap-cms.js 載入「之前」執行，才能攔到初始化時噴出的錯誤。
     //    偵測到這個特定錯誤時，會自動幫使用者重新整理一次（同一個瀏覽器分頁只會自動重整一次，
     //    避免萬一真的持續出錯時無限重整）。
+    //
+    //    註：這個錯誤實際上是 Decap CMS 自己內部的 React Error Boundary
+    //    攔下來後、自己畫出「錯誤／發生錯誤／回報錯誤」這個畫面，並不會
+    //    往外丟到瀏覽器的 window.onerror 或 unhandledrejection，所以除了
+    //    監聽這兩個事件（保留作為其他情況的保險）之外，還額外加上
+    //    MutationObserver，直接偵測畫面上有沒有真的出現這個錯誤畫面，
+    //    一偵測到就自動重整。這樣不管是預覽時、存檔時、發佈時觸發，
+    //    都能被抓到並自動救回來。
     // ============================================================
     (function () {
       var RELOAD_FLAG_KEY = 'kch_cms_auto_reload_attempted';
@@ -34,6 +42,7 @@
         }
       }
 
+      // 保留：萬一未來遇到的是「真的會往外丟」的錯誤，這兩個監聽器還是有用
       window.addEventListener('error', function (event) {
         var msg = (event && event.message) || (event && event.error && event.error.message) || '';
         if (isKnownAssetLoadError(msg)) {
@@ -47,6 +56,46 @@
           tryAutoReloadOnce();
         }
       });
+
+      // 主要修復：直接偵測畫面上是否出現 Decap CMS 自己畫出來的錯誤畫面
+      // （畫面上會同時出現「回報錯誤」連結與「Minified React error #130」文字）
+      function scanForCrashScreen() {
+        try {
+          var bodyText = document.body && document.body.innerText;
+          if (!bodyText) return;
+          if (bodyText.indexOf('Minified React error #130') !== -1 &&
+              (bodyText.indexOf('回報錯誤') !== -1 || bodyText.indexOf('發生錯誤') !== -1)) {
+            tryAutoReloadOnce();
+          }
+        } catch (e) {
+          // 讀取畫面內容失敗時不做任何事，避免影響正常使用
+        }
+      }
+
+      function startCrashScreenWatcher() {
+        if (!document.body || typeof MutationObserver === 'undefined') return;
+        var observer = new MutationObserver(function () {
+          scanForCrashScreen();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        // 保險：畫面切換當下 MutationObserver 有時會漏接，額外每秒掃一次，
+        // 直到旗標被清除（代表畫面已經穩定一段時間）為止。
+        var pollId = setInterval(function () {
+          try {
+            if (sessionStorage.getItem(RELOAD_FLAG_KEY)) {
+              clearInterval(pollId);
+              return;
+            }
+          } catch (e) {}
+          scanForCrashScreen();
+        }, 1000);
+      }
+
+      if (document.body) {
+        startCrashScreenWatcher();
+      } else {
+        document.addEventListener('DOMContentLoaded', startCrashScreenWatcher);
+      }
 
       // 畫面成功載入一段時間都沒事的話，就清除旗標，
       // 這樣如果之後真的又遇到同樣的錯誤，還是能再自動重整一次自救。

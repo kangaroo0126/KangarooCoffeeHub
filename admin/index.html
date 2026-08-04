@@ -215,17 +215,24 @@
     });
 
     // ============================================================
-    // 3. 編輯器工具列擴充按鈕
-    //    在「內文」欄位工具列的「+」選單中會多出下面這些項目
+    // 3. 編輯器工具列擴充按鈕（內文「+」選單）
+    //    Decap CMS 的「+」選單本身不支援原生分類／子選單，
+    //    因此這裡改用「【分類名稱】」統一前綴 + 依分類相鄰註冊的方式，
+    //    讓使用者在選單中能一眼看出功能分組，達到分類的使用體驗效果。
+    //    分類如下：
+    //      【內容框】提示框 note/tip/info/warning/danger、可折疊區塊
+    //      【多媒體】YouTube 影片
+    //      【表格】表格產生器
+    //    （站內連結功能已依需求移除）
     // ============================================================
 
-    // 3-1　Docusaurus 提示框（:::note :::tip :::info :::warning :::danger）
+    // 3-1　【內容框】Docusaurus 提示框（:::note :::tip :::info :::warning :::danger）
     var admonitionLabels = {
-      note: '📝 提示框：備註 note',
-      tip: '💡 提示框：小技巧 tip',
-      info: 'ℹ️ 提示框：資訊 info',
-      warning: '⚠️ 提示框：注意 warning',
-      danger: '🚫 提示框：警告 danger'
+      note: '【內容框】📝 提示框：備註 note',
+      tip: '【內容框】💡 提示框：小技巧 tip',
+      info: '【內容框】ℹ️ 提示框：資訊 info',
+      warning: '【內容框】⚠️ 提示框：注意 warning',
+      danger: '【內容框】🚫 提示框：警告 danger'
     };
 
     Object.keys(admonitionLabels).forEach(function(type) {
@@ -252,7 +259,30 @@
       });
     });
 
-    // 3-2　插入 YouTube 影片
+    // 3-2　【內容框】可折疊區塊（<details><summary>）
+    CMS.registerEditorComponent({
+      id: 'details-block',
+      label: '【內容框】📂 插入可折疊區塊',
+      fields: [
+        { name: 'summary', label: '標題（點擊展開的文字）', widget: 'string', hint: '例如：點我看更多' },
+        { name: 'content', label: '折疊內容', widget: 'text', hint: '展開後顯示的內文，支援 Markdown 語法。' }
+      ],
+      pattern: /^<details>\n<summary>([\s\S]*?)<\/summary>\n\n([\s\S]*?)\n<\/details>\s*$/,
+      fromBlock: function(match) {
+        return { summary: match[1], content: match[2] };
+      },
+      toBlock: function(obj) {
+        return '<details>\n<summary>' + (obj.summary || '') + '</summary>\n\n' + (obj.content || '') + '\n</details>';
+      },
+      toPreview: function(obj) {
+        return h('details', {},
+          h('summary', {}, obj.summary || ''),
+          obj.content || ''
+        );
+      }
+    });
+
+    // 3-3　【多媒體】插入 YouTube 影片
     function extractYouTubeId(input) {
       if (!input) return null;
       var s = String(input).trim();
@@ -273,7 +303,7 @@
 
     CMS.registerEditorComponent({
       id: 'youtube',
-      label: '▶️ 插入 YouTube 影片',
+      label: '【多媒體】▶️ 插入 YouTube 影片',
       fields: [
         { name: 'url', label: 'YouTube 網址', widget: 'string', hint: '直接貼上網址即可，例如 https://www.youtube.com/watch?v=XXXXXXXXXXX 或 https://youtu.be/XXXXXXXXXXX' }
       ],
@@ -296,53 +326,7 @@
       }
     });
 
-    // 3-3　插入站內連結
-    // 注意：這個按鈕插入的是「區塊元素」，前後一定會有空行（Decap 編輯器元件的架構限制，無法透過設定關閉）。
-    // 如果要在句子「中間」插入連結、輸出後不要有多餘空行，請不要用這顆按鈕，
-    // 直接在「原始碼」模式下手打 [顯示文字](/路徑) 即可，那只是純文字，不會有區塊間距。
-    CMS.registerEditorComponent({
-      id: 'internal-link',
-      label: '🔗 插入站內連結（獨立一行用）',
-      fields: [
-        { name: 'text', label: '顯示文字', widget: 'string' },
-        { name: 'path', label: '目標路徑', widget: 'string', hint: '例如 /docs/教育與學習/某篇文章 或 /blog/2025-01-01-某篇。可以到目標文章頁面直接複製網址列「網域名稱之後」的部分。' }
-      ],
-      pattern: /^\[([^\]]+)\]\((\/[^\s)]+)\)$/,
-      fromBlock: function(match) {
-        return { text: match[1], path: match[2] };
-      },
-      toBlock: function(obj) {
-        return '[' + (obj.text || '') + '](' + (obj.path || '') + ')';
-      },
-      toPreview: function(obj) {
-        return h('a', { href: obj.path, style: { color: '#2563eb' } }, obj.text || obj.path);
-      }
-    });
-
-    // 3-4　可折疊區塊（<details><summary>）
-    CMS.registerEditorComponent({
-      id: 'details-block',
-      label: '📂 插入可折疊區塊',
-      fields: [
-        { name: 'summary', label: '標題（點擊展開的文字）', widget: 'string', hint: '例如：點我看更多' },
-        { name: 'content', label: '折疊內容', widget: 'text', hint: '展開後顯示的內文，支援 Markdown 語法。' }
-      ],
-      pattern: /^<details>\n<summary>([\s\S]*?)<\/summary>\n\n([\s\S]*?)\n<\/details>\s*$/,
-      fromBlock: function(match) {
-        return { summary: match[1], content: match[2] };
-      },
-      toBlock: function(obj) {
-        return '<details>\n<summary>' + (obj.summary || '') + '</summary>\n\n' + (obj.content || '') + '\n</details>';
-      },
-      toPreview: function(obj) {
-        return h('details', {},
-          h('summary', {}, obj.summary || ''),
-          obj.content || ''
-        );
-      }
-    });
-
-    // 3-5　Markdown 表格產生器（輸入列數、欄數、內容，自動產生 Markdown 表格）
+    // 3-4　【表格】Markdown 表格產生器（輸入列數、欄數、內容，自動產生 Markdown 表格）
     function tableCellsFromLine(line, colsCount) {
       var cells = String(line || '').split(',').map(function(s) { return s.trim(); });
       while (cells.length < colsCount) cells.push('');
@@ -351,7 +335,7 @@
 
     CMS.registerEditorComponent({
       id: 'table-generator',
-      label: '📊 表格產生器',
+      label: '【表格】📊 表格產生器',
       fields: [
         { name: 'cols', label: '欄數', widget: 'number', value_type: 'int', min: 1, default: 2 },
         { name: 'rows', label: '列數（不含標題列）', widget: 'number', value_type: 'int', min: 1, default: 2 },

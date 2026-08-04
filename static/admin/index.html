@@ -4,8 +4,59 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>袋鼠咖啡館-編輯文章後台</title>
-</head>
-<body>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%98%3C/text%3E%3C/svg%3E" />
+
+  <script>
+    // ============================================================
+    // 0. 自動錯誤自復原（第 1 點）
+    //    Decap CMS 內部在資產代理（GitHub Proxy）尚未快取完成時，
+    //    偶爾會噴出 React error #130 導致整個畫面崩潰，重整後即可恢復。
+    //    這段程式必須放在 decap-cms.js 載入「之前」執行，才能攔到初始化時噴出的錯誤。
+    //    偵測到這個特定錯誤時，會自動幫使用者重新整理一次（同一個瀏覽器分頁只會自動重整一次，
+    //    避免萬一真的持續出錯時無限重整）。
+    // ============================================================
+    (function () {
+      var RELOAD_FLAG_KEY = 'kch_cms_auto_reload_attempted';
+
+      function isKnownAssetLoadError(message) {
+        return typeof message === 'string' && message.indexOf('Minified React error #130') !== -1;
+      }
+
+      function tryAutoReloadOnce() {
+        try {
+          if (!sessionStorage.getItem(RELOAD_FLAG_KEY)) {
+            sessionStorage.setItem(RELOAD_FLAG_KEY, '1');
+            location.reload();
+          }
+        } catch (e) {
+          // sessionStorage 不可用時（例如無痕模式限制），就不自動重整，避免出現不可預期的行為
+        }
+      }
+
+      window.addEventListener('error', function (event) {
+        var msg = (event && event.message) || (event && event.error && event.error.message) || '';
+        if (isKnownAssetLoadError(msg)) {
+          tryAutoReloadOnce();
+        }
+      });
+
+      window.addEventListener('unhandledrejection', function (event) {
+        var msg = (event && event.reason && event.reason.message) || '';
+        if (isKnownAssetLoadError(msg)) {
+          tryAutoReloadOnce();
+        }
+      });
+
+      // 畫面成功載入一段時間都沒事的話，就清除旗標，
+      // 這樣如果之後真的又遇到同樣的錯誤，還是能再自動重整一次自救。
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          try { sessionStorage.removeItem(RELOAD_FLAG_KEY); } catch (e) {}
+        }, 8000);
+      });
+    })();
+  </script>
+
   <!-- 版本改為鎖定確切版號（而非 ^3.0.0），避免 unpkg 未來自動送出
        新的大版本更新，造成預覽或編輯器行為無預警改變。
        之後若要升級，記得先在自己的瀏覽器測過一輪再改這裡的版號。 -->
@@ -119,8 +170,8 @@
 
     // ============================================================
     // 2. 預覽版面模板：專題文章 / 慢行生活 / 日常思考共用
-    //    （已加入封面圖顯示；圖片讀取已加上防護，避免媒體庫尚未就緒時
-    //     整個預覽區噴出 React error #130，需要重整才能恢復的問題）
+    //    （已加入封面圖顯示；圖片讀取已加上防護，降低媒體庫尚未就緒時
+    //     預覽區崩潰的機率）
     // ============================================================
     var ArticlePreview = createClass({
       render: function() {
@@ -134,8 +185,6 @@
         if (image) {
           try {
             var asset = this.props.getAsset(image);
-            // getAsset 在媒體庫尚未載入完成時，可能回傳非預期的物件，
-            // 這裡確認拿到的是可轉成字串的有效資源才使用，避免整個預覽區崩潰。
             if (asset && typeof asset.toString === 'function') {
               var url = asset.toString();
               if (url && url !== '[object Object]' && url !== '[object Promise]') {
@@ -247,10 +296,13 @@
       }
     });
 
-    // 3-3　插入站內連結（只需輸入相對路徑，不用打完整網址）
+    // 3-3　插入站內連結
+    // 注意：這個按鈕插入的是「區塊元素」，前後一定會有空行（Decap 編輯器元件的架構限制，無法透過設定關閉）。
+    // 如果要在句子「中間」插入連結、輸出後不要有多餘空行，請不要用這顆按鈕，
+    // 直接在「原始碼」模式下手打 [顯示文字](/路徑) 即可，那只是純文字，不會有區塊間距。
     CMS.registerEditorComponent({
       id: 'internal-link',
-      label: '🔗 插入站內連結',
+      label: '🔗 插入站內連結（獨立一行用）',
       fields: [
         { name: 'text', label: '顯示文字', widget: 'string' },
         { name: 'path', label: '目標路徑', widget: 'string', hint: '例如 /docs/教育與學習/某篇文章 或 /blog/2025-01-01-某篇。可以到目標文章頁面直接複製網址列「網域名稱之後」的部分。' }
@@ -340,7 +392,6 @@
         if (!rowsCount || rowsCount < 1) rowsCount = 1;
 
         var headers = tableCellsFromLine((obj.headers || '').split(',').join(','), colsCount);
-        // 若標題留空，補上預設欄位名稱
         headers = headers.map(function(h, i) { return h || ('欄位' + (i + 1)); });
 
         var headerRow = '| ' + headers.join(' | ') + ' |';
@@ -380,7 +431,8 @@
     // ============================================================
     // 4. 編輯介面整體換膚（第 4 點）— 非官方支援，未來若版本更新
     //    導致跑版，請告訴我，我再協助調整
-    //    （配色已改為中性灰階，移除咖啡色系）
+    //    （配色已改為中性灰階，移除咖啡色系；並加入互動回饋、層次感、
+    //     鍵盤可視焦點框等使用者體驗細節）
     // ============================================================
     var style = document.createElement('style');
     style.innerHTML = `
@@ -390,15 +442,42 @@
         font-family: 'Noto Sans TC', -apple-system, sans-serif !important;
       }
 
+      /* 全站互動元件加上平滑過渡效果，操作起來更有回饋感 */
+      button,
+      [class*="SidebarListItem"],
+      [class*="MediaLibraryCard"],
+      input, textarea, select {
+        transition: background-color 0.15s ease, box-shadow 0.15s ease,
+                    border-color 0.15s ease, transform 0.1s ease !important;
+      }
+
+      /* 鍵盤操作時的可視焦點框，符合基本無障礙原則 */
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      select:focus-visible {
+        outline: 2px solid #2563eb !important;
+        outline-offset: 2px !important;
+      }
+
+      /* 自訂捲軸樣式，減少視覺雜訊 */
+      ::-webkit-scrollbar { width: 10px; height: 10px; }
+      ::-webkit-scrollbar-track { background: #f5f5f5; }
+      ::-webkit-scrollbar-thumb { background: #cfcfcf; border-radius: 8px; }
+      ::-webkit-scrollbar-thumb:hover { background: #b3b3b3; }
+
       /* 頂部導覽列 */
       [class*="TopBarContainer"] {
         background: #2b2b2b !important;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2) !important;
       }
 
       /* 左側選單 */
       [class*="AppMainContainer"] > div:first-child,
       [class*="SidebarNavList"] {
         background: #ffffff !important;
+        box-shadow: 1px 0 0 rgba(0,0,0,0.06) !important;
       }
       [class*="SidebarListItem"] {
         border-radius: 8px !important;
@@ -408,20 +487,46 @@
         background: #f0f0f0 !important;
       }
 
-      /* 主要按鈕（儲存、發布） */
+      /* 主要按鈕（儲存、發布）：改用強調色，讓主要操作更醒目、更符合視覺引導原則 */
       button[class*="Button"][class*="gray"],
       [class*="ToolbarSaveButtonContainer"] button {
-        background: #2b2b2b !important;
+        background: #2563eb !important;
         border-radius: 8px !important;
         color: #fff !important;
+        box-shadow: 0 1px 2px rgba(37,99,235,0.35) !important;
+      }
+      button[class*="Button"][class*="gray"]:hover,
+      [class*="ToolbarSaveButtonContainer"] button:hover {
+        background: #1d4ed8 !important;
       }
 
       /* 編輯區塊卡片 */
       [class*="EditorControlPane"] {
         background: #ffffff !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+        border-radius: 10px !important;
       }
       [class*="ControlHint"], [class*="ControlLabel"] {
         color: #666666 !important;
+      }
+
+      /* 一般輸入欄位：統一圓角與 focus 提示，讓表單操作更清楚 */
+      input[type="text"],
+      input[type="number"],
+      input[type="email"],
+      input[type="url"],
+      textarea,
+      select {
+        border-radius: 8px !important;
+      }
+      input[type="text"]:focus,
+      input[type="number"]:focus,
+      input[type="email"]:focus,
+      input[type="url"]:focus,
+      textarea:focus,
+      select:focus {
+        border-color: #2563eb !important;
+        box-shadow: 0 0 0 3px rgba(37,99,235,0.15) !important;
       }
 
       /* 內文欄位（markdown widget）本身放大字級、加大行距，寫起來更舒服 */
@@ -442,7 +547,7 @@
         background: #f0f0f0 !important;
       }
 
-      /* 圖片／媒體庫彈窗：改成卡片式格線，取代原本擁擠的清單 */
+      /* 圖片／媒體庫彈窗：改成卡片式格線，取代原本擁擠的清單，並加上 hover 浮起效果 */
       [class*="MediaLibraryCardGrid"] {
         display: grid !important;
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
@@ -453,6 +558,10 @@
         border-radius: 10px !important;
         overflow: hidden !important;
         border: 1px solid #e0e0e0 !important;
+      }
+      [class*="MediaLibraryCard"]:hover {
+        box-shadow: 0 4px 10px rgba(0,0,0,0.12) !important;
+        transform: translateY(-2px) !important;
       }
     `;
     document.head.appendChild(style);

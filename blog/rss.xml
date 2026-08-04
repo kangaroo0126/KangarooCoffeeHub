@@ -4,11 +4,21 @@
         <title>袋鼠咖啡館</title>
         <link>https://kangaroo0126.github.io/KangarooCoffeeHub/blog</link>
         <description>袋鼠咖啡館 - 在加速的世界裡，練習慢下來的空間。分享教育、學習、心理與社會議題的思考，以及日常生活的碎片與感悟。沒有演算法，只有真實的整理與對話。</description>
-        <lastBuildDate>Thu, 30 Jul 2026 13:11:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 04 Aug 2026 07:18:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-TW</language>
         <copyright>Copyright © 2026 Slow moments. Good coffee. Better thoughts.</copyright>
+        <item>
+            <title><![CDATA[【邊走邊想】七月｜]]></title>
+            <link>https://kangaroo0126.github.io/KangarooCoffeeHub/blog/July2026</link>
+            <guid>https://kangaroo0126.github.io/KangarooCoffeeHub/blog/July2026</guid>
+            <pubDate>Tue, 04 Aug 2026 07:18:00 GMT</pubDate>
+            <description><![CDATA[Test]]></description>
+            <content:encoded><![CDATA[<p>Test</p>
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>資訊</div><div class="admonitionContent_BuS1"><p>我喜歡</p></div></div>
+<p>我要做測試</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[《輪不到我上場》半年實踐：教育議題桌遊、工作坊與設計反思]]></title>
             <link>https://kangaroo0126.github.io/KangarooCoffeeHub/blog/2026/07/30/TFTBoardGame</link>

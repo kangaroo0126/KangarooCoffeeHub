@@ -2,12 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kangaroo0126.github.io/KangarooCoffeeHub/blog</id>
     <title>袋鼠咖啡館</title>
-    <updated>2026-07-30T13:11:00.000Z</updated>
+    <updated>2026-08-04T07:18:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kangaroo0126.github.io/KangarooCoffeeHub/blog"/>
     <subtitle>袋鼠咖啡館 - 在加速的世界裡，練習慢下來的空間。分享教育、學習、心理與社會議題的思考，以及日常生活的碎片與感悟。沒有演算法，只有真實的整理與對話。</subtitle>
     <icon>https://kangaroo0126.github.io/KangarooCoffeeHub/img/favicon.png</icon>
     <rights>Copyright © 2026 Slow moments. Good coffee. Better thoughts.</rights>
+    <entry>
+        <title type="html"><![CDATA[【邊走邊想】七月｜]]></title>
+        <id>https://kangaroo0126.github.io/KangarooCoffeeHub/blog/July2026</id>
+        <link href="https://kangaroo0126.github.io/KangarooCoffeeHub/blog/July2026"/>
+        <updated>2026-08-04T07:18:00.000Z</updated>
+        <summary type="html"><![CDATA[Test]]></summary>
+        <content type="html"><![CDATA[<p>Test</p>
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>資訊</div><div class="admonitionContent_BuS1"><p>我喜歡</p></div></div>
+<p>我要做測試</p>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[《輪不到我上場》半年實踐：教育議題桌遊、工作坊與設計反思]]></title>
         <id>https://kangaroo0126.github.io/KangarooCoffeeHub/blog/2026/07/30/TFTBoardGame</id>

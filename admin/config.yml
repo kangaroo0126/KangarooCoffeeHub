@@ -28,6 +28,11 @@ collections:
       - { label: "標題", name: "title", widget: "string" }
       - { label: "發布日期", name: "date", widget: "datetime" }
       - { label: "作者", name: "authors", widget: "string", required: false }
+      - label: "自訂網址（Slug）"
+        name: "slug"
+        widget: "string"
+        required: false
+        hint: "選填。填寫後會直接寫入文章的網址（Front Matter 的 slug），例如輸入 my-article 會產生 /blog/my-article；不填則維持系統預設的網址規則。"
       - label: "封面圖／精選圖片"
         name: "image"
         widget: "image"
@@ -71,6 +76,11 @@ collections:
     slug: "{{slug}}"
     fields: &docs_fields
       - { label: "標題", name: "title", widget: "string" }
+      - label: "自訂網址（Slug）"
+        name: "slug"
+        widget: "string"
+        required: false
+        hint: "選填。填寫後會直接寫入這篇文章的網址（Front Matter 的 slug）；不填則維持系統預設的網址規則。"
       - { label: "側邊欄排序", name: "sidebar_position", widget: "number", required: false }
       - { label: "簡短描述", name: "description", widget: "string", required: false }
       - label: "封面圖／精選圖片"

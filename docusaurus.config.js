@@ -50,8 +50,7 @@ const config = {
     ],
   ],
 
-  // 預設主題和插件（只留一個）
-  presets: [
+presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
@@ -77,11 +76,10 @@ const config = {
           trackingID: 'G-1TTB1R6895',
           anonymizeIP: true,
         },
-        // ⭐⭐⭐ 新增：Sitemap 設定（關鍵！）
         sitemap: {
           changefreq: 'weekly',
           priority: 0.5,
-          ignorePatterns: ['/tags/**'],
+          ignorePatterns: ['**/tags', '**/tags/**','**/page/**'],
           filename: 'sitemap.xml',
         },
       }),

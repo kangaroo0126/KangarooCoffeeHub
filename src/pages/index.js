@@ -3,7 +3,16 @@ import Layout from '@theme/Layout';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 
+// 佳句跑馬燈用的句子，你可以自己修改/新增/刪除
+const quotes = [
+  '人生最大的遺憾，是一個人無法同時擁有青春和對青春的感受。',
+  '「加法」是吸納與涵養， 是豐富生活的方式， 而「減法」是沉澱與思考， 是生命清徹的方法。',
+  '時間帶不走的，是那些深刻的記憶，它們成為我們生命的一部分。',
+];
+
 export default function About() {
+  const allQuotes = [...quotes, ...quotes]; // 重複一份做無縫循環
+
   return (
     <Layout
       title="首頁"
@@ -24,6 +33,58 @@ export default function About() {
           }}
         />
       </div>
+
+      {/* 佳句跑馬燈 開始 */}
+      <style>{`
+        @keyframes quoteScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .quote-marquee-track {
+          display: flex;
+          width: max-content;
+          animation: quoteScroll 20s linear infinite;
+        }
+        .quote-marquee-track:hover {
+          animation-play-state: paused;
+        }
+
+        /* 亮色模式：白底黑字 */
+        .quote-marquee-bg {
+          background: #FFFFFF;
+        }
+        .quote-marquee-text {
+          color: #000000;
+        }
+
+        /* 深色模式：黑底白字 */
+        [data-theme='dark'] .quote-marquee-bg {
+          background: #000000;
+        }
+        [data-theme='dark'] .quote-marquee-text {
+          color: #FFFFFF;
+        }
+      `}</style>
+      <div className="quote-marquee-bg" style={{
+        width: '100%',
+        overflow: 'hidden',
+        padding: '12px 0',
+        boxSizing: 'border-box'
+      }}>
+        <div className="quote-marquee-track">
+          {allQuotes.map((quote, index) => (
+            <span key={index} className="quote-marquee-text" style={{
+              display: 'inline-block',
+              padding: '0 3rem',
+              fontSize: '1.1rem',
+              whiteSpace: 'nowrap'
+            }}>
+              {quote}
+            </span>
+          ))}
+        </div>
+      </div>
+      {/* 佳句跑馬燈 結束 */}
       
       <main style={{
         maxWidth: '900px',
@@ -109,6 +170,7 @@ export default function About() {
             — Carl Rogers
           </footer>
         </blockquote>
+
 
         <h2 style={{fontSize: '2.3rem', marginBottom: '2rem', color: 'var(--ifm-heading-color)', fontWeight: 700}}>
           🎵 推薦給你
@@ -234,4 +296,3 @@ export default function About() {
     </Layout>
   );
 }
-

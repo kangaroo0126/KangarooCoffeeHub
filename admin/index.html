@@ -463,6 +463,35 @@
     });
 
     // ============================================================
+    // 3-5　【保險機制】blog（日常思考）自動補回 <!--truncate--> 標記
+    //    內文欄位雖然已經在 config.yml 用 default 預先帶入 <!--truncate-->，
+    //    但如果使用者在編輯過程中不小心把這一行整個刪掉，這裡會在「儲存」
+    //    的當下自動偵測、自動補回去（補在第一段文字之後），
+    //    這樣就不會再發生忘記加、導致列表頁整篇被展開的狀況。
+    //    若內文裡已經有這個標記，就不會重複插入。
+    // ============================================================
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: function (args) {
+        var entry = args.entry;
+        if (!entry || entry.get('collection') !== 'blog') return undefined;
+        var data = entry.get('data');
+        var body = data.get('body') || '';
+        if (body.indexOf('<!--truncate-->') !== -1) return undefined;
+
+        var parts = body.split(/\n\s*\n/);
+        var withMarker;
+        if (parts.length > 1) {
+          withMarker = [parts[0], '<!--truncate-->'].concat(parts.slice(1)).join('\n\n');
+        } else {
+          withMarker = body + '\n\n<!--truncate-->\n';
+        }
+        return data.set('body', withMarker);
+      }
+    });
+
+
+    // ============================================================
     // 4. 編輯介面整體換膚（第 4 點）— 非官方支援，未來若版本更新
     //    導致跑版，請告訴我，我再協助調整
     //    （配色已改為中性灰階，移除咖啡色系；並加入互動回饋、層次感、

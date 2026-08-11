@@ -12,13 +12,17 @@ backend:
 # 這類功能時有明確依據，先加上無壞處。
 site_url: https://kangaroo0126.github.io/KangarooCoffeeHub
 
-# publish_mode：啟用「編輯流程 / 草稿」功能。
-# 開啟後，儲存文章不會直接寫進 main，而是建立獨立分支與 Pull Request，
-# 畫面上會出現「草稿 / 審核中 / 待發布」看板，按「發布」才會真的合併進 main。
-# 注意：這需要 backend 的 proxy（base_url 指向的 Cloudflare Worker）支援建立分支 / PR /
-# 查詢未發布項目等 API。若儲存草稿時出現錯誤，代表 worker 端可能還沒實作對應功能，
-# 屆時請把錯誤訊息告訴我，我再協助確認。
-publish_mode: editorial_workflow
+# publish_mode：已改回預設值（不設定 = simple）。
+# 原本開啟的 editorial_workflow 需要 backend 的 proxy（base_url 指向的 Cloudflare
+# Worker）額外支援「建立分支 / PR / 查詢未發布項目」這幾支 API；目前這個 Worker
+# 沒有實作，所以每次儲存後，CMS 都會再去問 Worker「草稿列表 / PR 狀態」，
+# 而 Worker 不認得這些請求，就會回傳錯誤，畫面上看起來就像是「發生奇怪畫面、
+# 要求重新登入」。這也是為什麼 GitHub 上其實看得到內容已經正常提交，
+# 但後台卻在提交「之後」又跳錯誤的原因：commit 本身有成功，出錯的是
+# editorial_workflow 額外去查詢草稿狀態的那一步。
+# 改回 simple 之後：按「儲存」＝直接 commit 進 main，沒有草稿 / 審核看板，
+# 也不會再去呼叫 Worker 不支援的 API，奇怪畫面跟被要求重新登入的狀況就會消失。
+# 若之後真的需要草稿審核流程，需要先請人在 Worker 端把上述 API 補齊，才能重新打開。
 
 media_folder: "static/img/uploads"
 public_folder: "/img/uploads"
@@ -48,31 +52,21 @@ collections:
         hint: "建議尺寸約 1200x630。這張圖會用在文章列表縮圖與社群分享卡（og:image）。"
       - label: "標籤"
         name: "tags"
-        widget: "relation"
-        collection: "tags"
-        search_fields: ["name"]
-        display_fields: ["name"]
-        value_field: "name"
-        multiple: true
+        widget: "list"
         required: false
-        hint: "請從既有標籤庫挑選；找不到想要的標籤時，先到左側選單「🏷️ 標籤庫」新增一筆，再回來選取，避免同一個標籤打成不同字。"
+        hint: "直接輸入標籤即可，一個標籤一行，按「新增」可再加一個。建議盡量沿用之前用過的字詞（例如都打「咖啡」而不是有時打「咖啡廳」），標籤才不會因為打法不同而分散。"
       - { label: "文章摘要", name: "description", widget: "text", required: false }
       - label: "內文"
         name: "body"
         widget: "markdown"
         modes: ["raw", "rich_text"]
-        hint: "若要插入表格，請切換到「原始碼」模式，直接貼上或輸入 Markdown 表格語法（| 欄位 | 欄位 |）。"
+        hint: "若要插入表格，請切換到「原始碼」模式，直接貼上或輸入 Markdown 表格語法（| 欄位 | 欄位 |）。下方已經預先留好 <!--truncate--> 這一行，代表「列表頁只會顯示到這裡」，把它移到你想要截斷的地方、保留這行文字即可，不用自己重打。"
+        default: |
+          在這裡寫開場的一小段文字，這段會顯示在文章列表和摘要中。
 
-  - name: "tags"
-    label: "🏷️ 標籤庫"
-    folder: "data/tags"
-    create: true
-    format: "yaml"
-    extension: "yml"
-    slug: "{{slug}}"
-    summary: "{{name}}"
-    fields:
-      - { label: "標籤名稱", name: "name", widget: "string" }
+          <!--truncate-->
+
+          這裡開始接完整內文，這段以後的內容只有點進文章才看得到。
 
   - name: "docs_education"
     label: "專題文章-教育與學習"

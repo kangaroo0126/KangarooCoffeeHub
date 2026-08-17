@@ -209,7 +209,7 @@ collections:
             modes: ["raw", "rich_text"]
             hint: "若要插入表格，請切換到「原始碼」模式，直接貼上或輸入 Markdown 表格語法（| 欄位 | 欄位 |）。"
       - label: "推薦創作者/文章"
-        name: "recommendedcreator"
+        name: "recommended_creator"
         file: "slowlife/recommendedcreator.md"
         fields:
           - { label: "標題", name: "title", widget: "string", required: false }

@@ -176,6 +176,16 @@ collections:
     slug: "{{slug}}"
     fields: *docs_fields
 
+  - name: "recommendedcreator"
+    label: "慢行生活-推薦創作者/文章"
+    folder: "slowlife/推薦創作者/文章"
+    create: true
+    nested:
+      depth: 100
+      summary: "{{title}}"
+    slug: "{{slug}}"
+    fields: *docs_fields
+
   - name: "pages"
     label: "📄 單頁內容"
     files:

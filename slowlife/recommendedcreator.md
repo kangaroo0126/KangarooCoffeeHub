@@ -23,4 +23,17 @@ sidebar_position: 2
 2. [臺灣覺德教育社群（TDEC）](https://www.twdec.org/)
 
    於2018年底發起成立的教育組織，以推廣「民主教育」與另類教育為核心，凝聚台灣對自主學習、自學及民主學校有興趣的親師生與教育工作者。
-3.
+
+   <details>
+   <summary>推薦選文</summary>
+
+   1. [2024 IDEC 開幕短講｜黃武雄：兩個世界](https://www.twdec.org/post/2024-idec-two-worlds)
+   2. [民主大學：知識解放，賦權予人](https://www.twdec.org/post/democratic-university-in-japan)
+   3. [民主教育2.0：從學校走向世界](https://www.twdec.org/post/yaacov-democratic-education)
+   </details>
+3. [NoTime NoCode｜簡化工作流程](https://substack.com/@notimenocode)
+
+   是臺灣知名的無程式碼（NoCode）與AI自動化應用知識分享社群。團隊透過圖文、教學文章與電子報，教導非技術背景的工作者利用點擊與拖拉，串接多種數位工具，省下日常手動複製、貼上與資料搬移的時間。
+4. [小字輩の街頭記事](https://medium.com/@smallzibean)
+
+   由社工楊小豌經營的社群專頁與書寫平台。內容主要記錄她在街頭、公園與監所陪伴無家者、更生人等社會邊緣群體的真實經歷與深刻反思，並延伸出版了專書《街頭的流離者：一名街頭社工與無家者的交會微光》。

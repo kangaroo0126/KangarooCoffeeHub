@@ -271,7 +271,7 @@
     //    讓使用者在選單中能一眼看出功能分組，達到分類的使用體驗效果。
     //    分類如下：
     //      【內容框】提示框 note/tip/info/warning/danger、可折疊區塊
-    //      【多媒體】YouTube 影片
+    //      【多媒體】YouTube 影片、上傳影片檔案
     //      【表格】表格產生器
     //    （站內連結功能已依需求移除）
     // ============================================================
@@ -373,6 +373,45 @@
         var id = extractYouTubeId(obj.url);
         if (!id) return '（請輸入正確的 YouTube 網址）';
         return h('img', { src: 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg', style: { maxWidth: '100%', borderRadius: '10px' } });
+      }
+    });
+
+    // 3-3b　【多媒體】插入本機影片檔案（上傳 mp4）
+    //    媒體資料夾與圖片共用同一個（static/img/uploads），方便在媒體庫裡統一管理。
+    //    提醒：GitHub Contents API（Decap 存檔用的方式）不適合太大的檔案，
+    //    建議只上傳短片／小檔案；完整長片建議改用上方的 YouTube 元件。
+    CMS.registerEditorComponent({
+      id: 'video-upload',
+      label: '【多媒體】🎬 插入影片檔案（上傳 mp4）',
+      fields: [
+        {
+          name: 'src',
+          label: '影片檔案',
+          widget: 'file',
+          media_folder: 'static/img/uploads',
+          public_folder: '/img/uploads',
+          hint: '請上傳 mp4 檔案（會存到跟圖片相同的媒體資料夾）。建議檔案盡量小（例如幾秒到十幾秒的短片），太大的影片可能會上傳失敗或讓網站變得很慢；長片建議改用「插入 YouTube 影片」。'
+        }
+      ],
+      // 對應已存在的 <video>...<source src="...">...</video> 區塊，讓插入過的影片也能重新編輯
+      pattern: /^<video[^>]*>\n\s*<source src="([^"]+)"[^>]*\/>\n[\s\S]*?\n<\/video>\s*$/,
+      fromBlock: function (match) {
+        return { src: match[1] };
+      },
+      toBlock: function (obj) {
+        if (!obj.src) return '';
+        return '<video controls width="100%">\n' +
+          '  <source src="' + obj.src + '" type="video/mp4" />\n' +
+          '  您的瀏覽器不支援播放此影片。\n' +
+          '</video>';
+      },
+      toPreview: function (obj) {
+        if (!obj.src) return '（請上傳 mp4 檔案）';
+        return h('video', {
+          src: obj.src,
+          controls: true,
+          style: { maxWidth: '100%', borderRadius: '10px', display: 'block', margin: '1em 0' }
+        });
       }
     });
 

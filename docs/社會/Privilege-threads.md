@@ -1,10 +1,24 @@
 ---
 title: 特權Privilege不是錯覺：從 Threads 爭議看臺灣高教與「努力」敘事的結構性落差
 authors: 袋鼠
-description: 在臺灣近期 Threads 爭議為起點，本文釐清英文 privilege 與中文「特權」的差異，檢視高等教育與生涯設計話語如何隱性再製不平等，並提出回應教育政策與公共討論的具體方向。適合關心教育、社會政策與青年議題的讀者閱讀。
-tags: [特權,privilege,社會不平等,臺灣高等教育,半工半讀,校園大使,人生設計,生涯探索,教育不平等,社會階級,Threads,霹靂力矩,社會流動]
-date: 2025-12-29
 sidebar_position: 1
+description: 在臺灣近期 Threads 爭議為起點，本文釐清英文 privilege
+  與中文「特權」的差異，檢視高等教育與生涯設計話語如何隱性再製不平等，並提出回應教育政策與公共討論的具體方向。適合關心教育、社會政策與青年議題的讀者閱讀。
+tags:
+  - 特權
+  - privilege
+  - 社會不平等
+  - 臺灣高等教育
+  - 半工半讀
+  - 校園大使
+  - 人生設計
+  - 生涯探索
+  - 教育不平等
+  - 社會階級
+  - Threads
+  - 霹靂力矩
+  - 社會流動
+date: 2025-12-29
 ---
 
 :::info 系列文章
@@ -183,7 +197,6 @@ McIntosh 將 **white privilege** 定義為：
 7. 駱明慶（2002）。誰是台大學生？－性別、省籍與城鄉差異。經濟論文叢刊，30(1)，113-147。
 8. 駱明慶（2004）。升學機會與家庭背景。經濟論文叢刊，32(4)，417-445。
 9. 駱明慶（2018）。誰是台大學生？（2001-2014）－多元入學的影響。經濟論文叢刊，46(1)，47-95。
-10. [教育現場貼文：](https://www.threads.com/@baobao.jing/post/DSwWtOBAZpl?xmt=AQF0iZ_giZs9Vjm6S-xzSONv5udVije1aTiYtT9vQ2E2jna_VcZL3XMdfOz2zfUreMqzPn8F&slof=1)
 
 ## 五、引用文獻與參考資料
 

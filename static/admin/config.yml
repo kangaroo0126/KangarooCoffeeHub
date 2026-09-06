@@ -23,6 +23,17 @@ site_url: https://kangaroo0126.github.io/KangarooCoffeeHub
 # 改回 simple 之後：按「儲存」＝直接 commit 進 main，沒有草稿 / 審核看板，
 # 也不會再去呼叫 Worker 不支援的 API，奇怪畫面跟被要求重新登入的狀況就會消失。
 # 若之後真的需要草稿審核流程，需要先請人在 Worker 端把上述 API 補齊，才能重新打開。
+#
+# ⚠️ 重要提醒（這件事無法只靠改這份設定檔解決，需要另外去 GitHub 網站設定）：
+# 因為目前是 simple 模式，代表「任何能登入這個後台、且對 kangaroo0126/KangarooCoffeeHub
+# 這個 repo 有寫入權限的人」，按下儲存＝立刻讓內容直接上線到正式網站，
+# 中間沒有任何人可以先攔下來看一眼。建議之後找時間去做以下兩件事其中之一：
+#   1. 到 GitHub → 這個 repo → Settings → Branches，替 main 分支開啟
+#      「branch protection rule」，要求所有變更都要先開 Pull Request、
+#      經過審核才能合併（但這樣做之前，要先確認 Worker 那端真的有支援
+#      editorial_workflow 需要的 API，否則後台會又開始跳奇怪的錯誤畫面）。
+#   2. 或者，先確認清楚「目前有哪些人的 GitHub 帳號對這個 repo 有寫入權限」，
+#      盡量只留你自己一個人，降低誤按或帳號外流造成的風險。
 
 media_folder: "static/img/uploads"
 public_folder: "/img/uploads"
@@ -35,7 +46,15 @@ collections:
     label: "✍️ 日常思考"
     folder: "blog"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    # 修正：原本這裡寫 {{slug}}，會跟下面「自訂網址（Slug）」欄位（欄位名稱也叫 slug）
+    # 互相干擾——Decap CMS 在算檔名時，如果 collection 裡剛好有一個欄位跟樣板變數同名，
+    # 欄位的值會蓋掉系統自動算出來的值。這個欄位是「選填」，一旦有人沒填、
+    # 且同一天有兩篇文章都沒填，兩篇的檔名就會變成一樣，後存檔的會直接蓋掉先存檔的內容，
+    # 而且不會有任何警告。改成用 {{title}}（標題，必填欄位，不會是空的）來組檔名，
+    # 這樣檔名永遠不會重複/空白；「自訂網址（Slug）」欄位則仍然正常運作，
+    # 它只負責寫入文章 Front Matter 裡的 slug 值，用來決定文章在網站上的網址，
+    # 跟檔名是兩件事，兩者不會再互相打架。
+    slug: "{{year}}-{{month}}-{{day}}-{{title}}"
     fields:
       - { label: "標題", name: "title", widget: "string" }
       - { label: "發布日期", name: "date", widget: "datetime" }
@@ -75,7 +94,11 @@ collections:
     nested:
       depth: 100
       summary: "{{title}}"
-    slug: "{{slug}}"
+    # 修正：原本是 {{slug}}，跟下面「自訂網址（Slug）」欄位（也叫 slug）同名互相干擾，
+    # 欄位沒填時可能讓檔名變成空白，導致不同文章的檔案互相覆蓋。
+    # 改用 {{title}}（必填，不會是空的）來組檔名；「自訂網址（Slug）」欄位
+    # 仍然照常運作，只是改為單純負責 Front Matter 裡的 slug（決定文章網址），跟檔名脫鉤。
+    slug: "{{title}}"
     fields: &docs_fields
       - { label: "標題", name: "title", widget: "string" }
       - label: "自訂網址（Slug）"
@@ -103,7 +126,7 @@ collections:
     nested:
       depth: 100
       summary: "{{title}}"
-    slug: "{{slug}}"
+    slug: "{{title}}"
     fields: *docs_fields
 
   - name: "docs_social_work"
@@ -113,7 +136,7 @@ collections:
     nested:
       depth: 100
       summary: "{{title}}"
-    slug: "{{slug}}"
+    slug: "{{title}}"
     fields: *docs_fields
 
   - name: "docs_social_innovation"
@@ -123,7 +146,7 @@ collections:
     nested:
       depth: 100
       summary: "{{title}}"
-    slug: "{{slug}}"
+    slug: "{{title}}"
     fields: *docs_fields
 
   - name: "docs_psychology"
@@ -133,7 +156,7 @@ collections:
     nested:
       depth: 100
       summary: "{{title}}"
-    slug: "{{slug}}"
+    slug: "{{title}}"
     fields: *docs_fields
 
   - name: "docs_tech"
@@ -143,7 +166,7 @@ collections:
     nested:
       depth: 100
       summary: "{{title}}"
-    slug: "{{slug}}"
+    slug: "{{title}}"
     fields: *docs_fields
 
   - name: "docs_others"
@@ -153,7 +176,7 @@ collections:
     nested:
       depth: 100
       summary: "{{title}}"
-    slug: "{{slug}}"
+    slug: "{{title}}"
     fields: *docs_fields
 
   - name: "slowlife_cafe"
@@ -163,7 +186,7 @@ collections:
     nested:
       depth: 100
       summary: "{{title}}"
-    slug: "{{slug}}"
+    slug: "{{title}}"
     fields: *docs_fields
 
   - name: "slowlife_band"
@@ -173,7 +196,7 @@ collections:
     nested:
       depth: 100
       summary: "{{title}}"
-    slug: "{{slug}}"
+    slug: "{{title}}"
     fields: *docs_fields
 
   - name: "pages"

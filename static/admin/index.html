@@ -109,8 +109,25 @@
 
   <!-- 版本改為鎖定確切版號（而非 ^3.0.0），避免 unpkg 未來自動送出
        新的大版本更新，造成預覽或編輯器行為無預警改變。
-       之後若要升級，記得先在自己的瀏覽器測過一輪再改這裡的版號。 -->
-  <script src="https://unpkg.com/decap-cms@3.15.0/dist/decap-cms.js"></script>
+       之後若要升級，記得先在自己的瀏覽器測過一輪再改這裡的版號。
+
+       新增 integrity（SRI，子資源完整性驗證）：這個雜湊值是直接從
+       npm 官方套件（decap-cms@3.15.0 的 dist/decap-cms.js）算出來的
+       sha384 雜湊。瀏覽器下載這支程式碼後，會先比對雜湊值是否一致，
+       只要有一個位元被竄改（不管是 CDN 被入侵、或傳輸過程被動手腳），
+       瀏覽器就會直接拒絕執行這支程式碼，而不是照樣執行可能已經被
+       竄改過、會偷你 GitHub 權限的程式碼。
+
+       提醒：這支 decap-cms.js 內部還會再另外動態載入上百個小的
+       程式碼片段檔案（webpack 分包），這個 SRI 沒辦法覆蓋到那些
+       後續載入的檔案，所以不是 100% 完整的防護，但仍然是有意義的
+       第一道防線。之後若要升級版號，記得同時重新計算並更新這裡的
+       integrity 值，否則新版本的雜湊值對不上，會直接載入失敗。 -->
+  <script
+    src="https://unpkg.com/decap-cms@3.15.0/dist/decap-cms.js"
+    integrity="sha384-SbK3/1VbrEggVzAjBdeSpsyF12/TewZ7KhBD2RBWRn7CcofWf0Og0RDLQGvxWj/d"
+    crossorigin="anonymous"
+  ></script>
 
   <script>
     // ============================================================

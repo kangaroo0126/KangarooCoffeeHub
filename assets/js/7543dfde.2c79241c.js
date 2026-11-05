@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkmy_website=globalThis.webpackChunkmy_website||[]).push([[9959],{7426:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/KangarooCoffeeHub/blog/page/2","page":2,"postsPerPage":10,"totalPages":2,"totalCount":19,"previousPage":"/KangarooCoffeeHub/blog","blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
